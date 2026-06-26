@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The AI Course - a live, two-week cohort where you build your own AI operating system with Remy. Six live sessions, my whole setup on your machine, one real thing you ship.">
+
+  <meta property="og:title" content="The AI Course - build your own AI operating system, live with Remy">
+  <meta property="og:description" content="Six live sessions over two weeks. The engine you never touch, the three dials you do. My whole setup on your machine, and one real build you ship.">
+  <meta property="og:type" content="website">
+
+  <title>The AI Course - live cohort with Remy</title>
+
+  <link rel="icon" href="assets/images/ai-with-remy-logo.gif">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="the-ai-course.css">
+</head>
+<body class="tac-page">
+
+  <!-- ===================== GLASS PILL NAV ===================== -->
+  <nav class="tac-nav" id="tacNav" aria-label="Primary">
+    <a href="#top" class="tac-nav__brand" aria-label="AI with Remy">
+      <img src="assets/images/ai-with-remy-logo.gif" alt="AI with Remy">
+    </a>
+    <div class="tac-nav__links">
+      <a href="#model" class="tac-nav__link">the model</a>
+      <a href="#curriculum" class="tac-nav__link">curriculum</a>
+      <a href="#build" class="tac-nav__link">the build</a>
+      <a href="#pricing" class="tac-nav__link">pricing</a>
+      <a href="#faq" class="tac-nav__link">faqs</a>
+    </div>
+    <a href="https://the-ai-course.circle.so/checkout/test" class="tac-nav__cta" data-checkout>join the cohort</a>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="tac-hero" id="top">
+    <div class="tac-hero__ascii" aria-hidden="true">
+      <img src="assets/images/ascii-sand.png" alt="">
+    </div>
+    <div class="container">
+      <span class="tac-hero__badge"><span class="tac-live"></span> live cohort &middot; july</span>
+      <h1 class="tac-hero__headline">Build your own AI operating system. live, with me.</h1>
+      <p class="tac-hero__sub">six live sessions over two weeks. you walk out actually getting how this works - the engine you never touch, the three dials you do - with my whole setup on your machine and one real thing you built.</p>
+      <div class="tac-cta-wrap">
+        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>join the cohort <span class="tac-cta__price">&middot; $1,497</span></a>
+        <span class="tac-cta-sub">early bird &middot; 30 seats &middot; pay in full or 8 &times; $275/wk</span>
+      </div>
+      <div class="tac-hero__meta">
+        <span><b class="tac-placeholder" title="placeholder - confirm dates">starts mon 14 jul</b></span>
+        <span>&middot;</span>
+        <span><b>30</b> seats</span>
+        <span>&middot;</span>
+        <span><b>6</b> sessions &middot; 2 weeks</span>
+        <span>&middot;</span>
+        <span>recorded, always</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== TRUST STRIP ===================== -->
+  <section class="tac-trust">
+    <div class="tac-trust__inner">
+      <span class="tac-trust__item"><b>hundreds</b> of founders already on the waitlist</span>
+      <span class="tac-trust__item">
+        <span class="tac-trust__faces">
+          <img src="assets/images/founders/noah.jpg" alt="Noah">
+          <img src="assets/images/founders/hudson.jpg" alt="Hudson">
+          <img src="assets/images/founders/alfie.jpg" alt="Alfie">
+        </span>
+        i've set this up for founders like Noah, Hudson &amp; Alfie
+      </span>
+      <span class="tac-trust__item"><b>20,000+</b> read the newsletter every Thursday</span>
+    </div>
+  </section>
+
+  <!-- ===================== THE GAP ===================== -->
+  <section class="tac-section tac-section--grey" id="gap">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the gap ]</span>
+      <h2 class="tac-h2">you don't have a knowledge problem. you have an implementation problem.</h2>
+      <p class="tac-lead tac-lead--center">you've watched the breakdowns, saved the threads, poked at ChatGPT... and almost none of it made it into how you actually work. that gap - between watching AI and building it into your day - is where everyone quietly gives up.</p>
+    </div>
+    <div class="tac-wide">
+      <div class="tac-pains">
+        <div class="tac-pain tac-reveal tac-reveal--d1">
+          <span class="tac-pain__n">01</span>
+          <h4>it won't stick</h4>
+          <p>you know it matters, but you can't get it into your work. saved every thread, watched every video, and none of it made the jump.</p>
+        </div>
+        <div class="tac-pain tac-reveal tac-reveal--d2">
+          <span class="tac-pain__n">02</span>
+          <h4>the busywork eats your week</h4>
+          <p>hours gone on content, admin, support - the boring 80% that doesn't need a human anywhere near it.</p>
+        </div>
+        <div class="tac-pain tac-reveal tac-reveal--d3">
+          <span class="tac-pain__n">03</span>
+          <h4>you tried it, it fizzled</h4>
+          <p>felt gimmicky, no real system behind it, so you shrugged and went back to doing it all by hand.</p>
+        </div>
+      </div>
+      <p class="tac-gap__punch tac-reveal">the magic was never the tool. it's the setup - and almost nobody teaches the setup. <span class="hl">that's the whole gap this course closes.</span></p>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT IT IS ===================== -->
+  <section class="tac-section" id="what">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ what it is ]</span>
+      <h2 class="tac-h2">i drop my whole setup on your machine. then we build.</h2>
+      <p class="tac-lead tac-lead--center">The AI Course teaches you to build your own AI operating system - a setup that knows your business and does real work for you. foundations first, then my entire setup on your laptop, then one real, working thing we build with it, live. no word of a lie, i'm 5-10x more productive than i used to be.</p>
+    </div>
+    <div class="container">
+      <ul class="tac-list tac-reveal" style="max-width:560px;margin:var(--space-8) auto 0">
+        <li><strong>you leave actually understanding it.</strong> not a setup you copied and can't run - the literacy. you'll get the engine and the three dials cold, so you can build, run and sharpen the thing yourself.</li>
+        <li><strong>you leave with my machine on yours.</strong> session one is a full download of my actual setup, running on your laptop. the files, the skills, the lot.</li>
+        <li><strong>you leave having built one real thing.</strong> not a toy demo. one working build that uses your whole system - proof you can do it, and the template for everything after.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="tac-asciirule" aria-hidden="true">+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</div>
+
+  <!-- ===================== THE MODEL (signature) ===================== -->
+  <section class="tac-section tac-mech" id="model">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the model ]</span>
+      <h2 class="tac-h2">the engine and the three dials</h2>
+      <p class="tac-mech__quote">the engine you never touch. <span class="hl">the three dials you do.</span></p>
+    </div>
+
+    <div class="container">
+      <div class="tac-engine">
+        <div class="tac-engine__card tac-reveal tac-reveal--d1">
+          <span class="tac-engine__tag">engine &middot; fixed</span>
+          <h4>the brain</h4>
+          <p>the LLM. the reasoning. the same brilliant brain whether you're a beginner or a pro. you don't tune it.</p>
+        </div>
+        <div class="tac-engine__card tac-reveal tac-reveal--d2">
+          <span class="tac-engine__tag">engine &middot; fixed</span>
+          <h4>the loop</h4>
+          <p>how an agent actually works. it looks at what's in front of it, decides one next step, does it, then looks again.</p>
+        </div>
+      </div>
+
+      <div class="tac-loop" id="tacLoop" aria-hidden="true">
+        <span class="tac-loop__node" data-loop="0">observe</span>
+        <span class="tac-loop__arrow">&rarr;</span>
+        <span class="tac-loop__node" data-loop="1">think</span>
+        <span class="tac-loop__arrow">&rarr;</span>
+        <span class="tac-loop__node" data-loop="2">act</span>
+        <span class="tac-loop__arrow">&#8635;</span>
+      </div>
+      <p class="tac-loop__rep">over and over, till the job's done</p>
+
+      <p class="tac-engine__note">so why are some people's agents incredible and most people's useless? not the engine. the three dials.</p>
+
+      <div class="tac-dials">
+        <div class="tac-dial tac-reveal" style="--fill:92%">
+          <span class="tac-dial__num">dial 01</span>
+          <h4>Context</h4>
+          <span class="tac-dial__what">what it knows about you</span>
+          <div class="tac-dial__bar"><i></i></div>
+          <p>your business info, your voice, your memory. fed in every time it works, so it answers like it works for you - not like a stranger.</p>
+        </div>
+        <div class="tac-dial tac-reveal tac-reveal--d1" style="--fill:84%">
+          <span class="tac-dial__num">dial 02</span>
+          <h4>Tools</h4>
+          <span class="tac-dial__what">what it can reach and do</span>
+          <div class="tac-dial__bar"><i></i></div>
+          <p>your apps, your email, your browser, the web. the logins that turn advice into work actually done.</p>
+        </div>
+        <div class="tac-dial tac-reveal tac-reveal--d2" style="--fill:88%">
+          <span class="tac-dial__num">dial 03</span>
+          <h4>Skills</h4>
+          <span class="tac-dial__what">how it does things your way</span>
+          <div class="tac-dial__bar"><i></i></div>
+          <p>your SOPs, packaged once and reused forever. nail a job the right way, then never lose that work again.</p>
+        </div>
+      </div>
+
+      <p class="tac-mech__hire tac-reveal">treat it like a hire. a raw agent is the smartest, hardest-working person you'll ever meet - infinite bandwidth, costs about a hundred quid a month. but on day one it knows nothing about your business, has none of your logins, and doesn't know how you like things done. <b>so you onboard it. context, tools, skills.</b> that's the whole job - and the whole back half of this course.</p>
+    </div>
+  </section>
+
+  <!-- ===================== BEFORE / AFTER ===================== -->
+  <section class="tac-section" id="after">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the shift ]</span>
+      <h2 class="tac-h2">from watching AI happen to running it</h2>
+    </div>
+    <div class="tac-ba tac-reveal">
+      <div class="tac-ba__col tac-ba__col--before">
+        <span class="tac-ba__tag">before</span>
+        <ul>
+          <li>asking ChatGPT the odd question, hoping it sticks</li>
+          <li>the boring 80% of your week, done by hand</li>
+          <li>a black box you can't see, edit or take anywhere</li>
+          <li>nail a job, then start from scratch next week</li>
+          <li>every new tool feels like more to keep up with</li>
+        </ul>
+      </div>
+      <div class="tac-ba__col tac-ba__col--after">
+        <span class="tac-ba__tag">after</span>
+        <ul>
+          <li>operating a system that knows your business cold</li>
+          <li>the boring 80%, handed off and running</li>
+          <li>plain files you own and can move to any harness</li>
+          <li>skills that remember, so you never lose the work</li>
+          <li>"how did i ever work without this"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="tac-section tac-section--grey" id="how">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ how it runs ]</span>
+      <h2 class="tac-h2">six live sessions. same shape, all six. nothing winged.</h2>
+    </div>
+    <div class="tac-wide">
+      <div class="tac-shape">
+        <div class="tac-stat tac-reveal"><span class="tac-stat__big">6</span><span class="tac-stat__lab">live sessions, you at the wheel</span></div>
+        <div class="tac-stat tac-reveal tac-reveal--d1"><span class="tac-stat__big">90<small style="font-size:1rem">min</small></span><span class="tac-stat__lab">60 building together + 30 open Q&amp;A</span></div>
+        <div class="tac-stat tac-reveal tac-reveal--d2"><span class="tac-stat__big">2<small style="font-size:1rem">wks</small></span><span class="tac-stat__lab">three sessions a week, all live</span></div>
+      </div>
+      <div class="tac-shape__row tac-reveal">
+        <span class="tac-chip"><b>recorded</b>, always - run it back anytime</span>
+        <span class="tac-chip">a <b>resource library</b> every session, yours to keep</span>
+        <span class="tac-chip"><b>one cohort</b>, all levels, met where you stand</span>
+        <span class="tac-chip">small room - <b>30 seats</b> max</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CURRICULUM ===================== -->
+  <section class="tac-section" id="curriculum">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the curriculum ]</span>
+      <h2 class="tac-h2">foundations first. then we turn the dials, one at a time.</h2>
+      <p class="tac-lead tac-lead--center">six sessions, each with one deliverable that has to land. tap any to see what you walk out with.</p>
+    </div>
+    <div class="tac-curric">
+
+      <div class="tac-ses">
+        <button class="tac-ses__head" aria-expanded="false">
+          <span class="tac-ses__mark">S1</span>
+          <span class="tac-ses__t"><strong>Theory + the install</strong><span>the model, and my whole setup on your machine</span></span>
+          <span class="tac-ses__plus">[+]</span>
+        </button>
+        <div class="tac-ses__body"><div class="tac-ses__inner">
+          <p class="tac-ses__deliver"><b>deliverable:</b> you understand exactly how an agent works - and my entire setup is installed and running on your laptop.</p>
+          <p class="tac-ses__leave">you walk out with</p>
+          <ul class="tac-list tac-list--tight"><li>the model cold - the engine and the three dials, so nothing after this is a black box</li><li>my complete setup installed, your folders scaffolded the way you work</li></ul>
+        </div></div>
+      </div>
+
+      <div class="tac-ses">
+        <button class="tac-ses__head" aria-expanded="false">
+          <span class="tac-ses__mark">S2</span>
+          <span class="tac-ses__t"><strong>Context - make it know you</strong><span>dial one: markdown, claude.md + the context interview</span></span>
+          <span class="tac-ses__plus">[+]</span>
+        </button>
+        <div class="tac-ses__body"><div class="tac-ses__inner">
+          <p class="tac-ses__deliver"><b>deliverable:</b> context files that know your business cold - built by letting it interview you.</p>
+          <p class="tac-ses__leave">you walk out with</p>
+          <ul class="tac-list tac-list--tight"><li>a clear head on markdown + claude.md - no more black box, just files you own</li><li>the context interview to run - one full pass that builds your second brain off your own answers</li></ul>
+        </div></div>
+      </div>
+
+      <div class="tac-ses">
+        <button class="tac-ses__head" aria-expanded="false">
+          <span class="tac-ses__mark">S3</span>
+          <span class="tac-ses__t"><strong>Memory - make it remember</strong><span>dial one, part two: the self-improving loop</span></span>
+          <span class="tac-ses__plus">[+]</span>
+        </button>
+        <div class="tac-ses__body"><div class="tac-ses__inner">
+          <p class="tac-ses__deliver"><b>deliverable:</b> a memory that gets sharper every time you correct it.</p>
+          <p class="tac-ses__leave">you walk out with</p>
+          <ul class="tac-list tac-list--tight"><li>the self-improving loop running - correct it once, it remembers for good</li><li>a curated memory that stays sharp instead of bloated</li></ul>
+        </div></div>
+      </div>
+
+      <div class="tac-ses">
+        <button class="tac-ses__head" aria-expanded="false">
+          <span class="tac-ses__mark">S4</span>
+          <span class="tac-ses__t"><strong>Tools - give it hands</strong><span>dial two: what it can reach</span></span>
+          <span class="tac-ses__plus">[+]</span>
+        </button>
+        <div class="tac-ses__body"><div class="tac-ses__inner">
+          <p class="tac-ses__deliver"><b>deliverable:</b> your system wired into the apps and data your business actually runs on.</p>
+          <p class="tac-ses__leave">you walk out with</p>
+          <ul class="tac-list tac-list--tight"><li>your system connected to the apps your business runs on</li><li>one real cross-app job it did from a single instruction</li></ul>
+        </div></div>
+      </div>
+
+      <div class="tac-ses">
+        <button class="tac-ses__head" aria-expanded="false">
+          <span class="tac-ses__mark">S5</span>
+          <span class="tac-ses__t"><strong>Skills - teach it your way</strong><span>dial three: how it works</span></span>
+          <span class="tac-ses__plus">[+]</span>
+        </button>
+        <div class="tac-ses__body"><div class="tac-ses__inner">
+          <p class="tac-ses__deliver"><b>deliverable:</b> your own custom skills, built from scratch.</p>
+          <p class="tac-ses__leave">you walk out with</p>
+          <ul class="tac-list tac-list--tight"><li>one or two custom skills you built, for jobs you do every week</li><li>the knack for building a skill for anything from here on</li></ul>
+        </div></div>
+      </div>
+
+      <div class="tac-ses">
+        <button class="tac-ses__head" aria-expanded="false">
+          <span class="tac-ses__mark">S6</span>
+          <span class="tac-ses__t"><strong>The live build</strong><span>all three dials, one real thing - you vote on which</span></span>
+          <span class="tac-ses__plus">[+]</span>
+        </button>
+        <div class="tac-ses__body"><div class="tac-ses__inner">
+          <p class="tac-ses__deliver"><b>deliverable:</b> one real, working build that uses your context, your tools and your skills - shipped.</p>
+          <p class="tac-ses__leave">you walk out with</p>
+          <ul class="tac-list tac-list--tight"><li>one real, working build, shipped and running</li><li>the template for every build after this one</li><li>your place in the alumni community</li></ul>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== OUTCOMES ===================== -->
+  <section class="tac-section tac-section--grey" id="outcomes">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ what you walk out with ]</span>
+      <h2 class="tac-h2">one machine you actually understand. one real build. a room to keep going.</h2>
+    </div>
+    <div class="container tac-outcomes tac-reveal">
+      <ul class="tac-list">
+        <li><strong>the model, cold</strong> - the engine you never touch, the three dials you do</li>
+        <li><strong>my entire setup</strong>, installed and your folders scaffolded</li>
+        <li><strong>context files</strong> that know your business, and a <strong>memory</strong> that sharpens as you correct it</li>
+        <li><strong>your system wired</strong> into the apps you actually use</li>
+        <li><strong>your own custom skills</strong>, built from scratch</li>
+        <li><strong>one real, working build</strong> you shipped</li>
+        <li><strong>the alumni community</strong>, where the builds keep coming</li>
+      </ul>
+      <p class="tac-outcomes__tail">and the literacy under all of it. so when the next thing drops - OpenClaw, Hermes, you name it - you've already got it.</p>
+    </div>
+  </section>
+
+  <!-- ===================== THE BUILD (vote) ===================== -->
+  <section class="tac-section" id="build">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ session six ]</span>
+      <h2 class="tac-h2">the last session is one real build. the cohort votes on what.</h2>
+      <p class="tac-lead tac-lead--center">not another concept - one working thing you keep and use. three on the table, the whole room picks, and we build the winner together, live.</p>
+    </div>
+    <div class="tac-wide">
+      <div class="tac-build">
+        <div class="tac-buildcard tac-reveal">
+          <img class="tac-buildcard__ic" src="assets/gif/icons/rocket.gif" alt="">
+          <h4>a landing page</h4>
+          <p>your offer, your idea, a real URL you can send someone.</p>
+        </div>
+        <div class="tac-buildcard tac-reveal tac-reveal--d1">
+          <img class="tac-buildcard__ic" src="assets/gif/icons/book.gif" alt="">
+          <h4>an analytics dashboard</h4>
+          <p>your numbers in one view - sales, traffic, whatever you live and die by - pulled together automatically.</p>
+        </div>
+        <div class="tac-buildcard tac-reveal tac-reveal--d2">
+          <img class="tac-buildcard__ic" src="assets/gif/icons/chat.gif" alt="">
+          <h4>a social media dashboard</h4>
+          <p>your content and post performance in one place, an internal tool for running your channels.</p>
+        </div>
+      </div>
+      <p class="tac-build__note">whichever wins, everyone builds it - guided every step if you need it, pushed further if you're flying.</p>
+    </div>
+  </section>
+
+  <!-- ===================== ALUMNI ===================== -->
+  <section class="tac-section tac-section--grey" id="alumni">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ after the course ]</span>
+      <h2 class="tac-h2">the course is the foundation. the community is where you keep going.</h2>
+      <p class="tac-lead tac-lead--center">when the cohort wraps you move into the alumni room - the same private space, except now it's ongoing. and your <strong>first month is on me</strong> ($147 value).</p>
+    </div>
+    <div class="tac-wide">
+      <div class="tac-alumni__cards">
+        <div class="tac-acard tac-reveal">
+          <img src="assets/gif/icons/calendar.gif" alt="">
+          <h4>live builds every week or two</h4>
+          <p>we pick a real thing and build it together - new skill, new agent, new automation, on a regular cadence.</p>
+        </div>
+        <div class="tac-acard tac-reveal tac-reveal--d1">
+          <img src="assets/gif/icons/chat.gif" alt="">
+          <h4>a room of people building</h4>
+          <p>the wins, the screenshots, the "how'd you do that", the help when you're stuck. same level as you, all pushing.</p>
+        </div>
+        <div class="tac-acard tac-reveal tac-reveal--d2">
+          <img src="assets/gif/icons/confetti.gif" alt="">
+          <h4>whatever drops next, first</h4>
+          <p>new tools, new harnesses, worked through together, so you're never sat waiting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHO THIS IS FOR ===================== -->
+  <section class="tac-section" id="who">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ who this is for? ]</span>
+      <h2 class="tac-h2">who this is for, and who it's not</h2>
+      <p class="tac-lead tac-lead--center">quick and honest, so the right people are in the room.</p>
+    </div>
+    <div class="tac-aud">
+      <div class="tac-aud__col tac-aud__col--for tac-reveal">
+        <h3 class="tac-aud__h">it's for you if...</h3>
+        <ul>
+          <li>you're <b>high-agency</b> and you feel the shift coming - founder, operator, agency owner, marketer, ecom, freelancer, consultant, or the 100x employee bringing real leverage into a company you don't own</li>
+          <li>you're <b>already using AI daily</b> and it's a mess - scattered across ten tabs, nothing sticks</li>
+          <li>or you've <b>barely started</b> but you're hungry and you'll do the reps</li>
+          <li>you can describe your business in <b>plain English</b> - that's technical enough. i'm not technical either, my background's marketing</li>
+          <li>you want to <b>build it</b>, not just read about it</li>
+        </ul>
+      </div>
+      <div class="tac-aud__col tac-aud__col--not tac-reveal tac-reveal--d1">
+        <h3 class="tac-aud__h">it's not for you if...</h3>
+        <ul>
+          <li>you're <b>not comfortable on a computer</b> - not coding, just the basics: files, screenshots, installing an app. that's the one real bar</li>
+          <li>you want <b>"just do it for me"</b> - this is build-it-with-you. a finished machine handed over is a different door (that's consulting)</li>
+          <li>you're a <b>magic-button hunter</b> - there's no button, you drive and you put the reps in</li>
+          <li>you're an <b>engineer after code training</b> - we run AI as operators, not ship software. wrong room for that</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="tac-asciirule" aria-hidden="true">+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</div>
+
+  <!-- ===================== FOUNDER STORY ===================== -->
+  <section class="tac-section" id="founder">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ from remy ]</span>
+      <h2 class="tac-h2">why i'm doing this</h2>
+    </div>
+    <div class="container tac-founder tac-reveal">
+      <div class="tac-founder__body">
+        <p>i don't have a technical bone in my body. my background's marketing. and that's rather the point.</p>
+        <p>i built a full AI operating system - an extension of me as a founder. it runs my work, automates the boring grunt of my week, and <span class="hl">no word of a lie, i'm 5-10x more productive than i used to be</span>. then i set the same thing up for founders like Noah, Hudson and Alfie, and watched the same penny drop for them.</p>
+        <p>here's the honest version of why most people try AI, get junk, and quit: a raw agent out of the box is mediocre. the magic was never the agent - it's the setup, and almost nobody teaches the setup. so i learned it the way you're about to, as a normal person who just needed it to work.</p>
+        <p>it lives on Claude Code, but the point was never the harness - it's the understanding. <span class="hl">get that, and whatever drops next you pick up without me.</span> AI doesn't replace you. it amplifies you - your judgment, your taste, your vision. you stay the one with the standard. it just does the heavy lifting.</p>
+        <p>that's the whole thing i want to hand you. come build it with me.</p>
+      </div>
+      <div class="tac-founder__sign">
+        <img src="assets/images/Remy.png" alt="Remy">
+        <span>Remy &middot; AI with Remy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROOF ===================== -->
+  <section class="tac-section tac-section--grey" id="proof">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the proof ]</span>
+      <h2 class="tac-h2">founders i've already set this up for</h2>
+      <p class="tac-lead tac-lead--center">real people, real setups. their words going in here as the cohort ships its results.</p>
+    </div>
+    <div class="tac-wide">
+      <div class="tac-proof">
+        <div class="tac-pcard tac-reveal">
+          <p class="tac-pcard__q tac-placeholder" data-placeholder>"[ placeholder - Noah's real words to drop in ]"</p>
+          <span class="tac-pcard__stat tac-placeholder" data-placeholder>10x'd the busywork off his plate</span>
+          <div class="tac-pcard__by"><img src="assets/images/founders/noah.jpg" alt="Noah"><span><b>Noah</b><span>founder</span></span></div>
+        </div>
+        <div class="tac-pcard tac-reveal tac-reveal--d1">
+          <p class="tac-pcard__q tac-placeholder" data-placeholder>"[ placeholder - Hudson's real words to drop in ]"</p>
+          <span class="tac-pcard__stat tac-placeholder" data-placeholder>hours back every week</span>
+          <div class="tac-pcard__by"><img src="assets/images/founders/hudson.jpg" alt="Hudson"><span><b>Hudson</b><span>founder</span></span></div>
+        </div>
+        <div class="tac-pcard tac-reveal tac-reveal--d2">
+          <p class="tac-pcard__q tac-placeholder" data-placeholder>"[ placeholder - Alfie's real words to drop in ]"</p>
+          <span class="tac-pcard__stat tac-placeholder" data-placeholder>shipped the thing he kept parking</span>
+          <div class="tac-pcard__by"><img src="assets/images/founders/alfie.jpg" alt="Alfie"><span><b>Alfie</b><span>founder</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRICING ===================== -->
+  <section class="tac-section tac-pricing" id="pricing">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the offer ]</span>
+      <h2 class="tac-h2">one price. the whole machine. forever.</h2>
+    </div>
+    <div class="tac-price-card tac-reveal">
+      <span class="tac-fxlayer" aria-hidden="true"></span>
+      <span class="tac-price-card__flag">early bird</span>
+      <p class="tac-price__name">the ai course &middot; july cohort</p>
+      <div class="tac-price__amount">
+        <span class="was">$1,997</span>
+        <span class="cur">$</span><span class="now">1,497</span>
+      </div>
+      <p class="tac-price__plan">pay in full, or <b>8 &times; $275/week</b>. and your first month in the alumni community is free <b>($147 value)</b>.</p>
+      <ul class="tac-list">
+        <li><strong>6 live sessions</strong>, 90 minutes each (60 building + 30 Q&amp;A)</li>
+        <li><strong>my full setup</strong>, installed on your machine in session one</li>
+        <li><strong>a resource library every session</strong> - prompts, files, skills, walkthroughs, yours to keep</li>
+        <li><strong>every call recorded</strong>, to run back anytime</li>
+        <li><strong>the private community</strong> for hands-on help between calls</li>
+        <li><strong>one real build</strong> you ship by the end</li>
+        <li><strong>1 month free</strong> in the alumni community after</li>
+      </ul>
+      <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg tac-price__cta" data-checkout>buy now - join the cohort</a>
+      <div class="tac-price__badges">
+        <span>&#128274; secure checkout</span>
+        <span>&middot;</span>
+        <span>powered by Circle</span>
+        <span>&middot;</span>
+        <span class="tac-placeholder" title="placeholder - confirm dates">starts mon 14 jul</span>
+      </div>
+    </div>
+
+    <div class="tac-guarantee tac-reveal">
+      <div class="tac-guarantee__seal">SHOW<br>UP<br>OR<br>REFUND</div>
+      <div>
+        <h4>show up, do the work, or your money back.</h4>
+        <p>turn up to the live calls and do the homework. if you've done that and the course didn't deliver, email me and i'll refund you in full. you take the risk off the table, i'll bring the goods.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OBJECTIONS ===================== -->
+  <section class="tac-section" id="objections">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the six lies ]</span>
+      <h2 class="tac-h2">the things you're telling yourself right now</h2>
+      <p class="tac-lead tac-lead--center">let's have them out, honestly.</p>
+    </div>
+    <div class="tac-acc" data-acc>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">"i'm not technical enough" <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>i'm not either - my background's marketing, and i learned this exactly the way you're about to. if you can describe your business in plain English, you're technical enough. the one real bar is basic computer fluency, not code.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">"i don't have time for this" <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>you're not too busy to learn this, you're too busy because you haven't. the whole point is handing the boring 80% of your week off to a machine. it's six 90-minute sessions over two weeks, and they're recorded if you miss one.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">"i've tried AI and it never stuck" <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>course it didn't - a raw agent out of the box is mediocre. the magic's in the setup, and that's the bit nobody taught you. that's literally what we fix, foundations first, with my whole machine on yours.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">"i'm a total beginner, i'll be lost" <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>never touched an agent? you're bang in the middle of who this is built for. we go slower on the why, click by click, and the first ten minutes of session one is setup, so nobody gets left behind. recordings mean you can always run it back slower.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">"it's too expensive" <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>one skill that saves you a few hours a week pays this back inside a month - and you keep the machine forever, not a video you'll never rewatch. there's an 8 &times; $275 weekly plan if that's easier, and a refund if you show up, do the work and it doesn't land.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">"the next tool will make this obsolete" <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>no - because you're learning the model, not a tool. the engine you never touch, the three dials you do. it lives on Claude Code but opens with Codex or whatever drops next month. when the next thing lands, you've already got it.</p></div>
+      </div>
+    </div>
+
+    <div class="tac-safe tac-reveal">
+      <p><b>"but is it safe?"</b> you secure an AI employee the same way you'd secure a human one - except this one's more controllable than any human you'll ever hire. it only gets the keys you hand it (no payments access means it literally can't move money), reading is free but anything irreversible is gated so it drafts and you send, every action's logged, and one click cuts off all its access. we cover this properly in session one.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SCARCITY ===================== -->
+  <section class="tac-section tac-scarcity" id="scarcity">
+    <div class="container tac-reveal">
+      <span class="tac-kicker" style="color:rgba(255,255,255,0.85)">[ don't sit on this ]</span>
+      <h2 class="tac-h2">two types of people, six months from now</h2>
+      <p class="tac-lead tac-lead--center" style="color:#fff;opacity:0.92">those who've got AI doing real work for them, and those still reading about it. you already feel which way the wind's blowing, or you wouldn't be on this page.</p>
+
+      <div class="tac-count" id="tacCountdown" data-deadline="2026-07-11T23:59:00-04:00">
+        <div class="tac-count__unit"><span class="tac-count__n" data-d>00</span><span class="tac-count__l">days</span></div>
+        <div class="tac-count__unit"><span class="tac-count__n" data-h>00</span><span class="tac-count__l">hrs</span></div>
+        <div class="tac-count__unit"><span class="tac-count__n" data-m>00</span><span class="tac-count__l">min</span></div>
+        <div class="tac-count__unit"><span class="tac-count__n" data-s>00</span><span class="tac-count__l">sec</span></div>
+      </div>
+      <p class="tac-scar__note tac-placeholder" title="placeholder - confirm enrollment close">enrollment closes (placeholder date)</p>
+
+      <div class="tac-seats" id="tacSeats" data-total="30" data-left="12">
+        <div class="tac-seats__row"><span>seats in this cohort</span><span><b data-left-label>12</b> of 30 left</span></div>
+        <div class="tac-seats__track"><span class="tac-seats__fill"></span></div>
+      </div>
+
+      <div class="tac-cta-wrap">
+        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>save your seat <span class="tac-cta__price">&middot; $1,497</span></a>
+      </div>
+
+      <div class="tac-dates" aria-label="session dates">
+        <span class="tac-placeholder">mon 14 jul</span>
+        <span class="tac-placeholder">wed 16 jul</span>
+        <span class="tac-placeholder">fri 18 jul</span>
+        <span class="tac-placeholder">mon 21 jul</span>
+        <span class="tac-placeholder">wed 23 jul</span>
+        <span class="tac-placeholder">fri 25 jul</span>
+      </div>
+      <p class="tac-scar__note tac-scar__note--last">all 6pm ET &middot; placeholder dates, to be confirmed</p>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="tac-section" id="faq">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ faqs ]</span>
+      <h2 class="tac-h2">the practical bits</h2>
+    </div>
+    <div class="tac-acc" data-acc>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">what if i can't make a live call? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>every session's recorded, so you run it back anytime. and the 30 minutes of open Q&amp;A each session means whatever you got stuck on gets sorted live next time. you won't fall behind.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">when are the live sessions? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>six sessions across two weeks, three a week, all at 6pm ET. <span class="tac-placeholder" title="placeholder - confirm dates">exact dates are being confirmed - they'll be locked in your welcome email.</span></p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">how technical do i need to be? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>not technical at all - no coding, ever. the one real bar is basic computer fluency: managing files, taking a screenshot, installing an app, finding your way around your own machine. if you can describe your business in plain English, you're in.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">what do i need before we start? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>three free installs, no wiring needed: Claude Code, VS Code (the link i send brings the extensions with it), and Whisper Flow so you can talk to it instead of typing. we do the actual setup live in session one.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">i'm already building automations - is this too basic? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>no. you'll finally get the model properly - the bit most people skip - then get pushed to drive solo, audit it, harden it, wire more in. every session ships a full walkthrough and a faster reference side by side, so you take whichever pace you need.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">can i pay in instalments? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>yep - 8 &times; $275 a week. or pay in full at the $1,497 early-bird price and you're done.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">what's the refund policy? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>show up to the live calls, do the homework, and if it didn't deliver, email me for a full refund. simple as that.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">what happens after the two weeks? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>you move straight into the alumni community, where we run live builds every week or two. the course gives you the foundations and your first build. the community is where you keep going - and your first month's on me.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="tac-section tac-final" id="join">
+    <div class="container tac-reveal">
+      <p class="tac-final__big">stop reading about it. go build it.</p>
+      <p>six live sessions, my whole setup on your machine, and one real thing you ship - with a room of people building right next to you.</p>
+      <div class="tac-cta-wrap">
+        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>join the cohort <span class="tac-cta__price">&middot; $1,497</span></a>
+        <span class="tac-cta-sub">early bird &middot; 30 seats &middot; <span class="tac-placeholder">starts mon 14 jul</span> &middot; show-up-or-refund</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="tac-foot">
+    <div class="container">
+      <img src="assets/images/ai-with-remy-logo.gif" alt="AI with Remy" class="tac-foot__logo">
+      <nav class="tac-foot__nav" aria-label="Footer">
+        <a href="https://aiwithremy.com" target="_blank" rel="noopener">aiwithremy.com</a>
+        <a href="https://aiwithremy.com/manifesto" target="_blank" rel="noopener">manifesto</a>
+        <a href="https://aiwithremy.com/posts" target="_blank" rel="noopener">newsletter</a>
+        <a href="mailto:remy@aiwithremy.com">contact</a>
+      </nav>
+      <p class="tac-foot__legal">&copy; 2026 AI WITH REMY &middot; THE AI COURSE</p>
+    </div>
+  </footer>
+
+  <!-- ===================== STICKY BUY BAR ===================== -->
+  <div class="tac-buybar" id="tacBuybar">
+    <div class="tac-buybar__info"><b>The AI Course</b> &middot; july cohort <span>&middot; early bird $1,497 &middot; 30 seats</span></div>
+    <a href="https://the-ai-course.circle.so/checkout/test" class="tac-buybar__cta" data-checkout>join now</a>
+  </div>
+
+  <script src="js/button-sounds.js"></script>
+  <script src="the-ai-course.js"></script>
+</body>
+</html>

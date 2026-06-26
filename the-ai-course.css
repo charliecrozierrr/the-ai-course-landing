@@ -1,0 +1,599 @@
+/* =====================================================
+   THE AI COURSE — sales page
+   Page-specific styles. Loads AFTER styles.css and
+   reuses its tokens, fonts and components.
+   Brand: Sophisticated Digital Nostalgia.
+   Blueprint Blue #4040FF used as accent + on deliberate
+   full-blue feature bands only. Corners squared (Notion
+   pass) except the glass pill nav.
+   ===================================================== */
+
+:root {
+  --tac-wide: 1000px;
+  --tac-blue-2: #2f2fd6;
+  --tac-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* page can be wider than the 680 reading column in places */
+.tac-wide { max-width: var(--tac-wide); margin-left: auto; margin-right: auto; padding-left: var(--space-5); padding-right: var(--space-5); }
+
+/* squared corners everywhere on this page (brand Notion pass) */
+.tac-page * { border-radius: 0; }
+.tac-nav, .tac-buybar__cta, .tac-nav__cta { border-radius: 999px; }
+
+/* no horizontal overflow on any viewport */
+html, body { overflow-x: hidden; max-width: 100%; }
+
+/* ---------- reveal animation ---------- */
+.tac-reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms var(--tac-ease), transform 600ms var(--tac-ease); }
+.tac-reveal.is-in { opacity: 1; transform: none; }
+.tac-reveal--d1 { transition-delay: 80ms; }
+.tac-reveal--d2 { transition-delay: 160ms; }
+.tac-reveal--d3 { transition-delay: 240ms; }
+.tac-reveal--d4 { transition-delay: 320ms; }
+
+/* =====================================================
+   SECTION SCAFFOLDING
+   ===================================================== */
+.tac-section { padding: var(--space-12) 0; position: relative; }
+.tac-section--tight { padding: var(--space-10) 0; }
+.tac-section--grey { background: var(--color-gray-100); }
+.tac-section--ink { background: #0e0e12; color: #fff; }
+
+.tac-kicker {
+  font-family: 'Silkscreen', 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: inline-block;
+  margin-bottom: var(--space-4);
+}
+.tac-section--ink .tac-kicker { color: #9b9bff; }
+
+.tac-h2 {
+  font-family: 'PP Neue Bit', 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+  color: var(--color-text);
+  margin: 0 0 var(--space-5);
+}
+.tac-section--ink .tac-h2, .tac-blue .tac-h2 { color: #fff; }
+.tac-h3 {
+  font-family: 'PP Neue Bit', 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.05;
+  margin: 0 0 var(--space-3);
+}
+.tac-lead { font-size: 1.0625rem; line-height: 1.65; color: var(--color-text-secondary); max-width: 56ch; }
+.tac-lead--center { margin-left: auto; margin-right: auto; text-align: center; }
+.tac-center { text-align: center; }
+.tac-center .tac-lead { margin-left: auto; margin-right: auto; }
+
+/* ASCII signature rule between sections */
+.tac-asciirule {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  opacity: 0.35;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+  padding: var(--space-6) 0;
+}
+
+/* blue-diamond "what you get" list (brand marker) */
+.tac-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+.tac-list li { position: relative; padding-left: 28px; line-height: 1.55; font-size: 1rem; }
+.tac-list li::before {
+  content: "";
+  position: absolute; left: 2px; top: 0.45em;
+  width: 9px; height: 9px;
+  background: var(--color-accent);
+  transform: rotate(45deg);
+}
+.tac-list--tight li { font-size: 0.95rem; }
+.tac-list strong { color: var(--color-text); }
+.tac-blue .tac-list strong, .tac-section--ink .tac-list strong { color: #fff; }
+.tac-blue .tac-list li::before, .tac-section--ink .tac-list li::before { background: #fff; }
+
+/* =====================================================
+   CTA buttons (extends .btn .btn--primary)
+   ===================================================== */
+.tac-cta {
+  font-family: var(--font-mono);
+  text-transform: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 16px 30px;
+  background: var(--color-accent);
+  color: #fff;
+  border: 1px solid var(--color-accent);
+  box-shadow: inset -2px -2px 0 0 rgba(18,18,18,0.18);
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  text-decoration: none;
+  line-height: 1;
+}
+.tac-cta:hover { background: var(--tac-blue-2); color: #fff; transform: translateY(-1px); }
+.tac-cta:active { box-shadow: inset 2px 2px 0 0 rgba(18,18,18,0.22); transform: translateY(0); }
+.tac-cta--lg { font-size: 1.05rem; padding: 19px 38px; }
+.tac-cta--ghost { background: #fff; color: var(--color-accent); border-color: var(--color-accent); box-shadow: inset -2px -2px 0 0 var(--color-gray-300); }
+.tac-cta--ghost:hover { background: var(--color-accent-light); color: var(--color-accent); }
+.tac-cta__price { opacity: 0.85; font-weight: 400; }
+.tac-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: var(--space-6); width: 100%; }
+.tac-cta-sub { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px; color: var(--color-text-muted); text-transform: uppercase; max-width: 100%; white-space: normal; text-align: center; }
+/* extra breathing room under the final-CTA button */
+.tac-final .tac-cta-wrap { gap: var(--space-5); }
+
+/* =====================================================
+   GLASS PILL NAV
+   ===================================================== */
+.tac-nav {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 100;
+  width: calc(100% - 28px); max-width: var(--tac-wide);
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: 9px 9px 9px 18px;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 24px rgba(18,18,18,0.08);
+  transition: box-shadow var(--transition-base), background var(--transition-base);
+}
+.tac-nav--scrolled { background: rgba(255,255,255,0.9); box-shadow: 0 8px 30px rgba(18,18,18,0.12); }
+.tac-nav__brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+.tac-nav__brand img { height: 22px; width: auto; display: block; }
+.tac-nav__links { display: flex; align-items: center; gap: var(--space-5); margin-left: var(--space-4); }
+.tac-nav__link {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px;
+  text-transform: uppercase; color: var(--color-text-secondary); text-decoration: none;
+  white-space: nowrap; transition: color var(--transition-fast);
+}
+.tac-nav__link:hover { color: var(--color-accent); }
+.tac-nav__cta {
+  margin-left: auto; flex-shrink: 0;
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.2px;
+  padding: 11px 18px; background: var(--color-accent); color: #fff; text-decoration: none;
+  border: 1px solid var(--color-accent);
+  box-shadow: inset -2px -2px 0 0 rgba(18,18,18,0.18);
+  transition: background var(--transition-fast);
+  white-space: nowrap;
+}
+.tac-nav__cta:hover { background: var(--tac-blue-2); color: #fff; }
+@media (max-width: 760px) {
+  .tac-nav__links { display: none; }
+  .tac-nav { gap: var(--space-2); padding: 8px 8px 8px 14px; }
+  .tac-nav__cta { margin-left: auto; }
+}
+
+/* =====================================================
+   HERO (blue band, white PP Neue Bit headline, faint ASCII)
+   ===================================================== */
+.tac-hero {
+  position: relative; overflow: hidden;
+  background: var(--color-accent); color: #fff;
+  padding: 150px 0 var(--space-12);
+  text-align: center;
+}
+.tac-hero__ascii {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.tac-hero__ascii img {
+  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: 130%; min-width: 880px; max-width: none; height: auto;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(to top, #000 58%, transparent);
+          mask-image: linear-gradient(to top, #000 58%, transparent);
+}
+.tac-hero .container { position: relative; z-index: 1; }
+.tac-hero__badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px;
+  text-transform: uppercase; color: #fff;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
+  padding: 7px 14px; margin-bottom: var(--space-5);
+}
+.tac-hero__badge .tac-live { width: 8px; height: 8px; border-radius: 50%; background: #6bff9a; box-shadow: 0 0 0 0 rgba(107,255,154,0.7); animation: tac-pulse 2s infinite; }
+@keyframes tac-pulse { 0% { box-shadow: 0 0 0 0 rgba(107,255,154,0.6);} 70%{ box-shadow: 0 0 0 8px rgba(107,255,154,0);} 100%{ box-shadow: 0 0 0 0 rgba(107,255,154,0);} }
+.tac-hero__headline {
+  font-family: 'PP Neue Bit', 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(2.3rem, 6.4vw, 4rem);
+  line-height: 1.0; letter-spacing: 0;
+  margin: 0 auto var(--space-5); max-width: 16ch;
+  color: #fff;
+}
+.tac-hero__sub { font-size: 1.15rem; line-height: 1.55; color: #fff; max-width: 46ch; margin: 0 auto var(--space-6); opacity: 0.96; }
+.tac-hero__wordmark { height: 30px; width: auto; margin: 0 auto var(--space-6); display: block; }
+.tac-hero__meta {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-6);
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.2px; color: rgba(255,255,255,0.92);
+}
+.tac-hero__meta span { display: inline-flex; align-items: center; gap: 7px; }
+.tac-hero__meta b { color: #fff; font-weight: 700; }
+.tac-hero .tac-cta { background: #fff; color: var(--color-accent); border-color: #fff; box-shadow: inset -2px -2px 0 0 rgba(18,18,18,0.1); }
+.tac-hero .tac-cta:hover { background: #eef0ff; color: var(--color-accent); }
+.tac-hero .tac-cta-sub { color: rgba(255,255,255,0.78); }
+
+/* =====================================================
+   TRUST STRIP
+   ===================================================== */
+.tac-trust { border-bottom: 1px solid var(--color-border); background: #fff; }
+.tac-trust__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-5) var(--space-8); padding: var(--space-6) var(--space-5); }
+.tac-trust__item { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-text-secondary); display: inline-flex; align-items: center; gap: 8px; }
+.tac-trust__item b { color: var(--color-text); font-weight: 700; }
+.tac-trust__faces { display: inline-flex; }
+.tac-trust__faces img { width: 30px; height: 30px; border-radius: 50% !important; object-fit: cover; border: 2px solid #fff; margin-left: -8px; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+.tac-trust__faces img:first-child { margin-left: 0; }
+
+/* =====================================================
+   THE GAP — problem agitation
+   ===================================================== */
+.tac-pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-top: var(--space-8); }
+.tac-pain { background: #fff; border: 1px solid var(--color-border); padding: var(--space-6); }
+.tac-section--grey .tac-pain { background: #fff; }
+.tac-pain__n { font-family: 'Silkscreen', monospace; font-size: 11px; color: var(--color-accent); display: block; margin-bottom: var(--space-3); }
+.tac-pain h4 { font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; margin: 0 0 var(--space-2); }
+.tac-pain p { font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.55; margin: 0; }
+.tac-gap__punch { font-family: 'PP Neue Bit', 'Space Mono', monospace; font-weight: 700; font-size: clamp(1.4rem, 3.5vw, 2rem); line-height: 1.15; text-align: center; max-width: 22ch; margin: var(--space-10) auto 0; }
+.tac-gap__punch .hl { color: var(--color-accent); }
+
+/* =====================================================
+   MECHANISM — the engine + the three dials (SIGNATURE)
+   ===================================================== */
+.tac-mech { background: #0e0e12; color: #fff; }
+.tac-mech .tac-h2 { color: #fff; }
+.tac-mech__quote { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.3rem); text-align: center; color: #fff; max-width: 24ch; margin: 0 auto var(--space-8); line-height: 1.1; }
+.tac-mech__quote .hl { color: #9b9bff; }
+
+/* engine */
+.tac-engine { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 760px; margin: 0 auto var(--space-8); }
+.tac-engine__card { border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.03); padding: var(--space-6); }
+.tac-engine__tag { font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px; color: #9b9bff; text-transform: uppercase; }
+.tac-engine__card h4 { font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; margin: var(--space-3) 0 var(--space-2); color: #fff; }
+.tac-engine__card p { font-size: 0.92rem; color: rgba(255,255,255,0.85); line-height: 1.55; margin: 0; }
+.tac-engine__note { text-align: center; font-family: var(--font-mono); font-size: 0.82rem; color: rgba(255,255,255,0.72); margin: var(--space-8) auto var(--space-10); max-width: 52ch; }
+
+/* the loop animation */
+.tac-loop { display: flex; align-items: center; justify-content: center; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-6) auto var(--space-2); }
+.tac-loop__node {
+  font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.3px;
+  padding: 12px 20px; border: 1px solid rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.03);
+  transition: all 300ms var(--tac-ease);
+}
+.tac-loop__node.is-active { border-color: #9b9bff; color: #fff; background: rgba(64,64,255,0.25); box-shadow: 0 0 22px rgba(100,100,255,0.4); }
+.tac-loop__arrow { color: rgba(255,255,255,0.4); font-family: var(--font-mono); }
+.tac-loop__rep { text-align: center; font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: rgba(255,255,255,0.62); text-transform: uppercase; margin-top: var(--space-4); }
+
+/* the three dials */
+.tac-dials { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 880px; margin: var(--space-10) auto 0; }
+.tac-dial { border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.03); padding: var(--space-6); position: relative; overflow: hidden; }
+.tac-dial__num { font-family: 'Silkscreen', monospace; font-size: 10px; color: #9b9bff; letter-spacing: 1px; }
+.tac-dial h4 { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 1.5rem; margin: var(--space-2) 0 4px; color: #fff; }
+.tac-dial__what { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.4px; color: rgba(255,255,255,0.55); margin-bottom: var(--space-4); display: block; }
+.tac-dial p { font-size: 0.92rem; color: rgba(255,255,255,0.86); line-height: 1.55; margin: 0; }
+/* old-school segmented load bar, single Blueprint Blue, fills to 100% */
+.tac-dial__bar { height: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.3); padding: 2px; margin: var(--space-4) 0 var(--space-5); position: relative; overflow: hidden; }
+.tac-dial__bar i { display: block; height: 100%; width: 0; background-color: #4040FF; background-image: repeating-linear-gradient(90deg, #4040FF 0 9px, rgba(255,255,255,0.16) 9px 12px); transition: width 1400ms steps(14, end); }
+.tac-dial.is-on .tac-dial__bar i { width: 100%; }
+.tac-dial.is-on { border-color: rgba(155,155,255,0.5); box-shadow: 0 0 30px rgba(64,64,255,0.18); }
+.tac-mech__hire { max-width: 60ch; margin: var(--space-10) auto 0; text-align: center; font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.82); }
+.tac-mech__hire b { color: #fff; }
+
+/* =====================================================
+   BEFORE / AFTER
+   ===================================================== */
+.tac-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 820px; margin: var(--space-8) auto 0; border: 1px solid var(--color-border); }
+.tac-ba__col { padding: var(--space-8) var(--space-6); }
+.tac-ba__col--before { background: var(--color-gray-100); }
+.tac-ba__col--after { background: var(--color-accent); color: #fff; }
+.tac-ba__tag { font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: var(--space-4); }
+.tac-ba__col--before .tac-ba__tag { color: var(--color-text-muted); }
+.tac-ba__col--after .tac-ba__tag { color: rgba(255,255,255,0.8); }
+.tac-ba__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+.tac-ba__col li { font-size: 0.98rem; line-height: 1.5; padding-left: 22px; position: relative; }
+.tac-ba__col--before li { color: var(--color-text-secondary); }
+.tac-ba__col--before li::before { content: "×"; position: absolute; left: 0; color: var(--color-text-muted); font-weight: 700; }
+.tac-ba__col--after li::before { content: ""; position: absolute; left: 2px; top: 0.5em; width: 8px; height: 8px; background: #fff; transform: rotate(45deg); }
+@media (max-width: 680px) { .tac-ba { grid-template-columns: 1fr; } }
+
+/* =====================================================
+   HOW IT WORKS — shape stat tiles
+   ===================================================== */
+.tac-shape { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-top: var(--space-8); }
+.tac-stat { text-align: center; border: 1px solid var(--color-border); padding: var(--space-6) var(--space-4); background: #fff; }
+.tac-stat__big { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 2.4rem; line-height: 1; color: var(--color-accent); display: block; }
+.tac-stat__lab { font-size: 0.88rem; color: var(--color-text-secondary); margin-top: 8px; display: block; line-height: 1.4; }
+.tac-shape__row { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-top: var(--space-8); }
+.tac-chip { font-family: var(--font-mono); font-size: 0.78rem; padding: 9px 15px; border: 1px solid var(--color-border); background: #fff; color: var(--color-text-secondary); display: inline-flex; gap: 8px; align-items: center; }
+.tac-chip b { color: var(--color-text); }
+
+/* =====================================================
+   CURRICULUM — session accordion
+   ===================================================== */
+.tac-curric { max-width: 760px; margin: var(--space-8) auto 0; display: grid; gap: var(--space-3); }
+.tac-ses { border: 1px solid var(--color-border); background: #fff; }
+.tac-ses__head { width: 100%; display: flex; align-items: center; gap: var(--space-4); padding: var(--space-5) var(--space-5); background: none; border: 0; cursor: pointer; text-align: left; }
+.tac-ses__mark { font-family: 'Silkscreen', monospace; font-size: 11px; color: var(--color-accent); border: 1px solid var(--color-accent); padding: 6px 8px; flex-shrink: 0; letter-spacing: 0.5px; }
+.tac-ses__t { flex: 1; }
+.tac-ses__t strong { display: block; font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 1.15rem; line-height: 1.1; }
+.tac-ses__t span { font-size: 0.85rem; color: var(--color-text-secondary); }
+.tac-ses__plus { font-family: var(--font-mono); color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+.tac-ses__body { max-height: 0; overflow: hidden; transition: max-height 400ms var(--tac-ease); }
+.tac-ses.is-open .tac-ses__body { max-height: 600px; }
+.tac-ses.is-open .tac-ses__plus { }
+.tac-ses__inner { padding: 0 var(--space-5) var(--space-5) calc(var(--space-5) + 44px); }
+.tac-ses__deliver { font-size: 0.95rem; line-height: 1.6; color: var(--color-text); margin: 0 0 var(--space-4); }
+.tac-ses__deliver b { color: var(--color-accent); }
+.tac-ses__leave { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+
+/* =====================================================
+   OUTCOMES (what you walk out with)
+   ===================================================== */
+.tac-outcomes { max-width: 620px; margin: var(--space-6) auto 0; }
+.tac-outcomes .tac-list { gap: var(--space-5); }
+.tac-outcomes .tac-list li { font-size: 1.02rem; padding-left: 36px; }
+.tac-outcomes .tac-list li::before {
+  content: ""; background: url('assets/gif/icons/rocket.gif') center / contain no-repeat;
+  width: 24px; height: 24px; left: 0; top: -0.05em; transform: none;
+}
+.tac-outcomes__tail { text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: var(--space-8); font-size: 1rem; max-width: 50ch; margin-left: auto; margin-right: auto; }
+
+/* =====================================================
+   THE BUILD (S6 vote) — three cards
+   ===================================================== */
+.tac-build { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); margin-top: var(--space-8); }
+.tac-buildcard { border: 1px solid var(--color-border); padding: var(--space-6); background: #fff; }
+.tac-section--grey .tac-buildcard { background: #fff; }
+.tac-buildcard__ic { width: 46px; height: 46px; object-fit: contain; image-rendering: pixelated; margin-bottom: var(--space-3); }
+.tac-buildcard h4 { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 1.2rem; margin: 0 0 var(--space-2); }
+.tac-buildcard p { font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.55; margin: 0; }
+.tac-build__note { text-align: center; font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-text-muted); margin-top: var(--space-6); }
+
+/* =====================================================
+   ALUMNI
+   ===================================================== */
+.tac-alumni__cards { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); margin-top: var(--space-8); }
+.tac-acard { text-align: center; }
+.tac-acard img { width: 56px; height: 56px; object-fit: contain; image-rendering: pixelated; margin: 0 auto var(--space-3); display: block; }
+.tac-acard h4 { font-family: var(--font-body); font-weight: 700; font-size: 1rem; margin: 0 0 6px; }
+.tac-acard p { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin: 0; }
+
+/* =====================================================
+   WHO THIS IS FOR — two columns
+   ===================================================== */
+.tac-aud { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 900px; margin: var(--space-8) auto 0; }
+.tac-aud__col { padding: var(--space-8) var(--space-7); border: 1px solid var(--color-border); background: #fff; }
+.tac-aud__col--for { border-color: var(--color-accent); }
+.tac-aud__h { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 1.3rem; margin: 0 0 var(--space-6); display: flex; align-items: center; gap: 10px; }
+.tac-aud__col--for .tac-aud__h { color: var(--color-accent); }
+.tac-aud__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-5); }
+.tac-aud__col li { font-size: 0.95rem; line-height: 1.55; padding-left: 30px; padding-right: var(--space-2); position: relative; color: var(--color-text-secondary); }
+.tac-aud__col li b { color: var(--color-text); }
+.tac-aud__col--for li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--color-accent); font-weight: 700; }
+.tac-aud__col--not li::before { content: "✕"; position: absolute; left: 0; top: 0; color: var(--color-text-muted); font-weight: 700; }
+@media (max-width: 680px) { .tac-aud { grid-template-columns: 1fr; } }
+
+/* =====================================================
+   FOUNDER STORY
+   ===================================================== */
+.tac-founder { max-width: 640px; margin: 0 auto; }
+.tac-founder__body p { font-size: 1.05rem; line-height: 1.7; margin: 0 0 var(--space-4); }
+.tac-founder__body .hl { background: var(--color-accent-light); color: var(--color-accent); padding: 1px 4px; font-weight: 600; }
+.tac-founder__sign { margin-top: var(--space-6); }
+.tac-founder__sign img { height: 56px; width: auto; }
+.tac-founder__sign span { display: block; font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-text-muted); margin-top: 6px; }
+
+/* =====================================================
+   PROOF — founder result cards
+   ===================================================== */
+.tac-proof { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); margin-top: var(--space-8); }
+.tac-pcard { border: 1px solid var(--color-border); padding: var(--space-6); background: #fff; display: flex; flex-direction: column; gap: var(--space-4); }
+.tac-pcard__q { font-size: 1rem; line-height: 1.6; color: var(--color-text); margin: 0; }
+.tac-pcard__by { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.tac-pcard__by img { width: 40px; height: 40px; border-radius: 50% !important; object-fit: cover; }
+.tac-pcard__by b { display: block; font-size: 0.9rem; }
+.tac-pcard__by span { font-size: 0.78rem; color: var(--color-text-muted); font-family: var(--font-mono); }
+.tac-pcard__stat { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; color: var(--color-accent); font-size: 1.15rem; }
+
+/* =====================================================
+   PRICING
+   ===================================================== */
+.tac-pricing { background: var(--color-gray-100); }
+.tac-price-card {
+  max-width: 580px; margin: var(--space-8) auto 0; background: #fff;
+  border: 2px solid var(--color-accent); padding: var(--space-10) var(--space-8);
+  box-shadow: 8px 8px 0 rgba(64,64,255,0.12); position: relative;
+}
+.tac-price-card::before, .tac-price-card::after { content: ""; position: absolute; width: 8px; height: 8px; background: var(--color-accent); }
+.tac-price-card::before { top: -2px; left: -2px; }
+.tac-price-card::after { bottom: -2px; right: -2px; }
+.tac-price-card__flag { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--color-accent); color: #fff; font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px; padding: 6px 14px; white-space: nowrap; }
+.tac-price__name { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text-secondary); text-align: center; }
+.tac-price__amount { text-align: center; margin: var(--space-3) 0; }
+.tac-price__amount .was { font-family: var(--font-mono); color: var(--color-text-muted); text-decoration: line-through; font-size: 1.2rem; margin-right: 10px; }
+.tac-price__amount .now { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 3.4rem; color: var(--color-text); line-height: 1; }
+.tac-price__amount .cur { font-family: var(--font-mono); font-size: 1rem; color: var(--color-text-secondary); vertical-align: super; }
+.tac-price__plan { text-align: center; font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-6); }
+.tac-price__plan b { color: var(--color-text); }
+.tac-price-card .tac-list { margin: var(--space-6) 0; gap: var(--space-4); }
+.tac-price-card .tac-list li { font-size: 0.96rem; padding-left: 30px; }
+.tac-price-card .tac-list li::before {
+  content: ""; transform: none; width: 12px; height: 14px; left: 0; top: 0.28em;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='12'%20height='14'%20viewBox='0%200%2010%2012'%20shape-rendering='crispEdges'%3E%3Crect%20x='2'%20y='1'%20width='2'%20height='10'%20fill='%234040FF'/%3E%3Crect%20x='4'%20y='3'%20width='2'%20height='6'%20fill='%234040FF'/%3E%3Crect%20x='6'%20y='5'%20width='2'%20height='2'%20fill='%234040FF'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+.tac-price__cta { display: block; text-align: center; width: 100%; justify-content: center; }
+.tac-price__badges { display: flex; align-items: center; justify-content: center; gap: var(--space-4); margin-top: var(--space-5); font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-text-muted); flex-wrap: wrap; }
+.tac-price__badges span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* guarantee */
+.tac-guarantee { max-width: 560px; margin: var(--space-6) auto 0; border: 1px dashed var(--color-accent); background: var(--color-accent-light); padding: var(--space-6); display: flex; gap: var(--space-5); align-items: flex-start; }
+.tac-guarantee__seal { font-family: 'Silkscreen', monospace; font-size: 10px; line-height: 1.3; color: var(--color-accent); border: 2px solid var(--color-accent); padding: 12px; text-align: center; flex-shrink: 0; width: 84px; }
+.tac-guarantee h4 { margin: 0 0 6px; font-size: 1.05rem; }
+.tac-guarantee p { margin: 0; font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.55; }
+
+/* =====================================================
+   OBJECTIONS (the lies) + FAQ accordions
+   ===================================================== */
+.tac-acc { max-width: 680px; margin: var(--space-8) auto 0; display: grid; gap: var(--space-2); }
+.tac-acc__item { border: 1px solid var(--color-border); background: #fff; }
+.tac-acc__head { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-5); background: none; border: 0; cursor: pointer; text-align: left; font-family: var(--font-body); font-weight: 600; font-size: 1rem; }
+.tac-acc__head .ic { font-family: var(--font-mono); color: var(--color-accent); flex-shrink: 0; }
+.tac-acc__body { max-height: 0; overflow: hidden; transition: max-height 380ms var(--tac-ease); }
+.tac-acc__item.is-open .tac-acc__body { max-height: 400px; }
+.tac-acc__body p { padding: 0 var(--space-5) var(--space-5); margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--color-text-secondary); }
+.tac-safe { max-width: 680px; margin: var(--space-6) auto 0; border-left: 3px solid var(--color-accent); padding: var(--space-2) var(--space-5); font-size: 0.95rem; line-height: 1.65; color: var(--color-text-secondary); }
+.tac-safe b { color: var(--color-text); }
+
+/* =====================================================
+   SCARCITY — countdown + seats
+   ===================================================== */
+.tac-scarcity { background: var(--color-accent); color: #fff; text-align: center; }
+.tac-scarcity .tac-h2, .tac-scarcity p { color: #fff; }
+.tac-count { display: flex; justify-content: center; gap: var(--space-4); margin: var(--space-7) 0; }
+.tac-count__unit { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); padding: var(--space-4) var(--space-5); min-width: 84px; }
+.tac-count__n { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 2.6rem; line-height: 1; display: block; }
+.tac-count__l { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; margin-top: 8px; display: block; }
+.tac-seats { max-width: 460px; margin: 0 auto var(--space-7); }
+.tac-seats__row { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; margin-bottom: 8px; opacity: 0.92; }
+.tac-seats__track { height: 10px; background: rgba(255,255,255,0.18); position: relative; }
+.tac-seats__fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: #fff; transition: width 1200ms var(--tac-ease); }
+.tac-scarcity .tac-cta { background: #fff; color: var(--color-accent); border-color: #fff; }
+.tac-scarcity .tac-cta:hover { background: #eef0ff; }
+.tac-dates { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: var(--space-5); }
+.tac-dates span { font-family: var(--font-mono); font-size: 0.74rem; padding: 6px 11px; border: 1px solid rgba(255,255,255,0.3); }
+.tac-placeholder { outline: 1px dashed rgba(255,255,255,0.5); outline-offset: 2px; }
+
+/* scarcity spacing + legibility (no overlapping, less faint) */
+.tac-scar__note { font-family: var(--font-mono); font-size: 0.82rem; opacity: 0.95; margin: var(--space-4) auto 0; max-width: 90%; display: inline-block; }
+.tac-scar__note--last { margin-top: var(--space-4); opacity: 0.88; }
+.tac-scarcity .tac-count { margin: var(--space-8) 0 0; }
+.tac-scarcity .tac-seats { margin: var(--space-8) auto var(--space-2); }
+.tac-scarcity .tac-cta-wrap { margin-top: var(--space-8); }
+.tac-scarcity .tac-dates { margin-top: var(--space-7); }
+.tac-scarcity .tac-seats__row { opacity: 1; font-size: 0.82rem; }
+
+/* =====================================================
+   FINAL CTA
+   ===================================================== */
+.tac-final { text-align: center; background: #0e0e12; color: #fff; }
+.tac-final .tac-h2 { color: #fff; }
+.tac-final__big { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(2rem, 5.5vw, 3.4rem); line-height: 1.02; max-width: 18ch; margin: 0 auto var(--space-6); color: #fff; }
+.tac-final p { color: rgba(255,255,255,0.75); max-width: 48ch; margin: 0 auto var(--space-6); line-height: 1.6; }
+.tac-final .tac-cta-sub { color: rgba(255,255,255,0.6); }
+
+/* =====================================================
+   FOOTER (lite)
+   ===================================================== */
+.tac-foot { padding: var(--space-10) 0 var(--space-12); text-align: center; border-top: 1px solid var(--color-border); }
+.tac-foot__logo { height: 26px; margin-bottom: var(--space-5); }
+.tac-foot__nav { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-5); margin-bottom: var(--space-5); }
+.tac-foot__nav a { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--color-text-secondary); text-decoration: none; }
+.tac-foot__nav a:hover { color: var(--color-accent); }
+.tac-foot__legal { font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-text-muted); }
+
+/* =====================================================
+   STICKY BOTTOM BUY BAR
+   ===================================================== */
+.tac-buybar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 95;
+  background: rgba(14,14,18,0.95); backdrop-filter: blur(8px);
+  color: #fff; padding: 12px 16px;
+  display: flex; align-items: center; justify-content: center; gap: var(--space-5);
+  transform: translateY(110%); transition: transform 360ms var(--tac-ease);
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.tac-buybar.is-show { transform: none; }
+.tac-buybar__info { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.3; }
+.tac-buybar__info b { color: #fff; }
+.tac-buybar__info span { color: rgba(255,255,255,0.6); }
+.tac-buybar__cta { font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; padding: 12px 22px; background: var(--color-accent); color: #fff; text-decoration: none; white-space: nowrap; box-shadow: inset -2px -2px 0 0 rgba(0,0,0,0.25); }
+.tac-buybar__cta:hover { background: #5a5aff; }
+@media (max-width: 560px) {
+  .tac-buybar { gap: var(--space-3); padding: 10px 12px; }
+  .tac-buybar__info span { display: none; }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 820px) {
+  .tac-pains, .tac-shape, .tac-build, .tac-proof, .tac-alumni__cards { grid-template-columns: 1fr; }
+  .tac-dials { grid-template-columns: 1fr; }
+  .tac-engine { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .tac-section { padding: var(--space-10) 0; }
+  .tac-hero { padding-top: 128px; }
+  .tac-hero__ascii img { opacity: 0.6; }
+  .tac-hero__sub, .tac-hero__headline { max-width: 100%; }
+  .tac-hero__meta { font-size: 0.72rem; }
+  .tac-count { gap: var(--space-2); }
+  .tac-count__unit { min-width: 66px; padding: var(--space-3); }
+  .tac-count__n { font-size: 2rem; }
+  .tac-guarantee { flex-direction: column; align-items: center; text-align: center; }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .tac-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .tac-hero__badge .tac-live { animation: none; }
+  .tac-loop__node, .tac-dial__bar i, .tac-seats__fill, .tac-buybar, .tac-nav { transition: none !important; }
+}
+
+/* =====================================================
+   HOVER CASCADE GIF REVEAL
+   The brand pixel-cascade fades in behind the content on
+   hover, low opacity so it never clashes with the text.
+   ===================================================== */
+.tac-cta, .tac-nav__cta, .tac-buybar__cta, .tac-pain,
+.tac-engine__card, .tac-dial {
+  position: relative; isolation: isolate; overflow: hidden;
+}
+.tac-cta::before, .tac-nav__cta::before, .tac-buybar__cta::before, .tac-pain::before,
+.tac-engine__card::before, .tac-dial::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background-position: center; background-size: cover; background-repeat: no-repeat;
+  opacity: 0; transition: opacity 350ms ease; pointer-events: none;
+}
+/* brand (lavender -> Blueprint blue) cascade on the CTAs + gap cards */
+.tac-cta::before, .tac-nav__cta::before, .tac-buybar__cta::before, .tac-pain::before {
+  background-image: url('assets/gif/cascade-1080.gif');
+}
+.tac-cta:hover::before, .tac-cta:focus-visible::before,
+.tac-nav__cta:hover::before, .tac-buybar__cta:hover::before { opacity: 0.22; }
+.tac-pain:hover::before { opacity: 0.20; }
+/* black cascade behind the dark model boxes (engine cards + dials) */
+.tac-engine__card::before, .tac-dial::before {
+  background-image: url('assets/gif/cascade-black.gif');
+}
+.tac-engine__card:hover::before, .tac-dial:hover::before { opacity: 0.45; }
+
+/* pricing card uses a child layer (its ::before/::after are the corner pixels) */
+.tac-price-card { isolation: isolate; }
+.tac-fxlayer {
+  position: absolute; inset: 2px; z-index: -1; overflow: hidden; pointer-events: none;
+  opacity: 0; transition: opacity 350ms ease;
+  background: url('assets/gif/cascade-1080.gif') center / cover no-repeat;
+}
+.tac-price-card:hover .tac-fxlayer { opacity: 0.18; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tac-cta::before, .tac-nav__cta::before, .tac-buybar__cta::before, .tac-pain::before,
+  .tac-engine__card::before, .tac-dial::before, .tac-fxlayer { transition: none; }
+}
