@@ -301,16 +301,27 @@ html, body { overflow-x: clip; max-width: 100%; }
 
 /* the three dials */
 .tac-dials { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 880px; margin: var(--space-10) auto 0; }
-.tac-dial { border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.03); padding: var(--space-6); position: relative; overflow: hidden; }
-.tac-dial__num { font-family: 'Silkscreen', monospace; font-size: 10px; color: #9b9bff; letter-spacing: 1px; }
-.tac-dial h4 { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 1.5rem; margin: var(--space-2) 0 4px; color: #fff; }
-.tac-dial__what { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.4px; color: rgba(255,255,255,0.55); margin-bottom: var(--space-4); display: block; }
-.tac-dial p { font-size: 0.92rem; color: rgba(255,255,255,0.86); line-height: 1.55; margin: 0; }
-/* old-school segmented load bar, single Blueprint Blue, fills to 100% */
-.tac-dial__bar { height: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.3); padding: 2px; margin: var(--space-4) 0 var(--space-5); position: relative; overflow: hidden; }
-.tac-dial__bar i { display: block; height: 100%; width: 0; background-color: #4040FF; background-image: repeating-linear-gradient(90deg, #4040FF 0 9px, rgba(255,255,255,0.16) 9px 12px); transition: width 1400ms steps(14, end); }
-.tac-dial.is-on .tac-dial__bar i { width: 100%; }
-.tac-dial.is-on { border-color: rgba(155,155,255,0.5); box-shadow: 0 0 30px rgba(64,64,255,0.18); }
+/* gears: black cog on a light disc (so it reads on the dark section), text centred in the hub, spins on hover */
+.tac-gear { text-align: center; }
+.tac-gear__face {
+  position: relative; width: clamp(168px, 21vw, 210px); aspect-ratio: 1; margin: 0 auto var(--space-4);
+  background: #f3f3f6; border-radius: 50%;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(0,0,0,0.06);
+  display: grid; place-items: center;
+}
+.tac-gear__cog {
+  position: absolute; top: 50%; left: 50%; width: 97%; height: 97%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: tac-spin 5.5s linear infinite; animation-play-state: paused;
+}
+.tac-gear:hover .tac-gear__cog { animation-play-state: running; }
+@keyframes tac-spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+.tac-gear__label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; line-height: 1; }
+.tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px; color: var(--color-accent); margin-bottom: 7px; }
+.tac-gear__label strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 1.45rem; color: #111; }
+.tac-gear__what { display: block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4px; color: #9b9bff; margin-bottom: var(--space-3); }
+.tac-gear__desc { font-size: 0.92rem; color: rgba(255,255,255,0.84); line-height: 1.55; max-width: 30ch; margin: 0 auto; }
+@media (prefers-reduced-motion: reduce) { .tac-gear__cog { animation: none; } }
 .tac-mech__hire { max-width: 60ch; margin: var(--space-10) auto 0; text-align: center; font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.82); }
 .tac-mech__hire b { color: #fff; }
 
@@ -328,15 +339,21 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-shift__cards { position: relative; flex: 0 0 auto; width: 100%; height: clamp(300px, 46vh, 440px); }
 .tac-shift__card {
   position: absolute; top: 50%; left: 50%;
-  width: min(440px, 86vw);
+  width: min(740px, 92vw);
   transform: translate(-50%, -50%) translateX(var(--shift-x, 0));
   will-change: transform, opacity;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 18px 50px rgba(18,18,18,0.14);
+  display: flex; align-items: center; gap: clamp(12px, 2.5vw, 30px);
 }
-.tac-shift__card.tac-ba__col--after { border-color: var(--color-accent); }
+.tac-shift__drake { flex: 0 0 auto; width: clamp(118px, 18vw, 190px); height: auto; display: block; }
+.tac-shift__box { flex: 1 1 auto; border: 1px solid var(--color-border); box-shadow: 0 18px 50px rgba(18,18,18,0.14); }
+.tac-shift__box.tac-ba__col--after { border-color: var(--color-accent); }
 /* initial states (before JS scrubs): BEFORE centered, AFTER waiting off-screen left */
 .tac-shift__card[data-shift="after"] { --shift-x: -108vw; opacity: 0; }
+@media (max-width: 600px) {
+  .tac-shift__card { flex-direction: column; gap: var(--space-3); width: 90vw; }
+  .tac-shift__drake { width: clamp(96px, 30vw, 150px); }
+  .tac-shift__cards { height: clamp(440px, 66vh, 560px); }
+}
 .tac-shift__hint {
   position: absolute; bottom: 4.5vh; left: 0; right: 0; text-align: center;
   font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;
