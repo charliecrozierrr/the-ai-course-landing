@@ -331,8 +331,8 @@ html, body { overflow-x: clip; max-width: 100%; }
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;
   display: flex; flex-direction: column; align-items: center; gap: 2px; line-height: 1;
 }
-.tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: var(--color-accent); }
-.tac-gear__hub strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--color-accent); }
+.tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: #fff; text-shadow: 1px 1px 0 #0e0e12, -1px -1px 0 #0e0e12, 1px -1px 0 #0e0e12, -1px 1px 0 #0e0e12, 0 0 4px #0e0e12; }
+.tac-gear__hub strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.25rem); color: #fff; text-shadow: 1px 1px 0 #0e0e12, -1px -1px 0 #0e0e12, 1px -1px 0 #0e0e12, -1px 1px 0 #0e0e12, 0 0 5px #0e0e12; }
 .tac-gear__what { display: block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4px; color: #9b9bff; margin-bottom: var(--space-3); }
 .tac-gear__desc { font-size: 0.92rem; color: rgba(255,255,255,0.84); line-height: 1.55; max-width: 30ch; margin: 0 auto; }
 @media (prefers-reduced-motion: reduce) { .tac-cog { animation: none; } }
@@ -364,12 +364,10 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* initial states (before JS scrubs): BEFORE centered, AFTER waiting off-screen left */
 .tac-shift__card[data-shift="after"] { --shift-x: -108vw; opacity: 0; }
 @media (max-width: 600px) {
-  /* keep the drake beside its before/after card, just smaller */
-  .tac-shift__card { gap: var(--space-2); width: 96vw; }
-  .tac-shift__drake { flex: 0 0 auto; width: clamp(64px, 22vw, 116px); }
-  .tac-shift__box { flex: 1 1 0; }
-  .tac-ba__col { padding: var(--space-4) var(--space-4); }
-  .tac-ba__col li { font-size: 0.76rem; line-height: 1.45; padding-left: 16px; }
+  /* keep the drake beside its before/after card, same size as the box (50/50) */
+  .tac-shift__card { gap: var(--space-2); width: 96vw; align-items: center; }
+  .tac-shift__drake { flex: 1 1 0; width: 100%; min-width: 0; }
+  .tac-shift__box { flex: 1 1 0; min-width: 0; }
   .tac-ba__tag { margin-bottom: var(--space-2); }
 }
 .tac-shift__hint {
@@ -510,7 +508,9 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* =====================================================
    PROOF — founder result cards
    ===================================================== */
-.tac-proof { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); margin-top: var(--space-8); }
+.tac-proof { margin-top: var(--space-8); }
+.tac-proof__track { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); }
+.tac-pcard--dup { display: none; }
 .tac-pcard { border: 1px solid var(--color-border); padding: var(--space-6); background: #fff; display: flex; flex-direction: column; gap: var(--space-4); }
 .tac-pcard__q { font-size: 1rem; line-height: 1.6; color: var(--color-text); margin: 0; }
 .tac-pcard__by { display: flex; align-items: center; gap: 12px; margin-top: auto; }
@@ -665,8 +665,25 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* dense phone layout — keep everything side-by-side, shrink hard to fit more on screen */
 @media (max-width: 560px) {
   .tac-section { padding: var(--space-8) 0; }
-  .tac-h2 { font-size: clamp(1.4rem, 6.4vw, 1.9rem); }
-  .tac-lead { font-size: 0.95rem; }
+  .tac-h2 { font-size: clamp(1.35rem, 6.2vw, 1.8rem); }
+  .tac-lead { font-size: 0.92rem; }
+
+  /* hero — neater, compact CTA with the price on its own centred line */
+  .tac-cta--lg { font-size: 0.92rem; padding: 13px 20px; }
+  .tac-cta { flex-wrap: wrap; justify-content: center; gap: 4px 8px; }
+  .tac-cta__price { width: 100%; text-align: center; }
+  .tac-cta-sub { font-size: 0.62rem; }
+
+  /* the gap — three boxes in one row, small text */
+  .tac-pains { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .tac-pain { padding: 10px 8px; }
+  .tac-pain__n { font-size: 9px; margin-bottom: 6px; }
+  .tac-pain h4 { font-size: 0.74rem; margin-bottom: 4px; line-height: 1.2; }
+  .tac-pain p { font-size: 0.62rem; line-height: 1.4; }
+  .tac-gap__punch { font-size: 0.9rem; }
+
+  /* what it is — the three arrow points, smaller */
+  #what .tac-list--arrow li { font-size: 0.74rem; line-height: 1.5; padding-left: 26px; }
 
   /* how it runs — three stats in one row */
   .tac-shape { gap: 6px; }
@@ -688,11 +705,57 @@ html, body { overflow-x: clip; max-width: 100%; }
   .tac-gear__what { font-size: 0.55rem; margin-bottom: 6px; }
   .tac-gear__desc { font-size: 0.72rem; line-height: 1.45; max-width: none; }
 
-  /* card grids stay two-up, tighter */
-  .tac-pain { padding: var(--space-4); font-size: 0.84rem; }
-  .tac-engine__card { padding: var(--space-4); }
+  /* the shift — before/after text ~50% smaller */
+  .tac-ba__col { padding: 9px 9px; }
+  .tac-ba__tag { font-size: 8px; margin-bottom: 7px; }
+  .tac-ba__col li { font-size: 0.52rem; line-height: 1.4; padding-left: 12px; }
+  .tac-ba__col li::before { font-size: 0.6rem; }
+
+  /* curriculum — smaller dropdown text on both cards */
+  .tac-ses__head { padding: var(--space-4) var(--space-4); }
+  .tac-ses__mark { font-size: 0.8rem; }
+  .tac-ses__deliver { font-size: 0.78rem; line-height: 1.5; }
+  .tac-ses__leave { font-size: 0.6rem; }
+  #curriculum .tac-list li { font-size: 0.74rem; line-height: 1.45; }
+
+  /* what you walk out with — smaller heading + dot points */
+  .tac-out .tac-h2 { font-size: clamp(1.2rem, 5.6vw, 1.6rem); }
+  .tac-out__item { font-size: 0.82rem; padding-left: 34px; }
+  .tac-out__tail { font-size: 0.82rem; }
+
+  /* after the course — three icon cards in one row */
+  .tac-alumni__cards { grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .tac-acard img { width: 34px; height: 34px; margin-bottom: 6px; }
+  .tac-acard h4 { font-size: 0.7rem; margin-bottom: 4px; line-height: 1.2; }
+  .tac-acard p { font-size: 0.6rem; line-height: 1.4; }
+
+  /* who this is for / not — much smaller boxes + text */
   .tac-aud { gap: var(--space-2); }
-  .tac-ba__col { padding: var(--space-3); }
+  .tac-aud__col { padding: 11px 9px; }
+  .tac-aud__h { font-size: 0.82rem; margin-bottom: 10px; gap: 6px; }
+  .tac-aud__col li { font-size: 0.6rem; line-height: 1.4; padding-left: 18px; }
+
+  /* proof — auto-scrolling carousel of smaller cards */
+  .tac-proof { overflow: hidden; }
+  .tac-proof__track { display: flex; grid-template-columns: none; width: max-content; gap: var(--space-3); animation: tac-marq-right 26s linear infinite; }
+  .tac-proof__track:hover { animation-play-state: paused; }
+  .tac-pcard--dup { display: flex; }
+  .tac-pcard { width: 220px; flex: 0 0 auto; padding: var(--space-4); gap: var(--space-3); }
+  .tac-pcard__q { font-size: 0.82rem; }
+
+  /* model engine cards */
+  .tac-engine__card { padding: var(--space-4); }
+
+  /* buy bar — slim strip, not full-screen */
+  .tac-buybar { gap: 8px; padding: 7px 10px; }
+  .tac-buybar__info { font-size: 0.66rem; }
+  .tac-buybar__cta { font-size: 0.66rem; padding: 8px 14px; }
+}
+/* reduced motion on mobile: swipeable row instead of an auto-carousel */
+@media (max-width: 560px) and (prefers-reduced-motion: reduce) {
+  .tac-proof { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tac-proof__track { animation: none; }
+  .tac-pcard--dup { display: none; }
 }
 
 /* =====================================================
