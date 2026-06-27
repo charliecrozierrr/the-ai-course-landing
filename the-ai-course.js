@@ -413,5 +413,47 @@
       onScroll();
     })();
 
+    /* ---------- what you walk out with: pinned arrow-shoot (each arrow fires through its line, the line disappears) ---------- */
+    (function () {
+      var track = document.getElementById('outTrack');
+      if (!track) return;
+      var items = track.querySelectorAll('.tac-out__item');
+      var tail = track.querySelector('.tac-out__tail');
+      if (!items.length || reduceMotion) return;
+      var N = items.length;
+      function cl(v, a, b) { return v < a ? a : (v > b ? b : v); }
+      function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+      function onScroll() {
+        var total = track.offsetHeight - window.innerHeight;
+        if (total <= 0) return;
+        var p = cl(-track.getBoundingClientRect().top / total, 0, 1);
+        var P = p * N;
+        items.forEach(function (li, i) {
+          var q = cl(P - i, 0, 1);
+          var arrow = li.querySelector('.tac-out__arrow');
+          if (arrow) arrow.style.transform = 'translateX(' + (ease(q) * (li.clientWidth + 12)) + 'px)';
+          li.style.opacity = String(1 - cl((q - 0.62) / 0.38, 0, 1));
+        });
+        if (tail) tail.style.opacity = String(cl((p - 0.9) / 0.1, 0, 1));
+      }
+      if (tail) tail.style.opacity = '0';
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+    })();
+
+    /* ---------- remy signature: handwrite reveal on scroll into view ---------- */
+    (function () {
+      var img = document.querySelector('.tac-sign-img');
+      if (!img) return;
+      if (reduceMotion) { img.classList.add('is-written'); return; }
+      if ('IntersectionObserver' in window) {
+        var o = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { img.classList.add('is-written'); o.unobserve(img); } });
+        }, { threshold: 0.45 });
+        o.observe(img);
+      } else { img.classList.add('is-written'); }
+    })();
+
   });
 })();
