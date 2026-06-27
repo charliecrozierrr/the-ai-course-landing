@@ -175,5 +175,47 @@
       onScroll();
     })();
 
+    /* ---------- wall of love: video testimonials ----------
+       loop muted by default; unmute + play audio on hover.
+       Works for placeholders too once a <source> is added. */
+    (function () {
+      var cards = document.querySelectorAll('.tac-wol-card--video');
+      if (!cards.length) return;
+
+      function hasMedia(v) { return v && (v.currentSrc || v.querySelector('source[src]') || v.getAttribute('src')); }
+
+      cards.forEach(function (card) {
+        var v = card.querySelector('video');
+        if (!v) return;
+        v.muted = true; v.loop = true; v.playsInline = true;
+
+        // mark "playing" (hides the placeholder) only once real frames exist
+        v.addEventListener('loadeddata', function () { card.classList.add('is-playing'); });
+        if (!reduceMotion && hasMedia(v)) { v.play().catch(function () {}); }
+
+        card.addEventListener('mouseenter', function () {
+          card.classList.add('is-unmuted');
+          if (hasMedia(v)) { v.muted = false; v.volume = 1; v.play().catch(function () {}); }
+        });
+        card.addEventListener('mouseleave', function () {
+          card.classList.remove('is-unmuted');
+          v.muted = true;
+        });
+      });
+
+      // only autoplay videos while they're on screen (perf)
+      if ('IntersectionObserver' in window) {
+        var vObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var v = e.target.querySelector('video');
+            if (!v || !hasMedia(v) || reduceMotion) return;
+            if (e.isIntersecting) { v.play().catch(function () {}); }
+            else { v.pause(); }
+          });
+        }, { threshold: 0.2 });
+        cards.forEach(function (c) { vObs.observe(c); });
+      }
+    })();
+
   });
 })();

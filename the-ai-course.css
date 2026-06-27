@@ -597,3 +597,69 @@ html, body { overflow-x: hidden; max-width: 100%; }
   .tac-cta::before, .tac-nav__cta::before, .tac-buybar__cta::before, .tac-pain::before,
   .tac-engine__card::before, .tac-dial::before, .tac-fxlayer { transition: none; }
 }
+
+/* =====================================================
+   WALL OF LOVE — depth marquee (written + video testimonials)
+   Rows drift at different distances + directions; hovering a
+   card pauses its row and zooms it (video also unmutes via JS).
+   ===================================================== */
+.tac-wol { padding: var(--space-10) 0 var(--space-12); overflow: hidden; }
+.tac-wol__stage {
+  margin-top: var(--space-8);
+  display: grid; gap: clamp(20px, 3.2vw, 40px);
+  overflow-x: clip; overflow-y: visible;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.tac-wol-row { position: relative; }
+.tac-wol-row--near { --d-scale: 1;   --d-blur: 0px;   --d-op: 1;   --d-dur: 56s; z-index: 3; }
+.tac-wol-row--mid  { --d-scale: .9;  --d-blur: .5px;  --d-op: .92; --d-dur: 76s; z-index: 2; }
+.tac-wol-row--far  { --d-scale: .8;  --d-blur: 1.3px; --d-op: .7;  --d-dur: 98s; z-index: 1; }
+.tac-wol-row:hover { z-index: 50; }
+.tac-wol-track {
+  display: flex; align-items: center; gap: clamp(16px, 2.2vw, 28px);
+  width: max-content; will-change: transform;
+  animation: var(--d-dur, 60s) linear infinite;
+}
+.tac-wol-row--right .tac-wol-track { animation-name: tac-marq-right; }
+.tac-wol-row--left  .tac-wol-track { animation-name: tac-marq-left; }
+.tac-wol-track:hover { animation-play-state: paused; }
+@keyframes tac-marq-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+@keyframes tac-marq-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+.tac-wol-card {
+  position: relative; flex: 0 0 auto; cursor: pointer;
+  transform: scale(var(--d-scale)); filter: blur(var(--d-blur)); opacity: var(--d-op);
+  transition: transform .45s var(--tac-ease), filter .45s ease, opacity .45s ease, box-shadow .45s ease;
+  background: #fff; border: 1px solid var(--color-border); box-shadow: 0 6px 18px rgba(18,18,18,0.06);
+}
+.tac-wol-card:hover { transform: scale(1.32); filter: none; opacity: 1; z-index: 60; box-shadow: 0 22px 52px rgba(18,18,18,0.28); }
+.tac-wol-card--img img { display: block; width: 300px; height: auto; }
+
+/* video testimonial card */
+.tac-wol-card--video { width: 216px; aspect-ratio: 3 / 4; overflow: hidden; background: #0e0e12; border-color: rgba(64,64,255,0.55); }
+.tac-wol-card--video:hover { transform: scale(1.2); }
+.tac-wol-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #0e0e12; }
+.tac-wol-vidph {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center;
+  background: radial-gradient(circle at 50% 36%, rgba(64,64,255,0.30), rgba(14,14,18,0.94)); color: #fff;
+  transition: opacity .3s ease;
+}
+.tac-wol-card--video.is-playing .tac-wol-vidph { opacity: 0; pointer-events: none; }
+.tac-wol-play { width: 46px; height: 46px; display: grid; place-items: center; border: 2px solid #fff; border-radius: 50%; font-size: 15px; padding-left: 3px; }
+.tac-wol-vidlabel { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; opacity: .92; line-height: 1.5; }
+.tac-wol-vidlabel i { opacity: .6; font-style: normal; }
+.tac-wol-spk { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: grid; place-items: center; background: rgba(0,0,0,0.5); color: #fff; font-size: 11px; }
+.tac-wol-spk::before { content: "\1F507"; }
+.tac-wol-card--video.is-unmuted .tac-wol-spk::before { content: "\1F50A"; }
+
+.tac-wol__hint { text-align: center; font-family: var(--font-mono); font-size: 0.74rem; color: var(--color-text-muted); margin-top: var(--space-8); }
+
+@media (max-width: 680px) {
+  .tac-wol-card--img img { width: 230px; }
+  .tac-wol-card--video { width: 172px; }
+  .tac-wol-row--far { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tac-wol-track { animation: none !important; }
+}

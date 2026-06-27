@@ -63,6 +63,28 @@ These are clearly marked on the page (dashed outlines). Search the code for `tac
 
 ---
 
+## Adding the video testimonials
+
+The **wall of love** (below the hero) mixes the written reader replies with **video testimonial placeholders**. Each placeholder is a card like this in `index.html` (search `tac-wol-card--video`):
+
+```html
+<figure class="tac-wol-card tac-wol-card--video" data-video>
+  <video class="tac-wol-vid" muted loop playsinline preload="none"></video>
+  <figcaption class="tac-wol-vidph">…placeholder…</figcaption>
+  <span class="tac-wol-spk" aria-hidden="true"></span>
+</figure>
+```
+
+To drop in a real video, put the file in `assets/videos/` and add a `<source>` (plus an optional `poster`) inside the `<video>`:
+
+```html
+<video class="tac-wol-vid" muted loop playsinline preload="metadata" poster="assets/videos/jane.jpg">
+  <source src="assets/videos/jane.mp4" type="video/mp4">
+</video>
+```
+
+That's it — the JS handles the rest: it autoplays **muted on loop**, and **unmutes the audio when you hover** (and re-mutes on mouse-out). The "coming soon" placeholder hides itself automatically once the video has real frames. Cards are portrait (3:4); keep clips roughly that shape, short, and web-compressed (H.264 .mp4, ideally < ~5 MB each). Add or remove video cards freely — they slot into any of the three depth rows.
+
 ## Design + voice notes (so edits stay on-brand)
 
 - **Colours:** white background, near-black text, Blueprint Blue `#4040FF` as a sparse accent (plus deliberate full-blue / dark feature bands). Tokens live in `styles.css` `:root`.
