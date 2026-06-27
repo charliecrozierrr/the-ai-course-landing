@@ -83,7 +83,7 @@ To drop in a real video, put the file in `assets/videos/` and add a `<source>` (
 </video>
 ```
 
-That's it — the JS handles the rest: it autoplays **muted on loop**, and **unmutes the audio when you hover** (and re-mutes on mouse-out). The "coming soon" placeholder hides itself automatically once the video has real frames. Cards are portrait (3:4); keep clips roughly that shape, short, and web-compressed (H.264 .mp4, ideally < ~5 MB each). Add or remove video cards freely — they slot into any of the three depth rows.
+That's it — the JS handles the rest: it autoplays **muted on loop**, and **unmutes the audio when you hover** (and re-mutes on mouse-out). The "coming soon" placeholder hides itself automatically once the video has real frames. Cards are landscape (16:9); keep clips roughly that shape, short, and web-compressed (H.264 .mp4, ideally < ~5 MB each). Add or remove video cards freely — they slot into either of the two carousel rows.
 
 ## Design + voice notes (so edits stay on-brand)
 

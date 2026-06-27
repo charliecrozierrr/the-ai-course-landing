@@ -605,21 +605,18 @@ html, body { overflow-x: hidden; max-width: 100%; }
    ===================================================== */
 .tac-wol { padding: var(--space-10) 0 var(--space-12); overflow: hidden; }
 .tac-wol__stage {
-  margin-top: var(--space-8);
-  display: grid; gap: clamp(20px, 3.2vw, 40px);
+  margin-top: var(--space-7);
+  display: grid; gap: clamp(14px, 1.6vw, 20px);
   overflow-x: clip; overflow-y: visible;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
 }
 .tac-wol-row { position: relative; }
-.tac-wol-row--near { --d-scale: 1;   --d-blur: 0px;   --d-op: 1;   --d-dur: 56s; z-index: 3; }
-.tac-wol-row--mid  { --d-scale: .9;  --d-blur: .5px;  --d-op: .92; --d-dur: 76s; z-index: 2; }
-.tac-wol-row--far  { --d-scale: .8;  --d-blur: 1.3px; --d-op: .7;  --d-dur: 98s; z-index: 1; }
 .tac-wol-row:hover { z-index: 50; }
 .tac-wol-track {
-  display: flex; align-items: center; gap: clamp(16px, 2.2vw, 28px);
+  display: flex; align-items: center; gap: clamp(14px, 1.8vw, 22px);
   width: max-content; will-change: transform;
-  animation: var(--d-dur, 60s) linear infinite;
+  animation: 52s linear infinite;
 }
 .tac-wol-row--right .tac-wol-track { animation-name: tac-marq-right; }
 .tac-wol-row--left  .tac-wol-track { animation-name: tac-marq-left; }
@@ -629,16 +626,15 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
 .tac-wol-card {
   position: relative; flex: 0 0 auto; cursor: pointer;
-  transform: scale(var(--d-scale)); filter: blur(var(--d-blur)); opacity: var(--d-op);
-  transition: transform .45s var(--tac-ease), filter .45s ease, opacity .45s ease, box-shadow .45s ease;
+  transition: transform .4s var(--tac-ease), box-shadow .4s ease;
   background: #fff; border: 1px solid var(--color-border); box-shadow: 0 6px 18px rgba(18,18,18,0.06);
 }
-.tac-wol-card:hover { transform: scale(1.32); filter: none; opacity: 1; z-index: 60; box-shadow: 0 22px 52px rgba(18,18,18,0.28); }
+.tac-wol-card:hover { transform: scale(1.3); z-index: 60; box-shadow: 0 22px 52px rgba(18,18,18,0.28); }
 .tac-wol-card--img img { display: block; width: 300px; height: auto; }
 
 /* video testimonial card */
-.tac-wol-card--video { width: 216px; aspect-ratio: 3 / 4; overflow: hidden; background: #0e0e12; border-color: rgba(64,64,255,0.55); }
-.tac-wol-card--video:hover { transform: scale(1.2); }
+.tac-wol-card--video { width: 248px; aspect-ratio: 16 / 9; overflow: hidden; background: #0e0e12; border-color: rgba(64,64,255,0.55); }
+.tac-wol-card--video:hover { transform: scale(1.26); }
 .tac-wol-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #0e0e12; }
 .tac-wol-vidph {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center;
@@ -647,19 +643,54 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .tac-wol-card--video.is-playing .tac-wol-vidph { opacity: 0; pointer-events: none; }
 .tac-wol-play { width: 46px; height: 46px; display: grid; place-items: center; border: 2px solid #fff; border-radius: 50%; font-size: 15px; padding-left: 3px; }
-.tac-wol-vidlabel { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; opacity: .92; line-height: 1.5; }
+.tac-wol-vidlabel { font-family: 'Silkscreen', monospace; font-size: 8px; letter-spacing: 1px; text-transform: uppercase; opacity: .92; line-height: 1.5; }
 .tac-wol-vidlabel i { opacity: .6; font-style: normal; }
-.tac-wol-spk { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: grid; place-items: center; background: rgba(0,0,0,0.5); color: #fff; font-size: 11px; }
+.tac-wol-spk { position: absolute; top: 7px; right: 7px; width: 22px; height: 22px; display: grid; place-items: center; background: rgba(0,0,0,0.5); color: #fff; font-size: 10px; }
 .tac-wol-spk::before { content: "\1F507"; }
 .tac-wol-card--video.is-unmuted .tac-wol-spk::before { content: "\1F50A"; }
 
-.tac-wol__hint { text-align: center; font-family: var(--font-mono); font-size: 0.74rem; color: var(--color-text-muted); margin-top: var(--space-8); }
+.tac-wol__hint { text-align: center; font-family: var(--font-mono); font-size: 0.74rem; color: var(--color-text-muted); margin-top: var(--space-7); }
 
 @media (max-width: 680px) {
-  .tac-wol-card--img img { width: 230px; }
-  .tac-wol-card--video { width: 172px; }
-  .tac-wol-row--far { display: none; }
+  .tac-wol-card--img img { width: 228px; }
+  .tac-wol-card--video { width: 200px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tac-wol-track { animation: none !important; }
+}
+
+/* =====================================================
+   AS SEEN ON — two channel cards, subtle constant shake,
+   "as seen on" label fades in when hovering either image
+   ===================================================== */
+.tac-seenon { padding: var(--space-10) 0; }
+.tac-seenon__label {
+  text-align: center; font-family: 'Silkscreen', monospace; font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--color-accent); margin: 0 0 var(--space-6);
+  opacity: 0; transition: opacity .35s ease;
+}
+.tac-seenon:hover .tac-seenon__label,
+.tac-seenon:has(.tac-seenon__card:hover) .tac-seenon__label { opacity: 1; }
+.tac-seenon__row { display: flex; justify-content: center; align-items: center; gap: clamp(16px, 3vw, 40px); flex-wrap: wrap; }
+.tac-seenon__card {
+  display: block; flex: 1 1 360px; max-width: 480px; line-height: 0;
+  border: 1px solid var(--color-border); box-shadow: 0 8px 24px rgba(18,18,18,0.10);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.tac-seenon__card img {
+  width: 100%; height: auto; display: block;
+  animation: tac-shake 0.55s ease-in-out infinite;
+}
+.tac-seenon__card:nth-child(2) img { animation-duration: 0.63s; animation-delay: -0.21s; }
+.tac-seenon__card:hover { transform: scale(1.03); box-shadow: 0 18px 44px rgba(18,18,18,0.22); z-index: 2; }
+.tac-seenon__card:hover img { animation-play-state: paused; }
+@keyframes tac-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(0.6px, -0.5px) rotate(-0.25deg); }
+  40% { transform: translate(-0.6px, 0.4px) rotate(0.22deg); }
+  60% { transform: translate(0.5px, 0.5px) rotate(-0.18deg); }
+  80% { transform: translate(-0.4px, -0.4px) rotate(0.18deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tac-seenon__card img { animation: none; }
 }
