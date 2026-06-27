@@ -382,5 +382,36 @@
       });
     })();
 
+    /* ---------- the shift: pinned scroll swap (before slides out right, after slides in from left) ---------- */
+    (function () {
+      var track = document.getElementById('shiftTrack');
+      if (!track) return;
+      var before = track.querySelector('[data-shift="before"]');
+      var after  = track.querySelector('[data-shift="after"]');
+      var hint   = track.querySelector('.tac-shift__hint');
+      if (!before || !after) return;
+      if (reduceMotion) return;   // CSS shows the two cards stacked + static
+
+      var OFF = 108;  // vw to push a card fully off-screen
+      function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+      function cl(v, a, b) { return v < a ? a : (v > b ? b : v); }
+
+      function onScroll() {
+        var total = track.offsetHeight - window.innerHeight;
+        if (total <= 0) return;
+        var p = cl(-track.getBoundingClientRect().top / total, 0, 1);
+        var q = cl((p - 0.12) / 0.74, 0, 1);   // brief hold at start + end
+        var e = ease(q);
+        before.style.setProperty('--shift-x', (e * OFF) + 'vw');
+        after.style.setProperty('--shift-x', ((e - 1) * OFF) + 'vw');
+        before.style.opacity = String(1 - cl((e - 0.72) / 0.28, 0, 1));
+        after.style.opacity  = String(cl((e - 0.04) / 0.30, 0, 1));
+        if (hint) hint.style.opacity = String(1 - cl(e * 1.6, 0, 1));
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+    })();
+
   });
 })();
