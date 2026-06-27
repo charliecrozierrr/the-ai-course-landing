@@ -326,14 +326,13 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-dials:hover .tac-cog { animation-play-state: running; }
 @keyframes tac-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes tac-spin-rev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-/* hub label sits static in the gear centre, on a dark plate so it reads on the white cog */
+/* hub label sits static in the gear centre (blue reads on the white cog + dark hole) */
 .tac-gear__hub {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;
-  display: flex; flex-direction: column; align-items: center; gap: 3px; line-height: 1;
-  background: #0e0e12; padding: 8px 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px; line-height: 1;
 }
-.tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: #9b9bff; }
-.tac-gear__hub strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.25rem); color: #fff; }
+.tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: var(--color-accent); }
+.tac-gear__hub strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--color-accent); }
 .tac-gear__what { display: block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4px; color: #9b9bff; margin-bottom: var(--space-3); }
 .tac-gear__desc { font-size: 0.92rem; color: rgba(255,255,255,0.84); line-height: 1.55; max-width: 30ch; margin: 0 auto; }
 @media (prefers-reduced-motion: reduce) { .tac-cog { animation: none; } }
@@ -365,10 +364,13 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* initial states (before JS scrubs): BEFORE centered, AFTER waiting off-screen left */
 .tac-shift__card[data-shift="after"] { --shift-x: -108vw; opacity: 0; }
 @media (max-width: 600px) {
-  .tac-shift__card { flex-direction: column; gap: var(--space-4); width: 90vw; }
-  .tac-shift__drake { flex: 0 0 auto; width: clamp(150px, 50vw, 240px); }
-  .tac-shift__box { flex: 0 0 auto; width: 100%; }
-  .tac-shift__cards { height: clamp(460px, 70vh, 600px); }
+  /* keep the drake beside its before/after card, just smaller */
+  .tac-shift__card { gap: var(--space-2); width: 96vw; }
+  .tac-shift__drake { flex: 0 0 auto; width: clamp(64px, 22vw, 116px); }
+  .tac-shift__box { flex: 1 1 0; }
+  .tac-ba__col { padding: var(--space-4) var(--space-4); }
+  .tac-ba__col li { font-size: 0.76rem; line-height: 1.45; padding-left: 16px; }
+  .tac-ba__tag { margin-bottom: var(--space-2); }
 }
 .tac-shift__hint {
   position: absolute; bottom: 4.5vh; left: 0; right: 0; text-align: center;
@@ -405,13 +407,13 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-stat { text-align: center; border: 1px solid var(--color-border); padding: var(--space-6) var(--space-4); background: #fff; transition: background var(--transition-fast), border-color var(--transition-fast); }
 .tac-stat__big { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 2.4rem; line-height: 1; color: var(--color-accent); display: block; transition: color var(--transition-fast); }
 .tac-stat__lab { font-size: 0.88rem; color: var(--color-text-secondary); margin-top: 8px; display: block; line-height: 1.4; transition: color var(--transition-fast); }
-.tac-stat:hover { background: #0c1c8a; border-color: #0c1c8a; }
+.tac-stat:hover { background: var(--color-accent); border-color: var(--color-accent); }
 .tac-stat:hover .tac-stat__big, .tac-stat:hover .tac-stat__lab { color: #fff; }
 /* four equal-size chips */
 .tac-shape__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-top: var(--space-8); }
 .tac-chip { font-family: var(--font-mono); font-size: 0.78rem; padding: 14px 12px; border: 1px solid var(--color-border); background: #fff; color: var(--color-text-secondary); display: grid; place-items: center; text-align: center; line-height: 1.4; transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
 .tac-chip b { color: var(--color-text); transition: color var(--transition-fast); }
-.tac-chip:hover { background: #0c1c8a; border-color: #0c1c8a; color: #fff; }
+.tac-chip:hover { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
 .tac-chip:hover b { color: #fff; }
 /* boxes fade in as they enter and vanish as they scroll up past the top
    (CSS scroll-driven; progressive enhancement - static + visible without support) */
@@ -493,7 +495,7 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-aud__col--for li b { color: #fff; }
 .tac-aud__col--for li::before { content: "✓"; position: absolute; left: 0; top: 0; color: #fff; font-weight: 700; }
 .tac-aud__col--not li::before { content: "✕"; position: absolute; left: 0; top: 0; color: var(--color-text-muted); font-weight: 700; }
-@media (max-width: 680px) { .tac-aud { grid-template-columns: 1fr; } }
+@media (max-width: 680px) { .tac-aud { gap: var(--space-3); } }
 
 /* =====================================================
    FOUNDER STORY
@@ -641,10 +643,12 @@ html, body { overflow-x: clip; max-width: 100%; }
    RESPONSIVE
    ===================================================== */
 @media (max-width: 820px) {
-  .tac-pains, .tac-shape, .tac-build, .tac-proof, .tac-alumni__cards { grid-template-columns: 1fr; }
-  .tac-shape__row { grid-template-columns: repeat(2, 1fr); }
-  .tac-dialcols { grid-template-columns: 1fr; }
-  .tac-engine { grid-template-columns: 1fr; }
+  /* keep components side-by-side on smaller screens; just tighten the grids
+     (shape stays 3-up, chips stay 4-up, gears stay 3-up, engine + doors 2-up) */
+  .tac-pains, .tac-build, .tac-proof, .tac-alumni__cards { grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .tac-dialcols { gap: var(--space-4); }
+  .tac-shape { gap: var(--space-3); }
+  .tac-shape__row { gap: var(--space-2); }
 }
 @media (max-width: 680px) {
   .tac-section { padding: var(--space-10) 0; }
@@ -656,6 +660,39 @@ html, body { overflow-x: clip; max-width: 100%; }
   .tac-count__unit { min-width: 66px; padding: var(--space-3); }
   .tac-count__n { font-size: 2rem; }
   .tac-guarantee { flex-direction: column; align-items: center; text-align: center; }
+}
+
+/* dense phone layout — keep everything side-by-side, shrink hard to fit more on screen */
+@media (max-width: 560px) {
+  .tac-section { padding: var(--space-8) 0; }
+  .tac-h2 { font-size: clamp(1.4rem, 6.4vw, 1.9rem); }
+  .tac-lead { font-size: 0.95rem; }
+
+  /* how it runs — three stats in one row */
+  .tac-shape { gap: 6px; }
+  .tac-stat { padding: 12px 4px; }
+  .tac-stat__big { font-size: 1.35rem; }
+  .tac-stat__big small { font-size: 0.7rem !important; }
+  .tac-stat__lab { font-size: 0.56rem; margin-top: 5px; }
+
+  /* how it runs — four chips in one row */
+  .tac-shape__row { gap: 5px; }
+  .tac-chip { padding: 8px 4px; font-size: 0.55rem; line-height: 1.3; }
+
+  /* the three gears in one row */
+  .tac-dialcols { gap: 6px; }
+  .tac-gear__face { width: min(28vw, 112px); margin-bottom: var(--space-3); }
+  .tac-gear__hub { gap: 1px; }
+  .tac-gear__num { font-size: 7px; }
+  .tac-gear__hub strong { font-size: 0.7rem; }
+  .tac-gear__what { font-size: 0.55rem; margin-bottom: 6px; }
+  .tac-gear__desc { font-size: 0.72rem; line-height: 1.45; max-width: none; }
+
+  /* card grids stay two-up, tighter */
+  .tac-pain { padding: var(--space-4); font-size: 0.84rem; }
+  .tac-engine__card { padding: var(--space-4); }
+  .tac-aud { gap: var(--space-2); }
+  .tac-ba__col { padding: var(--space-3); }
 }
 
 /* =====================================================
@@ -714,7 +751,7 @@ html, body { overflow-x: clip; max-width: 100%; }
    Rows drift at different distances + directions; hovering a
    card pauses its row and zooms it (video also unmutes via JS).
    ===================================================== */
-.tac-wol { padding: var(--space-10) 0 var(--space-12); overflow: visible; }
+.tac-wol { padding: var(--space-10) 0 var(--space-12); overflow: visible; position: relative; z-index: 5; }
 .tac-wol__stage {
   margin-top: 2.5rem;
   display: grid; gap: clamp(14px, 1.6vw, 20px);
