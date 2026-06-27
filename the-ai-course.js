@@ -157,9 +157,28 @@
       var heroH = hero ? hero.offsetHeight : 600;
       var footerTop = footer ? footer.offsetTop : 999999;
 
+      function paintNav() {
+        if (!nav) return;
+        var hh = nav.offsetHeight || 56;
+        var el = document.elementFromPoint(Math.round(window.innerWidth / 2), hh + 4);
+        var node = el, bg = null;
+        while (node && node !== document.documentElement) {
+          var c = getComputedStyle(node).backgroundColor;
+          if (c && c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent' && !/,\s*0\)\s*$/.test(c)) { bg = c; break; }
+          node = node.parentElement;
+        }
+        if (!bg) bg = 'rgb(255, 255, 255)';
+        nav.style.backgroundColor = bg;
+        var m = bg.match(/[\d.]+/g);
+        if (m && m.length >= 3) {
+          var lum = 0.299 * +m[0] + 0.587 * +m[1] + 0.114 * +m[2];
+          nav.classList.toggle('tac-nav--dark', lum < 140);
+        }
+      }
       function onScroll() {
         var y = window.pageYOffset;
         if (nav) nav.classList.toggle('tac-nav--scrolled', y > 20);
+        paintNav();
         if (bar) {
           var pastHero = y > heroH * 0.7;
           var nearFooter = (y + window.innerHeight) > (footerTop + 80);
@@ -423,36 +442,76 @@
       var N = items.length;
       function cl(v, a, b) { return v < a ? a : (v > b ? b : v); }
       function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+      // split each line into per-character spans (words kept intact so they never break mid-word)
+      function split(root, out) {
+        Array.prototype.slice.call(root.childNodes).forEach(function (node) {
+          if (node.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            (node.nodeValue.match(/\S+|\s+/g) || []).forEach(function (tok) {
+              if (/^\s+$/.test(tok)) {
+                for (var s = 0; s < tok.length; s++) { var sp = document.createElement('span'); sp.className = 'tac-out__ch'; sp.textContent = tok[s]; frag.appendChild(sp); out.push(sp); }
+              } else {
+                var w = document.createElement('span'); w.className = 'tac-out__word';
+                for (var c = 0; c < tok.length; c++) { var ch = document.createElement('span'); ch.className = 'tac-out__ch'; ch.textContent = tok[c]; w.appendChild(ch); out.push(ch); }
+                frag.appendChild(w);
+              }
+            });
+            root.replaceChild(frag, node);
+          } else if (node.nodeType === 1) { split(node, out); }
+        });
+      }
+      items.forEach(function (li) {
+        var txt = li.querySelector('.tac-out__txt'); var chars = [];
+        if (txt) split(txt, chars);
+        li._chars = chars; li._arrow = li.querySelector('.tac-out__arrow');
+      });
+      function measure() {
+        items.forEach(function (li) {
+          var a = li._arrow; if (a) li._ab = { x: a.offsetLeft + a.offsetWidth / 2, y: a.offsetTop + a.offsetHeight / 2 };
+          li._chars.forEach(function (ch) { ch._cx = ch.offsetLeft + ch.offsetWidth / 2; ch._cy = ch.offsetTop + ch.offsetHeight / 2; });
+        });
+      }
       function onScroll() {
         var total = track.offsetHeight - window.innerHeight;
         if (total <= 0) return;
         var p = cl(-track.getBoundingClientRect().top / total, 0, 1);
         var P = p * N;
         items.forEach(function (li, i) {
-          var q = cl(P - i, 0, 1);
-          var arrow = li.querySelector('.tac-out__arrow');
-          if (arrow) arrow.style.transform = 'translateX(' + (ease(q) * (li.clientWidth + 12)) + 'px)';
-          li.style.opacity = String(1 - cl((q - 0.62) / 0.38, 0, 1));
+          var e = ease(cl(P - i, 0, 1));
+          var chars = li._chars, n = chars.length;
+          var fi = Math.floor(e * (n + 1));               // frontier: chars before this are erased
+          for (var k = 0; k < n; k++) chars[k].style.visibility = (k < fi) ? 'hidden' : 'visible';
+          var a = li._arrow;
+          if (a && li._ab) {
+            if (fi <= 0) { a.style.transform = 'translate(0px,0px)'; a.style.opacity = '1'; }
+            else if (fi >= n) { a.style.opacity = '0'; }
+            else { var t = chars[fi]; a.style.transform = 'translate(' + (t._cx - li._ab.x) + 'px,' + (t._cy - li._ab.y) + 'px)'; a.style.opacity = '1'; }
+          }
         });
         if (tail) tail.style.opacity = String(cl((p - 0.9) / 0.1, 0, 1));
       }
+      measure();
       if (tail) tail.style.opacity = '0';
       window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
+      window.addEventListener('resize', function () { measure(); onScroll(); });
       onScroll();
     })();
 
-    /* ---------- remy signature: handwrite reveal on scroll into view ---------- */
+    /* ---------- remy signature: handwrite reveal when scrolled into view ---------- */
     (function () {
       var img = document.querySelector('.tac-sign-img');
       if (!img) return;
       if (reduceMotion) { img.classList.add('is-written'); return; }
-      if ('IntersectionObserver' in window) {
-        var o = new IntersectionObserver(function (es) {
-          es.forEach(function (e) { if (e.isIntersecting) { img.classList.add('is-written'); o.unobserve(img); } });
-        }, { threshold: 0.45 });
-        o.observe(img);
-      } else { img.classList.add('is-written'); }
+      function check() {
+        var r = img.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.85 && r.bottom > 0) {
+          img.classList.add('is-written');
+          window.removeEventListener('scroll', check);
+          return true;
+        }
+        return false;
+      }
+      if (!check()) window.addEventListener('scroll', check, { passive: true });
     })();
 
   });

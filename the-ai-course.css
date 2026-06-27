@@ -19,7 +19,7 @@
 
 /* squared corners everywhere on this page (brand Notion pass) */
 .tac-page * { border-radius: 0; }
-.tac-nav, .tac-buybar__cta, .tac-nav__cta { border-radius: 999px; }
+.tac-buybar__cta, .tac-nav__cta { border-radius: 999px; }
 
 /* no horizontal overflow on any viewport */
 html, body { overflow-x: clip; max-width: 100%; }
@@ -149,6 +149,8 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-cta--ghost { background: #fff; color: var(--color-accent); border-color: var(--color-accent); box-shadow: inset -2px -2px 0 0 var(--color-gray-300); }
 .tac-cta--ghost:hover { background: var(--color-accent-light); color: var(--color-accent); }
 .tac-cta__price { opacity: 0.85; font-weight: 400; }
+.tac-cta__price s { opacity: 0.6; text-decoration-thickness: 1px; margin-right: 1px; }
+.tac-buybar__info s { color: rgba(255,255,255,0.45); text-decoration-thickness: 1px; }
 .tac-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: var(--space-6); width: 100%; }
 .tac-cta-sub { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px; color: var(--color-text-muted); text-transform: uppercase; max-width: 100%; white-space: normal; text-align: center; }
 /* extra breathing room under the final-CTA button */
@@ -157,23 +159,20 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* =====================================================
    GLASS PILL NAV
    ===================================================== */
+/* solid full-width block; background colour is set inline by JS to match the
+   section it overlays (Notion-style), with light/dark contrast classes below */
 .tac-nav {
-  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
-  z-index: 100;
-  width: calc(100% - 28px); max-width: var(--tac-wide);
+  position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 100;
   display: flex; align-items: center; gap: var(--space-4);
-  padding: 9px 9px 9px 18px;
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: saturate(180%) blur(14px);
-  -webkit-backdrop-filter: saturate(180%) blur(14px);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 6px 24px rgba(18,18,18,0.08);
-  transition: box-shadow var(--transition-base), background var(--transition-base);
+  padding: 13px max(20px, calc((100% - 1120px) / 2));
+  background: #fff; color: var(--color-text);
+  border-bottom: 1px solid rgba(18,18,18,0.08);
+  transition: background 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
 }
-.tac-nav--scrolled { background: rgba(255,255,255,0.9); box-shadow: 0 8px 30px rgba(18,18,18,0.12); }
+.tac-nav--scrolled { box-shadow: 0 6px 22px rgba(0,0,0,0.10); }
 .tac-nav__brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
-.tac-nav__brand img { height: 22px; width: auto; display: block; }
-.tac-nav__links { display: flex; align-items: center; gap: var(--space-5); margin-left: var(--space-4); }
+.tac-nav__brand img { height: 22px; width: auto; display: block; transition: filter 280ms ease; }
+.tac-nav__links { display: flex; align-items: center; gap: var(--space-5); margin-left: var(--space-5); }
 .tac-nav__link {
   font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px;
   text-transform: uppercase; color: var(--color-text-secondary); text-decoration: none;
@@ -186,13 +185,22 @@ html, body { overflow-x: clip; max-width: 100%; }
   padding: 11px 18px; background: var(--color-accent); color: #fff; text-decoration: none;
   border: 1px solid var(--color-accent);
   box-shadow: inset -2px -2px 0 0 rgba(18,18,18,0.18);
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   white-space: nowrap;
 }
 .tac-nav__cta:hover { background: var(--tac-blue-2); color: #fff; }
+
+/* over a dark/coloured section: JS sets the bg inline, these flip the contrast */
+.tac-nav--dark { border-bottom-color: rgba(255,255,255,0.14); }
+.tac-nav--dark .tac-nav__link { color: rgba(255,255,255,0.78); }
+.tac-nav--dark .tac-nav__link:hover { color: #fff; }
+.tac-nav--dark .tac-nav__brand img { filter: brightness(0) invert(1); }
+.tac-nav--dark .tac-nav__cta { background: #fff; color: #0e0e12; border-color: #fff; box-shadow: inset -2px -2px 0 0 rgba(0,0,0,0.18); }
+.tac-nav--dark .tac-nav__cta:hover { background: #e9e9ff; color: #0e0e12; }
+
 @media (max-width: 760px) {
   .tac-nav__links { display: none; }
-  .tac-nav { gap: var(--space-2); padding: 8px 8px 8px 14px; }
+  .tac-nav { gap: var(--space-2); padding: 11px 16px; }
   .tac-nav__cta { margin-left: auto; }
 }
 
@@ -679,13 +687,18 @@ html, body { overflow-x: clip; max-width: 100%; }
    Rows drift at different distances + directions; hovering a
    card pauses its row and zooms it (video also unmutes via JS).
    ===================================================== */
-.tac-wol { padding: var(--space-10) 0 var(--space-12); overflow: hidden; }
+.tac-wol { padding: var(--space-10) 0 var(--space-12); overflow: visible; }
 .tac-wol__stage {
   margin-top: 2.5rem;
   display: grid; gap: clamp(14px, 1.6vw, 20px);
   overflow-x: clip; overflow-y: visible;
+  /* horizontal edge fade, enlarged vertically so a hovered card can pop out of the row
+     (above/below the section) instead of being clipped */
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-size: 100% 320%; mask-size: 100% 320%;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
 .tac-wol-row { position: relative; }
 .tac-wol-row:hover { z-index: 50; }
@@ -782,10 +795,13 @@ html, body { overflow-x: clip; max-width: 100%; }
   background: var(--color-gray-100);
 }
 .tac-out__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; width: min(640px, 90vw); display: grid; gap: var(--space-5); }
-.tac-out__item { position: relative; padding-left: 44px; font-size: 1.06rem; line-height: 1.5; color: var(--color-text); will-change: opacity; }
+.tac-out__item { position: relative; padding-left: 44px; font-size: 1.06rem; line-height: 1.5; color: var(--color-text); }
 .tac-out__txt strong { color: var(--color-text); }
+.tac-out__word { white-space: nowrap; }
+.tac-out__ch { transition: none; }                 /* letters vanish instantly as the arrow passes */
 .tac-out__arrow {
-  position: absolute; left: 0; top: 0.26em; width: 24px; height: 17px; z-index: 2; will-change: transform;
+  position: absolute; left: 0; top: 0.26em; width: 24px; height: 17px; z-index: 2; will-change: transform, opacity;
+  transition: opacity 0.12s linear;
   background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='17'%20viewBox='0%200%2010%2012'%20shape-rendering='crispEdges'%3E%3Crect%20x='2'%20y='1'%20width='2'%20height='10'%20fill='%234040FF'/%3E%3Crect%20x='4'%20y='3'%20width='2'%20height='6'%20fill='%234040FF'/%3E%3Crect%20x='6'%20y='5'%20width='2'%20height='2'%20fill='%234040FF'/%3E%3C/svg%3E") left center / contain no-repeat;
 }
 .tac-out__tail { text-align: center; font-style: italic; color: var(--color-text-secondary); max-width: 52ch; font-size: 1rem; margin: 0 auto; }
@@ -797,7 +813,12 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* =====================================================
    REMY SIGNATURE — handwrite reveal on scroll into view
    ===================================================== */
-.tac-sign-img { clip-path: inset(0 100% 0 0); }
-.tac-sign-img.is-written { animation: tac-write 2s var(--tac-ease) forwards; }
-@keyframes tac-write { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
-@media (prefers-reduced-motion: reduce) { .tac-sign-img { clip-path: none; } }
+.tac-sign-img {
+  -webkit-clip-path: inset(0 100% 0 0); clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.9s var(--tac-ease), -webkit-clip-path 1.9s var(--tac-ease);
+  will-change: clip-path;
+}
+.tac-sign-img.is-written { -webkit-clip-path: inset(0 0 0 0); clip-path: inset(0 0 0 0); }
+@media (prefers-reduced-motion: reduce) {
+  .tac-sign-img { -webkit-clip-path: none; clip-path: none; transition: none; }
+}
