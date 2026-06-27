@@ -155,7 +155,6 @@
       var hero = document.getElementById('top');
       var footer = document.querySelector('.tac-foot');
       var heroH = hero ? hero.offsetHeight : 600;
-      var footerTop = footer ? footer.offsetTop : 999999;
 
       function paintNav() {
         if (!nav) return;
@@ -181,14 +180,17 @@
         paintNav();
         if (bar) {
           var pastHero = y > heroH * 0.7;
-          var nearFooter = (y + window.innerHeight) > (footerTop + 80);
+          // hide the bar before the footer scrolls up under it, so it never
+          // covers the footer mural (account for the bar's own height + the slide)
+          var nearFooter = footer
+            ? footer.getBoundingClientRect().top <= (window.innerHeight + 60)
+            : false;
           bar.classList.toggle('is-show', pastHero && !nearFooter);
         }
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', function () {
         heroH = hero ? hero.offsetHeight : 600;
-        footerTop = footer ? footer.offsetTop : 999999;
         onScroll();
       });
       onScroll();
