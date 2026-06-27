@@ -803,6 +803,56 @@ html, body { overflow-x: clip; max-width: 100%; }
   /* footer ASCII fits within the screen width (no side crop) */
   .tac-foot { height: clamp(120px, 30vw, 170px); }
   .tac-foot__mural { object-fit: contain; object-position: center bottom; }
+
+  /* gears spin continuously (no hover on touch) */
+  .tac-cog { animation-play-state: running; }
+
+  /* more breathing room around the "treat it like a hire" line */
+  .tac-mech__hire { margin: var(--space-10) auto var(--space-8); }
+
+  /* curriculum cards off the screen edges; expanded text matches the card text */
+  .tac-curric { margin-left: var(--space-5); margin-right: var(--space-5); }
+  .tac-ses__deliver { font-size: 0.58rem; }
+  .tac-ses__leave { font-size: 0.5rem; }
+  #curriculum .tac-list li { font-size: 0.56rem; }
+
+  /* what you walk out with — heading + dot points ~50% smaller */
+  .tac-out .tac-h2 { font-size: clamp(1rem, 4.8vw, 1.35rem); }
+  .tac-out__item { font-size: 0.55rem; padding-left: 22px; }
+  .tac-out__tail { font-size: 0.56rem; }
+
+  /* who this is for / not — off the edges, a touch smaller */
+  .tac-aud { margin: var(--space-6) var(--space-5) 0; }
+  .tac-aud__col { padding: 10px 8px; }
+  .tac-aud__h { font-size: 0.76rem; }
+  .tac-aud__col li { font-size: 0.56rem; }
+
+  /* "but is it safe" ~50% smaller, off the edges */
+  .tac-safe { margin: var(--space-6) var(--space-5) 0; font-size: 0.6rem; line-height: 1.5; }
+
+  /* "don't sit on this" scarcity ~50% smaller */
+  .tac-scarcity .tac-h2 { font-size: clamp(1.15rem, 5.2vw, 1.5rem); }
+  .tac-scarcity .tac-lead { font-size: 0.78rem; }
+  .tac-count { gap: 7px; margin: var(--space-6) 0; }
+  .tac-count__unit { min-width: 0; padding: 8px 5px; flex: 1 1 0; }
+  .tac-count__n { font-size: 1.4rem; }
+  .tac-count__l { font-size: 7px; margin-top: 5px; }
+  .tac-seats { margin: 0 var(--space-5) var(--space-6); }
+  .tac-seats__row { font-size: 0.62rem; }
+
+  /* pixel cascades: CTAs + the early-bird box run constantly on touch */
+  .tac-cta::before, .tac-buybar__cta::before { opacity: 0.2; }
+  .tac-price-card .tac-fxlayer { opacity: 0.16; }
+}
+/* pixel cascade behind the gap + engine boxes reveals as the card scrolls off */
+@keyframes tac-cascade-scroll { from { opacity: 0; } to { opacity: 0.3; } }
+@supports (animation-timeline: view()) {
+  @media (max-width: 560px) {
+    .tac-pain::before, .tac-engine__card::before {
+      animation: tac-cascade-scroll linear both;
+      animation-timeline: view();
+    }
+  }
 }
 /* reduced motion on mobile: swipeable row instead of an auto-carousel */
 @media (max-width: 560px) and (prefers-reduced-motion: reduce) {
