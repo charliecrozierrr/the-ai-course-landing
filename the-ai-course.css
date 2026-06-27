@@ -750,6 +750,59 @@ html, body { overflow-x: clip; max-width: 100%; }
   .tac-buybar { gap: 8px; padding: 7px 10px; }
   .tac-buybar__info { font-size: 0.66rem; }
   .tac-buybar__cta { font-size: 0.66rem; padding: 8px 14px; }
+
+  /* hero — smaller headline + subtext */
+  .tac-hero__headline { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .tac-hero__sub { font-size: 0.9rem; line-height: 1.5; }
+
+  /* what it is — smaller heading + lead (esp. "The AI Course teaches you...") */
+  #what .tac-h2 { font-size: clamp(1.15rem, 5.4vw, 1.55rem); }
+  #what .tac-lead { font-size: 0.78rem; line-height: 1.55; }
+
+  /* the model — engine boxes smaller + centred; quote + hire line smaller */
+  .tac-mech__quote { font-size: clamp(1.05rem, 4.2vw, 1.45rem); }
+  .tac-engine__card { text-align: center; padding: var(--space-3); }
+  .tac-engine__tag { font-size: 8px; }
+  .tac-engine__card h4 { font-size: 0.82rem; margin: 8px 0 6px; }
+  .tac-engine__card p { font-size: 0.68rem; line-height: 1.45; }
+  .tac-mech__hire { font-size: 0.72rem; line-height: 1.55; margin-top: var(--space-6); }
+
+  /* curriculum — session cards roughly half size */
+  .tac-ses__head { padding: 9px 11px; gap: var(--space-2); }
+  .tac-ses__mark { font-size: 0.5rem; padding: 3px 5px; }
+  .tac-ses__t strong { font-size: 0.7rem; }
+  .tac-ses__t span { font-size: 0.55rem; }
+  .tac-ses__plus { font-size: 0.7rem; }
+  .tac-ses__deliver { font-size: 0.64rem; line-height: 1.45; }
+  .tac-ses__leave { font-size: 0.5rem; }
+  #curriculum .tac-list li { font-size: 0.62rem; line-height: 1.4; }
+
+  /* what you walk out with — dot points much smaller */
+  .tac-out__item { font-size: 0.58rem; padding-left: 24px; }
+  .tac-out__tail { font-size: 0.64rem; }
+
+  /* the letter from remy — much smaller text + smaller signature */
+  .tac-founder__body p { font-size: 0.64rem; line-height: 1.55; margin-bottom: var(--space-3); }
+  .tac-founder__sign img { height: 30px; }
+  .tac-founder__sign span { font-size: 0.58rem; }
+
+  /* early-bird paywall card — off the screen edges, smaller padding + text */
+  .tac-price-card { margin: var(--space-6) var(--space-5) 0; padding: var(--space-5) var(--space-4); }
+  .tac-price__name { font-size: 0.64rem; }
+  .tac-price__amount .now { font-size: 2.3rem; }
+  .tac-price__amount .was { font-size: 0.95rem; margin-right: 7px; }
+  .tac-price__plan { font-size: 0.7rem; margin-bottom: var(--space-4); }
+  .tac-price__badges { font-size: 0.58rem; gap: var(--space-3); }
+  #pricing .tac-list li { font-size: 0.7rem; line-height: 1.4; }
+
+  /* the six lies + faq dropdowns — about half size, inset from the edges */
+  .tac-acc { margin: var(--space-6) var(--space-5) 0; gap: 6px; }
+  .tac-acc__head { font-size: 0.72rem; padding: 10px 12px; }
+  .tac-acc__body p { font-size: 0.64rem; line-height: 1.5; padding: 0 12px 12px; }
+
+  /* footer ASCII fits within the screen width (no side crop) */
+  .tac-foot { height: clamp(120px, 30vw, 170px); }
+  .tac-foot__mural { object-fit: contain; object-position: center bottom; }
 }
 /* reduced motion on mobile: swipeable row instead of an auto-carousel */
 @media (max-width: 560px) and (prefers-reduced-motion: reduce) {
