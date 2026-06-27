@@ -310,26 +310,30 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-loop__arrow { color: rgba(255,255,255,0.4); font-family: var(--font-mono); }
 .tac-loop__rep { text-align: center; font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: rgba(255,255,255,0.62); text-transform: uppercase; margin-top: var(--space-4); }
 
-/* the three dials — interlocking 8-bit gear train, then labelled columns */
-.tac-dials { max-width: 920px; margin: var(--space-10) auto 0; }
-.tac-geartrain { --cog: clamp(94px, 13vw, 130px); display: flex; justify-content: center; align-items: center; margin: 0 auto var(--space-8); }
+/* the three dials — separate 8-bit gears, each labelled in the hub */
+.tac-dials { max-width: 1000px; margin: var(--space-10) auto 0; }
+.tac-dialcols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+.tac-gear { text-align: center; }
+.tac-gear__face { position: relative; width: clamp(150px, 19vw, 200px); aspect-ratio: 1; margin: 0 auto var(--space-4); }
 .tac-cog {
-  width: var(--cog); height: var(--cog); flex: 0 0 auto;
+  position: absolute; inset: 0; width: 100%; height: 100%;
   background: center / contain no-repeat;
-  animation: tac-spin 13s linear infinite; animation-play-state: paused;
+  background-image: url("assets/images/gear8.svg");
+  animation: tac-spin 16s linear infinite; animation-play-state: paused;
   transform-origin: 50% 50%;
 }
-.tac-cog--1, .tac-cog--3 { background-image: url("assets/images/gear8.svg"); }
-.tac-cog--2 { background-image: url("assets/images/gear8b.svg"); margin-inline: calc(var(--cog) * -0.22); position: relative; z-index: 1; animation-name: tac-spin-rev; }
+.tac-cog--2 { animation-name: tac-spin-rev; }
 .tac-dials:hover .tac-cog { animation-play-state: running; }
 @keyframes tac-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes tac-spin-rev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-
-.tac-dialcols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-.tac-gear { text-align: center; }
-.tac-gear__label { display: flex; flex-direction: column; align-items: center; line-height: 1; margin-bottom: var(--space-3); }
-.tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px; color: var(--color-accent); margin-bottom: 7px; }
-.tac-gear__label strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: 1.45rem; color: #fff; }
+/* hub label sits static in the gear centre, on a dark plate so it reads on the white cog */
+.tac-gear__hub {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 3px; line-height: 1;
+  background: #0e0e12; padding: 8px 12px;
+}
+.tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: #9b9bff; }
+.tac-gear__hub strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.25rem); color: #fff; }
 .tac-gear__what { display: block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4px; color: #9b9bff; margin-bottom: var(--space-3); }
 .tac-gear__desc { font-size: 0.92rem; color: rgba(255,255,255,0.84); line-height: 1.55; max-width: 30ch; margin: 0 auto; }
 @media (prefers-reduced-motion: reduce) { .tac-cog { animation: none; } }
