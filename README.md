@@ -65,17 +65,20 @@ These are clearly marked on the page (dashed outlines). Search the code for `tac
 
 ## Adding the video testimonials
 
-The **wall of love** (below the hero) mixes the written reader replies with **video testimonial placeholders**. Each placeholder is a card like this in `index.html` (search `tac-wol-card--video`):
+**Source of truth for video testimonials:** the Google Drive folder
+<https://drive.google.com/drive/folders/0AKueYpvqbOZ9Uk9PVA>. All test + final video testimonials get added there; pull from it when adding clips to the page.
+
+The **wall of love** (below the hero) is **three carousel rows**: written reviews on top (scrolls right), **video testimonials in the middle row** (scrolls left), and more written reviews on the bottom (scrolls right). The middle row has **6 video slots** (`data-slot="1"`…`"6"`):
 
 ```html
-<figure class="tac-wol-card tac-wol-card--video" data-video>
+<figure class="tac-wol-card tac-wol-card--video" data-video data-slot="1">
   <video class="tac-wol-vid" muted loop playsinline preload="none"></video>
   <figcaption class="tac-wol-vidph">…placeholder…</figcaption>
   <span class="tac-wol-spk" aria-hidden="true"></span>
 </figure>
 ```
 
-To drop in a real video, put the file in `assets/videos/` and add a `<source>` (plus an optional `poster`) inside the `<video>`:
+To drop in a real video: put the file in `assets/videos/` and add a `<source>` (and optional `poster`) inside that slot's `<video>` — **once per slot** (the carousel duplicates each card for the loop, and the JS syncs the source to the duplicate by `data-slot`):
 
 ```html
 <video class="tac-wol-vid" muted loop playsinline preload="metadata" poster="assets/videos/jane.jpg">
@@ -83,7 +86,7 @@ To drop in a real video, put the file in `assets/videos/` and add a `<source>` (
 </video>
 ```
 
-That's it — the JS handles the rest: it autoplays **muted on loop**, and **unmutes the audio when you hover** (and re-mutes on mouse-out). The "coming soon" placeholder hides itself automatically once the video has real frames. Cards are landscape (16:9); keep clips roughly that shape, short, and web-compressed (H.264 .mp4, ideally < ~5 MB each). Add or remove video cards freely — they slot into either of the two carousel rows.
+Then the JS handles the rest: it autoplays **muted on loop**, and **unmutes the audio when you hover** (re-mutes on mouse-out). The "coming soon" placeholder hides itself once the video has real frames. **Clips must be 9:16 (portrait)** — keep them short and web-compressed (H.264 .mp4, ideally < ~5 MB each). Add or remove slots freely.
 
 ## Design + voice notes (so edits stay on-brand)
 

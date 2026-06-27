@@ -119,9 +119,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   width: 100%; height: 100%;
   z-index: 0;
   pointer-events: none;       /* pointer handled on the section; canvas only paints */
-  /* fade the dots away from the centre column so the copy stays crisp */
-  -webkit-mask-image: radial-gradient(120% 78% at 50% 50%, transparent 0%, transparent 33%, #000 80%);
-          mask-image: radial-gradient(120% 78% at 50% 50%, transparent 0%, transparent 33%, #000 80%);
+  /* faint dots fill the whole section (no centre clearing behind the copy) */
 }
 #what > .container { position: relative; z-index: 1; }
 
@@ -656,8 +654,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .tac-wol-card--img img { display: block; width: 300px; height: auto; }
 
 /* video testimonial card */
-.tac-wol-card--video { width: 248px; aspect-ratio: 16 / 9; overflow: hidden; background: #0e0e12; border-color: rgba(64,64,255,0.55); }
-.tac-wol-card--video:hover { transform: scale(1.26); }
+.tac-wol-card--video { width: 176px; aspect-ratio: 9 / 16; overflow: hidden; background: #0e0e12; border-color: rgba(64,64,255,0.55); }
+.tac-wol-card--video:hover { transform: scale(1.18); }
 .tac-wol-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #0e0e12; }
 .tac-wol-vidph {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center;
@@ -676,7 +674,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
 @media (max-width: 680px) {
   .tac-wol-card--img img { width: 228px; }
-  .tac-wol-card--video { width: 200px; }
+  .tac-wol-card--video { width: 148px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tac-wol-track { animation: none !important; }

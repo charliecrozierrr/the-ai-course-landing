@@ -182,6 +182,34 @@
       var cards = document.querySelectorAll('.tac-wol-card--video');
       if (!cards.length) return;
 
+      // the carousel duplicates each card for a seamless loop; sync sources by
+      // data-slot so a <source>/src only needs adding ONCE per slot.
+      (function () {
+        var bySlot = {};
+        cards.forEach(function (c) {
+          var s = c.getAttribute('data-slot'); if (!s) return;
+          (bySlot[s] = bySlot[s] || []).push(c);
+        });
+        Object.keys(bySlot).forEach(function (s) {
+          var group = bySlot[s];
+          var donor = group.filter(function (c) {
+            var v = c.querySelector('video');
+            return v && (v.getAttribute('src') || v.querySelector('source[src]'));
+          })[0];
+          if (!donor) return;
+          var dv = donor.querySelector('video');
+          group.forEach(function (c) {
+            if (c === donor) return;
+            var v = c.querySelector('video'); if (!v) return;
+            if (dv.getAttribute('src')) v.setAttribute('src', dv.getAttribute('src'));
+            var src = dv.querySelector('source');
+            if (src && !v.querySelector('source')) v.appendChild(src.cloneNode(true));
+            var poster = dv.getAttribute('poster'); if (poster) v.setAttribute('poster', poster);
+            v.load();
+          });
+        });
+      })();
+
       function hasMedia(v) { return v && (v.currentSrc || v.querySelector('source[src]') || v.getAttribute('src')); }
 
       cards.forEach(function (card) {
@@ -232,10 +260,10 @@
       if (!ctx) return;
 
       var SPACING = 26;        // dot grid spacing (css px) — matches the base reference
-      var R_MIN   = 1.1;       // smallest dot radius
-      var DISP    = 7;         // how far a dot slides under a wave
-      var DAMP    = 0.93;      // wave decay (closer to 1 = longer-lived ripples)
-      var BASE_A  = 0.16;      // resting dot opacity (subtle behind the copy)
+      var R_MIN   = 0.6;       // smallest dot radius (smaller dots)
+      var DISP    = 3;         // how far a dot slides under a wave (subtle motion)
+      var DAMP    = 0.92;      // wave decay (closer to 1 = longer-lived ripples)
+      var BASE_A  = 0.14;      // resting dot opacity (faint, fills the whole section)
       var DPR     = Math.min(window.devicePixelRatio || 1, 2);
 
       var W = 0, H = 0, cols = 0, rows = 0, rMax = 12;
@@ -261,7 +289,7 @@
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
         cols = Math.ceil(W / SPACING) + 2;
         rows = Math.ceil(H / SPACING) + 2;
-        rMax = SPACING / 2 - 1;
+        rMax = SPACING * 0.14;
         var n = cols * rows;
         base = new Float32Array(n); bufA = new Float32Array(n); bufB = new Float32Array(n);
         for (var gy = 0; gy < rows; gy++) for (var gx = 0; gx < cols; gx++) {
@@ -289,7 +317,7 @@
           energy += h < 0 ? -h : h;
           var x = (gx - 1) * SPACING + (bufA[i + 1] - bufA[i - 1]) * DISP;
           var y = (gy - 1) * SPACING + (bufA[i + cols] - bufA[i - cols]) * DISP;
-          var r = (R_MIN + base[i] * (rMax - R_MIN)) * (1 + h * 0.16);
+          var r = (R_MIN + base[i] * (rMax - R_MIN)) * (1 + h * 0.10);
           if (r < 0.35) continue;
           var a = BASE_A + (h < 0 ? -h : h) * 0.05;
           if (a > 0.7) a = 0.7;
@@ -330,12 +358,12 @@
         if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
         var dx = x - lastX, dy = y - lastY, speed = Math.sqrt(dx * dx + dy * dy);
         lastX = x; lastY = y;
-        inject(x, y, speed > 200 ? 1.2 : Math.min(3.2, 0.8 + speed * 0.06));
+        inject(x, y, speed > 200 ? 0.5 : Math.min(1.3, 0.3 + speed * 0.025));
       }
       section.addEventListener('pointermove', function (e) { onMove(e.clientX, e.clientY); }, { passive: true });
       section.addEventListener('pointerdown', function (e) {
         var rect = canvas.getBoundingClientRect();
-        inject(e.clientX - rect.left, e.clientY - rect.top, 4);
+        inject(e.clientX - rect.left, e.clientY - rect.top, 1.8);
       }, { passive: true });
 
       build();
