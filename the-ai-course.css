@@ -574,8 +574,8 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* =====================================================
    FOOTER (lite)
    ===================================================== */
-.tac-foot { background: #000; padding: 0 0 var(--space-10); text-align: center; border-top: none; overflow: hidden; }
-.tac-foot__mural { display: block; width: 100%; height: auto; margin: 0 0 var(--space-8); }
+.tac-foot { background: #0e0e12; padding: 0 0 var(--space-10); text-align: center; border-top: none; overflow: hidden; }
+.tac-foot__mural { display: block; width: 100%; height: auto; margin: 0 0 var(--space-6); }
 .tac-foot__logo { height: 30px; margin: 0 auto var(--space-5); }
 .tac-foot__legal { font-family: var(--font-mono); font-size: 0.7rem; color: rgba(255,255,255,0.5); }
 
