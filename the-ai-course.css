@@ -967,6 +967,18 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-wol-spk { position: absolute; top: 7px; right: 7px; width: 22px; height: 22px; display: grid; place-items: center; background: rgba(0,0,0,0.5); color: #fff; font-size: 10px; }
 .tac-wol-spk::before { content: "\1F507"; }
 .tac-wol-card--video.is-unmuted .tac-wol-spk::before { content: "\1F50A"; }
+/* creator credit — clickable name in the bottom third, over the video */
+.tac-wol-cred {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  height: 38%; box-sizing: border-box;
+  display: flex; align-items: flex-end; justify-content: center; gap: 5px;
+  padding: 0 8px 11px; text-align: center; line-height: 1.2;
+  background: linear-gradient(to top, rgba(0,0,0,0.86) 20%, rgba(0,0,0,0.42) 58%, transparent);
+  color: #fff; text-decoration: none;
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.2px;
+}
+.tac-wol-cred::after { content: "\2197"; font-weight: 400; opacity: 0.8; }
+.tac-wol-cred:hover { text-decoration: underline; }
 
 .tac-wol__hint { text-align: center; font-family: var(--font-mono); font-size: 0.74rem; color: var(--color-text-muted); margin-top: 2.5rem; }
 
