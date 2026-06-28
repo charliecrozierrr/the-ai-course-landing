@@ -13,6 +13,247 @@
 
   document.addEventListener('DOMContentLoaded', function () {
 
+    /* ---------- problem "sound familiar?" carousel (slide in, hold 5s, slide out) ---------- */
+    (function () {
+      var ul = document.querySelector('.tac-problem__quotes');
+      if (!ul) return;
+      var cards = ul.querySelectorAll('li');
+      if (cards.length < 2) return;
+      var i = 0;
+      cards[0].classList.add('is-active');
+      function advance() {
+        var cur = cards[i];
+        cur.classList.remove('is-active');
+        cur.classList.add('is-leaving');
+        setTimeout(function () { cur.classList.remove('is-leaving'); }, 520);
+        i = (i + 1) % cards.length;
+        var nxt = cards[i];
+        nxt.classList.remove('is-leaving');
+        void nxt.offsetWidth;
+        nxt.classList.add('is-active');
+      }
+      setInterval(advance, 4500);
+    })();
+
+    /* ---------- what's included: arrow erase (letters vanish as the arrow passes, row by row) ---------- */
+    (function () {
+      var ul = document.querySelector('.tac-incl__list');
+      if (!ul || reduceMotion) return;
+      var items = ul.querySelectorAll('li');
+      if (!items.length) return;
+      function cl(v,a,b){ return v<a?a:(v>b?b:v); }
+      function ease(t){ return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
+      function split(root,out){
+        Array.prototype.slice.call(root.childNodes).forEach(function(node){
+          if (node.nodeType===3){
+            var frag=document.createDocumentFragment();
+            (node.nodeValue.match(/\S+|\s+/g)||[]).forEach(function(tok){
+              if (/^\s+$/.test(tok)){ for(var s=0;s<tok.length;s++){var sp=document.createElement('span');sp.className='tac-incl__ch';sp.textContent=tok[s];frag.appendChild(sp);out.push(sp);} }
+              else { var w=document.createElement('span');w.className='tac-incl__word'; for(var c=0;c<tok.length;c++){var ch=document.createElement('span');ch.className='tac-incl__ch';ch.textContent=tok[c];w.appendChild(ch);out.push(ch);} frag.appendChild(w); }
+            });
+            root.replaceChild(frag,node);
+          } else if (node.nodeType===1){ split(node,out); }
+        });
+      }
+      items.forEach(function(li,idx){
+        var txt=li.querySelector('.tac-incl__txt'); var chars=[];
+        if (txt) split(txt,chars);
+        li._chars=chars; li._arrow=li.querySelector('.tac-incl__arrow'); li._row=Math.floor(idx/2);
+      });
+      var numRows=Math.floor((items.length-1)/2)+1;
+      function measure(){
+        items.forEach(function(li){
+          var a=li._arrow; if(a) li._ab={x:a.offsetLeft+a.offsetWidth/2,y:a.offsetTop+a.offsetHeight/2};
+          li._chars.forEach(function(ch){ ch._cx=ch.offsetLeft+ch.offsetWidth/2; ch._cy=ch.offsetTop+ch.offsetHeight/2; });
+        });
+      }
+      var track=document.getElementById('inclTrack');
+      function onScroll(){
+        if(!track) return;
+        var total=track.offsetHeight-window.innerHeight;
+        if(total<=0) return;
+        var p=cl(-track.getBoundingClientRect().top/total,0,1);
+        var HOLD=0.3;
+        var P=cl((p-HOLD)/(1-HOLD),0,1)*numRows;
+        items.forEach(function(li){
+          var e=ease(cl(P-li._row,0,1));
+          var chars=li._chars, n=chars.length, fi=Math.floor(e*(n+1));
+          for(var k=0;k<n;k++) chars[k].style.visibility=(k<fi)?'hidden':'visible';
+          var a=li._arrow;
+          if(a && li._ab){
+            if(fi<=0){ a.style.transform='translate(0px,0px)'; a.style.opacity='1'; }
+            else if(fi>=n){ a.style.opacity='0'; }
+            else { var t=chars[fi]; a.style.transform='translate('+(t._cx-li._ab.x)+'px,'+(t._cy-li._ab.y)+'px)'; a.style.opacity='1'; }
+          }
+        });
+      }
+      measure();
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', function(){ measure(); onScroll(); });
+      onScroll();
+    })();
+
+    /* ---------- ROI pixel calculator (four-function) ---------- */
+    (function () {
+      var root = document.getElementById('tacCalc');
+      if (!root) return;
+      var screenEl = root.querySelector('.tac-calc__val');
+      var keysEl = root.querySelector('.tac-calc__keys');
+      var scrEl = root.querySelector('.tac-calc__screen');
+      var labelEl = root.querySelector('.tac-calc__label');
+      function setLabel(t){ if (labelEl) labelEl.textContent = t || ''; }
+      var cur = '0', acc = null, op = null, fresh = true, justEq = false;
+
+      function fmt(s) {
+        if (s === 'ERR') return 'ERR';
+        var neg = s.charAt(0) === '-'; if (neg) s = s.slice(1);
+        var parts = s.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return (neg ? '-' : '') + parts.join('.');
+      }
+      function render() { screenEl.textContent = fmt(cur); }
+      function val() { return parseFloat(cur) || 0; }
+      function nice(x) { return Math.round(x * 1e6) / 1e6; }
+      function compute(a, b, o) {
+        if (o === '+') return a + b;
+        if (o === '-') return a - b;
+        if (o === '*') return a * b;
+        if (o === '/') return b === 0 ? null : a / b;
+        return b;
+      }
+      function digit(d) {
+        if (fresh || justEq) { cur = d; fresh = false; justEq = false; }
+        else if (cur === '0') { cur = d; }
+        else if (cur.replace('-', '').replace('.', '').length < 12) { cur += d; }
+        render();
+      }
+      function dot() {
+        if (fresh || justEq) { cur = '0.'; fresh = false; justEq = false; }
+        else if (cur.indexOf('.') === -1) { cur += '.'; }
+        render();
+      }
+      function setOp(o) {
+        if (cur === 'ERR') return;
+        if (op !== null && !fresh) {
+          var r = compute(acc, val(), op);
+          if (r === null) { cur = 'ERR'; acc = null; op = null; fresh = true; render(); return; }
+          acc = nice(r); cur = String(acc); render();
+        } else { acc = val(); }
+        op = o; fresh = true; justEq = false;
+      }
+      function equals() {
+        if (op === null || cur === 'ERR') { justEq = true; return; }
+        var r = compute(acc, val(), op);
+        if (r === null) { cur = 'ERR'; acc = null; op = null; fresh = true; render(); return; }
+        acc = nice(r); cur = String(acc); op = null; fresh = true; justEq = true; render();
+      }
+      function clearAll() { cur = '0'; acc = null; op = null; fresh = true; justEq = false; setLabel(''); render(); }
+      function back() {
+        if (fresh || justEq || cur === 'ERR') return;
+        cur = cur.length > 1 ? cur.slice(0, -1) : '0';
+        if (cur === '-' || cur === '') cur = '0';
+        render();
+      }
+
+      keysEl.addEventListener('click', function (e) {
+        var b = e.target.closest('.tac-calc__key'); if (!b) return;
+        setLabel('');
+        if (b.hasAttribute('data-num')) digit(b.getAttribute('data-num'));
+        else if (b.hasAttribute('data-dot')) dot();
+        else if (b.hasAttribute('data-eq')) equals();
+        else if (b.hasAttribute('data-op')) setOp(b.getAttribute('data-op'));
+      });
+      scrEl.addEventListener('click', clearAll);
+      /* quick-estimate presets: rate -> rate x 20 x 52, stepped, then flash */
+      var seqTimers = [];
+      function clearSeq(){ for (var i = 0; i < seqTimers.length; i++) clearTimeout(seqTimers[i]); seqTimers = []; }
+      function flash(){ scrEl.classList.remove('is-flash'); void scrEl.offsetWidth; scrEl.classList.add('is-flash'); }
+      function preset(rate){
+        clearSeq();
+        acc = null; op = null; fresh = true; justEq = true;
+        cur = String(rate); setLabel('saved per hour'); render(); flash();
+        seqTimers.push(setTimeout(function(){ cur = String(rate * 20); setLabel('saved per week'); render(); flash(); }, 600));
+        seqTimers.push(setTimeout(function(){ cur = String(rate * 20 * 52); setLabel('saved per year'); render(); flash(); }, 1200));
+      }
+      var presetBtns = document.querySelectorAll('.tac-calc__preset');
+      for (var pq = 0; pq < presetBtns.length; pq++) {
+        (function(btn){ btn.addEventListener('click', function(){ preset(parseFloat(btn.getAttribute('data-rate'))); }); })(presetBtns[pq]);
+      }
+      var clearBtn = root.querySelector('.tac-calc__clear');
+      if (clearBtn) clearBtn.addEventListener('click', clearAll);
+      root.addEventListener('keydown', function (e) {
+        var k = e.key;
+        setLabel('');
+        if (k >= '0' && k <= '9') { digit(k); e.preventDefault(); }
+        else if (k === '.') { dot(); e.preventDefault(); }
+        else if (k === '+' || k === '-' || k === '*' || k === '/') { setOp(k); e.preventDefault(); }
+        else if (k === 'Enter' || k === '=') { equals(); e.preventDefault(); }
+        else if (k === 'Backspace') { back(); e.preventDefault(); }
+        else if (k === 'Escape') { clearAll(); e.preventDefault(); }
+      });
+      render();
+    })();
+
+    /* ---------- course scroll: two-rod unroll that scrolls WITH the page (bottom rod drops down until it reaches the bottom, reversible) ---------- */
+    (function () {
+      var track = document.querySelector('.tac-scrolltrack');
+      var scroll = track && track.querySelector('.tac-scroll');
+      if (!scroll) return;
+      var topRod = scroll.querySelector('.tac-scroll__top');
+      var content = scroll.querySelector('.tac-scroll__content');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var L = {};
+      function layout() {
+        if (reduce) { scroll.style.height = ''; content.style.transform = 'none'; track.style.height = ''; return; }
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        var rodH = topRod.getBoundingClientRect().height || 90;
+        var contentH = content.scrollHeight;
+        var openH = 2 * rodH + contentH;
+        var closedH = 2 * rodH;
+        track.style.height = openH + 'px';                         // reserve full height (no layout shift)
+        var startY = Math.round(vh * 0.42);                        // closed & centred when the track top reaches here
+        var revealDist = Math.max(260, Math.round(contentH * 0.82)); // a touch < contentH so the bottom rod drifts down with the page to the bottom
+        L = { startY: startY, revealDist: revealDist, openH: openH, closedH: closedH };
+        update();
+      }
+      function update() {
+        if (reduce || !L.revealDist) return;
+        var scrolled = L.startY - track.getBoundingClientRect().top;
+        var p = scrolled <= 0 ? 0 : Math.min(1, scrolled / L.revealDist);
+        scroll.style.height = (L.closedH + p * (L.openH - L.closedH)).toFixed(1) + 'px';
+      }
+      var ticking = false;
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; update(); }); } }
+      layout();
+      window.addEventListener('load', layout);
+      setTimeout(layout, 450);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', layout);
+    })();
+
+    /* ---------- live seats taken from Circle (/api/seats); silently keeps the static numbers on any failure ---------- */
+    (function () {
+      if (!window.fetch) return;
+      fetch('/api/seats', { headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (!d || !d.ok) return;
+          if (typeof d.course === 'number') {
+            Array.prototype.forEach.call(document.querySelectorAll('[data-course-taken]'), function (el) { el.textContent = d.course; });
+            var bar = document.querySelector('[data-seats-taken]');
+            if (bar) {
+              bar.setAttribute('data-seats-taken', d.course);
+              var as = document.querySelector('[data-ann-seats]');
+              if (as) as.textContent = d.course + ' of ' + (d.courseTotal || 60) + ' seats taken';
+            }
+          }
+          if (typeof d.vip === 'number') {
+            Array.prototype.forEach.call(document.querySelectorAll('[data-vip-taken]'), function (el) { el.textContent = d.vip; });
+          }
+        })
+        .catch(function () {});
+    })();
+
     /* ---------- checkout links: carry UTM / source through ---------- */
     (function () {
       var qs = window.location.search;
@@ -107,26 +348,29 @@
       });
     });
 
-    /* ---------- countdown ---------- */
+    /* ---------- countdowns: every .tac-count[data-deadline] ---------- */
     (function () {
-      var el = document.getElementById('tacCountdown');
-      if (!el) return;
-      var deadline = new Date(el.getAttribute('data-deadline')).getTime();
-      var dEl = el.querySelector('[data-d]'), hEl = el.querySelector('[data-h]'),
-          mEl = el.querySelector('[data-m]'), sEl = el.querySelector('[data-s]');
+      var els = document.querySelectorAll('.tac-count[data-deadline]');
+      if (!els.length) return;
       function pad(n) { return (n < 10 ? '0' : '') + n; }
-      function render() {
-        var diff = deadline - Date.now();
-        if (isNaN(diff)) return;
-        if (diff < 0) diff = 0;
-        var s = Math.floor(diff / 1000);
-        dEl.textContent = pad(Math.floor(s / 86400));
-        hEl.textContent = pad(Math.floor((s % 86400) / 3600));
-        mEl.textContent = pad(Math.floor((s % 3600) / 60));
-        sEl.textContent = pad(s % 60);
-      }
-      render();
-      setInterval(render, 1000);
+      Array.prototype.forEach.call(els, function (el) {
+        var deadline = new Date(el.getAttribute('data-deadline')).getTime();
+        var dEl = el.querySelector('[data-d]'), hEl = el.querySelector('[data-h]'),
+            mEl = el.querySelector('[data-m]'), sEl = el.querySelector('[data-s]');
+        if (!dEl || !hEl || !mEl || !sEl) return;
+        function render() {
+          var diff = deadline - Date.now();
+          if (isNaN(diff)) return;
+          if (diff < 0) diff = 0;
+          var s = Math.floor(diff / 1000);
+          dEl.textContent = pad(Math.floor(s / 86400));
+          hEl.textContent = pad(Math.floor((s % 86400) / 3600));
+          mEl.textContent = pad(Math.floor((s % 3600) / 60));
+          sEl.textContent = pad(s % 60);
+        }
+        render();
+        setInterval(render, 1000);
+      });
     })();
 
     /* ---------- announcement bar: countdown + phase swap + seats ---------- */
