@@ -9,7 +9,7 @@
 
   // smooth anchor scroll with fixed-nav offset
   document.documentElement.style.scrollBehavior = 'smooth';
-  document.documentElement.style.scrollPaddingTop = '88px';
+  document.documentElement.style.scrollPaddingTop = 'calc(var(--annbar-h, 38px) + 64px)';
 
   document.addEventListener('DOMContentLoaded', function () {
 
@@ -129,6 +129,54 @@
       setInterval(render, 1000);
     })();
 
+    /* ---------- announcement bar: countdown + phase swap + seats ---------- */
+    (function () {
+      var bar = document.getElementById('tacAnn');
+      if (!bar) return;
+      var msgEl = bar.querySelector('[data-ann-msg]');
+      var countEl = bar.querySelector('[data-ann-count]');
+      var seatsEl = bar.querySelector('[data-ann-seats]');
+      var ebEnd = new Date(bar.getAttribute('data-eb-deadline')).getTime();
+      var doorsEnd = new Date(bar.getAttribute('data-doors-deadline')).getTime();
+      var total = parseInt(bar.getAttribute('data-seats-total'), 10) || 60;
+      var taken = Math.max(8, parseInt(bar.getAttribute('data-seats-taken'), 10) || 8);
+
+      var EB_FULL = 'Early-bird ends Friday July 3. Lock in $1,497 (it goes to $1,997 after).';
+      var EB_SHORT = 'Early-bird ends Jul 3 - lock in $1,497';
+      var DOORS_FULL = 'Doors close Saturday July 11. Last chance to join the July cohort.';
+      var DOORS_SHORT = 'Doors close Jul 11 - last chance';
+      var CLOSED = 'The July cohort is closed - join the waitlist for the next one.';
+
+      function pad(n) { return (n < 10 ? '0' : '') + n; }
+      function fmt(ms) {
+        if (ms <= 0) return '';
+        var s = Math.floor(ms / 1000);
+        var d = Math.floor(s / 86400);
+        var h = Math.floor((s % 86400) / 3600);
+        var m = Math.floor((s % 3600) / 60);
+        return d + 'd ' + pad(h) + 'h ' + pad(m) + 'm ' + pad(s % 60) + 's';
+      }
+      function syncHeight() {
+        document.documentElement.style.setProperty('--annbar-h', bar.offsetHeight + 'px');
+      }
+      function render() {
+        var now = Date.now();
+        var small = window.innerWidth <= 600;
+        var target = 0, msg;
+        if (isNaN(ebEnd) || now < ebEnd) { msg = small ? EB_SHORT : EB_FULL; target = ebEnd; }
+        else if (now < doorsEnd) { msg = small ? DOORS_SHORT : DOORS_FULL; target = doorsEnd; }
+        else { msg = CLOSED; target = 0; }
+        if (msgEl) msgEl.textContent = msg;
+        if (countEl) countEl.textContent = target ? fmt(target - now) : '';
+        if (seatsEl) seatsEl.textContent = taken + ' of ' + total + ' seats taken';
+        syncHeight();
+      }
+      render();
+      setInterval(render, 1000);
+      window.addEventListener('resize', render);
+      window.addEventListener('load', syncHeight);
+    })();
+
     /* ---------- seats fill ---------- */
     (function () {
       var el = document.getElementById('tacSeats');
@@ -158,12 +206,16 @@
 
       function paintNav() {
         if (!nav) return;
-        var hh = nav.offsetHeight || 56;
-        var el = document.elementFromPoint(Math.round(window.innerWidth / 2), hh + 4);
+        var nb = nav.getBoundingClientRect().bottom;
+        var el = document.elementFromPoint(Math.round(window.innerWidth / 2), nb + 4);
         var node = el, bg = null;
         while (node && node !== document.documentElement) {
           var c = getComputedStyle(node).backgroundColor;
-          if (c && c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent' && !/,\s*0\)\s*$/.test(c)) { bg = c; break; }
+          if (c && c !== 'transparent') {
+            var pm = c.match(/[\d.]+/g);
+            var a = (pm && pm.length >= 4) ? parseFloat(pm[3]) : 1;
+            if (a >= 0.85) { bg = c; break; }
+          }
           node = node.parentElement;
         }
         if (!bg) bg = 'rgb(255, 255, 255)';
@@ -273,8 +325,7 @@
        at assets/images/what-dots-ripple-base.png. Sleeps when calm / off-screen,
        and stays static under prefers-reduced-motion. */
     (function () {
-      var section = document.getElementById('what');
-      if (!section) return;
+      function initRipple(section) {
       var canvas = section.querySelector('.tac-ripple');
       if (!canvas) return;
       var ctx = canvas.getContext('2d');
@@ -401,12 +452,15 @@
         clearTimeout(rt);
         rt = setTimeout(function () { build(); render(); wake(); }, 150);
       });
+      }
+      document.querySelectorAll('.tac-ripple').forEach(function (c) {
+        var s = c.closest('section'); if (s) initRipple(s);
+      });
     })();
 
     /* ---------- the shift: pinned scroll swap (before slides out right, after slides in from left) ---------- */
     (function () {
-      var track = document.getElementById('shiftTrack');
-      if (!track) return;
+      function initShift(track) {
       var before = track.querySelector('[data-shift="before"]');
       var after  = track.querySelector('[data-shift="after"]');
       var hint   = track.querySelector('.tac-shift__hint');
@@ -432,6 +486,8 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll);
       onScroll();
+      }
+      document.querySelectorAll('.tac-shift__track').forEach(initShift);
     })();
 
     /* ---------- what you walk out with: pinned arrow-shoot (each arrow fires through its line, the line disappears) ---------- */
@@ -518,3 +574,6 @@
 
   });
 })();
+
+/* defer heavy cascade GIFs until after first paint (perf) */
+window.addEventListener("load", function () { setTimeout(function () { document.body.classList.add("is-loaded"); }, 150); });

@@ -22,18 +22,27 @@
 </head>
 <body class="tac-page">
 
+  <!-- ===================== ANNOUNCEMENT BAR (sticky) ===================== -->
+  <div class="tac-annbar" id="tacAnn"
+       data-eb-deadline="2026-07-03T23:59:00-04:00"
+       data-doors-deadline="2026-07-11T23:59:00-04:00"
+       data-seats-taken="23" data-seats-total="60">
+    <p class="tac-annbar__msg"><span data-ann-msg>Early-bird ends Friday July 3. Lock in $1,497 (it goes to $1,997 after).</span><span class="tac-annbar__count" data-ann-count></span></p>
+    <span class="tac-annbar__seats" data-ann-seats>23 of 60 seats taken</span>
+  </div>
+
   <!-- ===================== GLASS PILL NAV ===================== -->
   <nav class="tac-nav" id="tacNav" aria-label="Primary">
     <a href="#top" class="tac-nav__brand" aria-label="AI with Remy">
       <img src="assets/gif/the-ai-course-logo.gif" alt="The AI Course">
     </a>
     <div class="tac-nav__links">
-      <a href="#model" class="tac-nav__link">/the model</a>
-      <a href="#curriculum" class="tac-nav__link">/curriculum</a>
+      <a href="#layers" class="tac-nav__link">/the model</a>
+      <a href="#sessions" class="tac-nav__link">/curriculum</a>
       <a href="#pricing" class="tac-nav__link">/pricing</a>
       <a href="#faq" class="tac-nav__link">/faqs</a>
     </div>
-    <a href="https://the-ai-course.circle.so/checkout/test" class="tac-nav__cta" data-checkout>join the cohort</a>
+    <a href="https://the-ai-course.circle.so/checkout/test" class="tac-nav__cta" data-checkout>Enrol now</a>
   </nav>
 
   <!-- ===================== HERO ===================== -->
@@ -42,45 +51,580 @@
       <img src="assets/images/ascii-sand.png" alt="">
     </div>
     <div class="container">
-      <span class="tac-hero__badge"><span class="tac-live"></span> live cohort &middot; july</span>
-      <h1 class="tac-hero__headline">Build your own AI operating system. live, with me.</h1>
-      <p class="tac-hero__sub">six live sessions over two weeks. you walk out actually getting how this works - the engine you never touch, the three dials you do - with my whole setup on your machine and one real thing you built.</p>
-      <div class="tac-cta-wrap">
-        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>join the cohort <span class="tac-cta__price">&middot; <s>$1,997</s> $1,497</span></a>
-        <span class="tac-cta-sub">early bird &middot; 30 seats &middot; pay in full or 8 &times; $275/wk</span>
-      </div>
-      <div class="tac-hero__meta">
-        <span><b class="tac-placeholder" title="placeholder - confirm dates">starts mon 14 jul</b></span>
-        <span>&middot;</span>
-        <span><b>30</b> seats</span>
-        <span>&middot;</span>
-        <span><b>6</b> sessions &middot; 2 weeks</span>
-        <span>&middot;</span>
-        <span>recorded, always</span>
+      <div class="tac-hero__row">
+        <div class="tac-hero__col">
+          <span class="tac-hero__badge"><span class="tac-live"></span> a live cohort for people who run things</span>
+          <h1 class="tac-hero__headline"><span class="tac-hero__hl-lead">Build your own AI<br>operating system</span><span class="tac-hero__hl-rest">and win back 20+ hours a week. Live, with me, in 2 weeks.</span></h1>
+          <div class="tac-cta-wrap">
+            <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>Enrol now &rarr; <span class="tac-cta__price">$1,497 early-bird</span></a>
+            <span class="tac-cta-sub">Kicks off July 13 &middot; early-bird ends July 3 &middot; split into 4 from $404</span>
+          </div>
+          <p class="tac-hero__sub">Over 6 live sessions you'll onboard your AI team in 4 layers (a brain, hands, playbooks, and autopilot), so you 10x your daily productivity and spend your days in your zone of genius. You leave with a working system you actually run, not a folder of videos. No code, ever.</p>
+          <p class="tac-hero__trust">From the newsletter <b>20,000+</b> operators read every week. As featured on <b>The Startup Ideas Podcast</b> with Greg Isenberg.</p>
+        </div>
+        <div class="tac-hero__brain" aria-hidden="true">
+          <div class="brainfx" id="heroBrain">
+            <video class="spin spin--hi" id="heroBrainHi" autoplay loop muted playsinline>
+              <source src="assets/brain/brain_hi.webm" type="video/webm">
+              <source src="assets/brain/brain_hi.mov" type="video/quicktime">
+            </video>
+            <div class="reveal"><video class="spin spin--lo" id="heroBrainLo" autoplay loop muted playsinline>
+              <source src="assets/brain/brain_lo.webm" type="video/webm">
+              <source src="assets/brain/brain_lo.mov" type="video/quicktime">
+            </video></div>
+            <div class="lens"></div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- ===================== AS FEATURED ON ===================== -->
+  <section class="tac-section tac-seenon" id="seenon">
+    <div class="tac-wide tac-reveal">
+      <p class="tac-seenon__label">as featured on</p>
+      <div class="tac-seenon__row">
+        <div class="tac-seenon__card"><img src="assets/images/seen-on/open-residency.png" alt="Open Residency" loading="lazy"></div>
+        <div class="tac-seenon__card"><img src="assets/images/seen-on/greg-isenberg.png" alt="Greg Isenberg" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE PROBLEM (agitation) ===================== -->
+  <section class="tac-section tac-problem" id="problem">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the problem ]</span>
+      <h2 class="tac-h2">You're using AI every day. So why does it feel like more work, not less?</h2>
+    </div>
+    <div class="container">
+      <div class="tac-problem__body tac-reveal">
+        <p>You're using AI every day. ChatGPT or Claude, always open in a tab.</p>
+        <p>Maybe you've gone further than that. You've poked at Claude Code, set up a few projects, connected a tool or two.</p>
+        <p>Either way, there's no real system underneath it.</p>
+        <p>It's all duct-taped together. Half-built, half-working, and held together by you.</p>
+        <p>You spend more time wrestling with it than you save using it. Re-explaining yourself. Tweaking your setup. Yelling at Claude to just do the thing the way you actually meant.</p>
+        <p>By the time it gets it right, you could've done it yourself.</p>
+        <p>So you quietly drift back to the old way, with AI sitting in a tab, watching.</p>
+        <p>And the noise makes it ten times worse.</p>
+        <p>Every day your feed has a new "this just killed that." Perplexity killed Google. Manus killed Perplexity. Some shiny new tool killed the one you finally figured out last week.</p>
+        <p>Everyone's got a hot take. None of them agree.</p>
+        <p>So you freeze, not knowing where to start or where to place your chips.</p>
+      </div>
+
+      <p class="tac-problem__fam tac-reveal">Sound familiar?</p>
+      <ul class="tac-problem__quotes tac-reveal">
+        <li>"It's all duct-taped together. Things break, a lot."</li>
+        <li>"I've hit a wall on actually implementing this day-to-day."</li>
+        <li>"I know what I want it to do, I just can't get it there."</li>
+        <li>"I've become the bottleneck to my own growth. I'm physically tired."</li>
+      </ul>
+
+      <div class="tac-problem__bridge tac-reveal">
+        <p>The truth is, you're not bad at AI.</p>
+        <p>You're missing two things. A system underneath it all, and the literacy to actually drive it.</p>
+        <p>Because all these tools, ChatGPT, Claude, Perplexity, Manus, whatever launches next week, they're just cars. Once you learn to drive, you can hop in any of them, and it stops mattering which one "won" this week.</p>
+        <p class="tac-problem__punch">That's what's actually missing: the system, and the skill to run it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE REFRAME (what the setup is) ===================== -->
+  <section class="tac-section tac-reframe" id="reframe">
+    <canvas class="tac-ripple" aria-hidden="true"></canvas>
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the reframe ]</span>
+      <h2 class="tac-h2">So what's the setup everyone's missing?</h2>
+      <p class="tac-lead tac-lead--center">It's simpler than the gurus make it sound.</p>
+    </div>
+    <div class="container">
+      <ul class="tac-list tac-list--arrow tac-reframe__boxes tac-reveal">
+        <li>A raw AI out of the box is a genius who knows nothing about you. No context on your business, none of your logins, no idea how you like things done. So it gives you generic junk, and you assume AI is overhyped.</li>
+        <li>The people getting 10x out of it did one thing differently. They stopped treating AI like a search bar and started treating it like a hire.</li>
+        <li>They onboarded it. They gave it the context to know their business, the tools to actually do the work, the playbooks to do it their way, and a schedule so it runs on its own instead of waiting to be prompted every single time.</li>
+      </ul>
+      <p class="tac-reframe__kick tac-reveal">That's the setup. That's the whole game. And almost nobody teaches it.</p>
+      <p class="tac-reframe__handoff tac-reveal">Onboarding your AI comes down to <strong>4 simple layers</strong>. That's what we build, together, live.</p>
+    </div>
+    <div class="container tac-center">
+      <blockquote class="tac-reframe__pull tac-reveal">"You're still out in the field picking crops by hand. Everyone else is driving a tractor."</blockquote>
+    </div>
+  </section>
+
+  <!-- ===================== INTRODUCING THE AI COURSE ===================== -->
+  <section class="tac-section tac-intro" id="introducing">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the course ]</span>
+      <h2 class="tac-h2">Introducing The AI Course.</h2>
+      <div class="tac-intro__lead">
+        <p>Together we onboard your AI team and build your own AI operating system, live on your machine, shaped around your business.</p>
+        <p>Two weeks. Six live sessions. A small room of founders and business leaders.</p>
+        <p>I clear every blocker as it comes. You build the whole time. And you walk away with a working system you use the next morning, not a folder of videos you never open.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="tac-intro__dream tac-reveal">
+        <p class="tac-intro__dream-open">Picture 30 days from now.</p>
+        <p>The busywork that used to drain you is handled.</p>
+        <p>You wake up and your AI team has already been working through the night.</p>
+        <p>Your morning brief is waiting, everything you need to do today, lined up against your quarterly goals.</p>
+        <p>The competitor ad scraping is done. Your inbox is triaged, the replies already drafted in your voice, waiting on your yes.</p>
+        <p>You've got a new offer launching next week. You sit down, and a few hours later the emails, the ads, the landing page, and the checkout are done.</p>
+        <p>By 9am you've cleared what used to take till 6.</p>
+        <p>Your day goes to the work only you can do. The creative, the strategic, the things that actually move the business forward.</p>
+        <p class="tac-intro__dream-hl">20 to 30 hours a week, back in your pocket.</p>
+        <p>And honestly, it gets hard to imagine working any other way.</p>
+      </div>
+      <div class="tac-center">
+        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg tac-reveal" data-checkout>Enrol now &rarr; <span class="tac-cta__price">$1,497 early-bird</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUILD YOUR AI TEAM IN 4 LAYERS ===================== -->
+  <section class="tac-section tac-section--grey tac-layers-sec" id="layers">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the 4 layers ]</span>
+      <h2 class="tac-h2">Onboard your AI team in 4 layers.</h2>
+      <div class="tac-layers__intro">
+        <p>Think of your AI like a brilliant new hire on day one.</p>
+        <p>They're smart, sure. But they don't know your business, can't log into anything, don't know how you do things, and sit there waiting to be told what to do.</p>
+        <p>Onboarding fixes all four. That's exactly how you build your AI team. Four layers.</p>
+      </div>
+    </div>
+    <div class="tac-wide">
+      <div class="tac-layers">
+        <div class="tac-layer tac-reveal tac-reveal--d1">
+          <span class="tac-layer__ico"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="4" y="4" width="8" height="2"/><rect x="4" y="10" width="8" height="2"/><rect x="4" y="4" width="2" height="8"/><rect x="10" y="4" width="2" height="8"/><rect x="7" y="7" width="2" height="2"/><rect x="6" y="1" width="1" height="2"/><rect x="9" y="1" width="1" height="2"/><rect x="6" y="13" width="1" height="2"/><rect x="9" y="13" width="1" height="2"/><rect x="1" y="6" width="2" height="1"/><rect x="1" y="9" width="2" height="1"/><rect x="13" y="6" width="2" height="1"/><rect x="13" y="9" width="2" height="1"/></svg></span>
+          <h3 class="tac-layer__title">Brain <span>Context</span></h3>
+          <p class="tac-layer__lead">give it the knowledge.</p>
+          <p class="tac-layer__body">A hire who already knows your business, your offer, your customers, your voice. Set it up once and stop re-explaining yourself in every new chat.</p>
+          <p class="tac-layer__eg"><b>Example:</b> it knows your ICP, your tone, your quarterly goals, your numbers.</p>
+        </div>
+        <div class="tac-layer tac-reveal tac-reveal--d2">
+          <span class="tac-layer__ico"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="2" y="6" width="4" height="1"/><rect x="2" y="9" width="4" height="1"/><rect x="2" y="6" width="1" height="4"/><rect x="5" y="6" width="1" height="4"/><rect x="6" y="7" width="7" height="2"/><rect x="11" y="9" width="1" height="2"/><rect x="13" y="9" width="1" height="2"/></svg></span>
+          <h3 class="tac-layer__title">Hands <span>Tools</span></h3>
+          <p class="tac-layer__lead">give it access.</p>
+          <p class="tac-layer__body">A hire with the logins, so it can actually do the work instead of just talking about it. Connected to where you already work: Notion, Gmail, Slack, your CRM, your ad accounts.</p>
+          <p class="tac-layer__eg"><b>Plus the cool stuff:</b> web scraping, Instagram scraping, competitor ad scraping.</p>
+        </div>
+        <div class="tac-layer tac-reveal tac-reveal--d3">
+          <span class="tac-layer__ico"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="10" height="1"/><rect x="3" y="13" width="10" height="1"/><rect x="3" y="2" width="1" height="12"/><rect x="12" y="2" width="1" height="12"/><rect x="7" y="2" width="1" height="12"/><rect x="5" y="5" width="1" height="1"/><rect x="5" y="8" width="1" height="1"/><rect x="9" y="5" width="2" height="1"/><rect x="9" y="8" width="2" height="1"/></svg></span>
+          <h3 class="tac-layer__title">Playbooks <span>Skills</span></h3>
+          <p class="tac-layer__lead">teach it how you do things.</p>
+          <p class="tac-layer__body">The repeatable jobs, done your way, every time. Teach it once, and it runs that playbook perfectly forever.</p>
+          <p class="tac-layer__eg"><b>Example:</b> a subscription audit, YouTube thumbnails, your newsletter, competitor analysis, a full ad campaign, each one command.</p>
+        </div>
+        <div class="tac-layer tac-reveal tac-reveal--d4">
+          <span class="tac-layer__ico"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="5" y="2" width="6" height="1"/><rect x="5" y="13" width="6" height="1"/><rect x="2" y="5" width="1" height="6"/><rect x="13" y="5" width="1" height="6"/><rect x="3" y="3" width="2" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="11" y="3" width="2" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="3" y="12" width="2" height="1"/><rect x="3" y="11" width="1" height="1"/><rect x="11" y="12" width="2" height="1"/><rect x="12" y="11" width="1" height="1"/><rect x="8" y="5" width="1" height="4"/><rect x="8" y="8" width="3" height="1"/></svg></span>
+          <h3 class="tac-layer__title">Autopilot <span>Scheduling</span></h3>
+          <p class="tac-layer__lead">let it run without you.</p>
+          <p class="tac-layer__body">A hire that doesn't wait to be asked. Your skills fire on a schedule, so the work happens while you sleep.</p>
+          <p class="tac-layer__eg"><b>Example:</b> your morning brief at 7am, competitor ad scraping every week, a report every Friday.</p>
+        </div>
+      </div>
+      <p class="tac-layers__closer tac-reveal">Master these four layers and you own the skill underneath all of it. The tools will keep changing. You won't have to. <b>You're never behind again.</b></p>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS: THE 6 SESSIONS ===================== -->
+  <section class="tac-section tac-howbuild" id="sessions">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ how it works ]</span>
+      <h2 class="tac-h2">Here's exactly what we build together.</h2>
+      <p class="tac-howbuild__format"><b>6 live sessions over 2 weeks</b>, 90 minutes each (60 minutes building, 30 minutes live Q&amp;A where I clear your blockers on the spot). Every session recorded, so you can rewatch or catch one you miss.</p>
+    </div>
+    <div class="tac-wide">
+      <div class="tac-howbuild__grid">
+        <div class="tac-hbcard tac-reveal tac-reveal--d1">
+          <div class="tac-hbcard__head"><span class="tac-hbcard__num">01</span><span class="tac-hbcard__ico" aria-hidden="true">&#9881;&#65039;</span></div>
+          <h3 class="tac-hbcard__title">Onboard + foundation</h3>
+          <p class="tac-hbcard__body">One command (/onboard) installs your AI OS and a folder for every department of your business. You walk away with your OS live on your machine, already knowing your business. Your first win, day one.</p>
+        </div>
+        <div class="tac-hbcard tac-reveal tac-reveal--d2">
+          <div class="tac-hbcard__head"><span class="tac-hbcard__num">02</span><span class="tac-hbcard__ico" aria-hidden="true">&#129504;</span></div>
+          <h3 class="tac-hbcard__title">Brain <span class="tac-hbcard__tag">Context</span></h3>
+          <p class="tac-hbcard__body">Give your OS and each department its single source of truth. You walk away with an AI that knows your business cold, so you stop re-explaining yourself for good.</p>
+        </div>
+        <div class="tac-hbcard tac-reveal tac-reveal--d3">
+          <div class="tac-hbcard__head"><span class="tac-hbcard__num">03</span><span class="tac-hbcard__ico" aria-hidden="true">&#9995;</span></div>
+          <h3 class="tac-hbcard__title">Hands <span class="tac-hbcard__tag">Tools</span></h3>
+          <p class="tac-hbcard__body">Connect the apps your business runs on: Notion, Gmail, Slack, your CRM, plus the scrapers. You walk away with an AI that can actually do the work, not just talk about it.</p>
+        </div>
+        <div class="tac-hbcard tac-reveal tac-reveal--d1">
+          <div class="tac-hbcard__head"><span class="tac-hbcard__num">04</span><span class="tac-hbcard__ico" aria-hidden="true">&#128216;</span></div>
+          <h3 class="tac-hbcard__title">Playbooks <span class="tac-hbcard__tag">Skills</span></h3>
+          <p class="tac-hbcard__body">Build a repeatable skill you'll run every day. You walk away with your first real skill, a job that used to eat an hour, now one command.</p>
+        </div>
+        <div class="tac-hbcard tac-reveal tac-reveal--d2">
+          <div class="tac-hbcard__head"><span class="tac-hbcard__num">05</span><span class="tac-hbcard__ico" aria-hidden="true">&#128260;</span></div>
+          <h3 class="tac-hbcard__title">Autopilot <span class="tac-hbcard__tag">Scheduling</span></h3>
+          <p class="tac-hbcard__body">Put your skills on a schedule so they run without you. You walk away with a system that works while you sleep, starting with your morning brief at 7am.</p>
+        </div>
+        <div class="tac-hbcard tac-reveal tac-reveal--d3">
+          <div class="tac-hbcard__head"><span class="tac-hbcard__num">06</span><span class="tac-hbcard__ico" aria-hidden="true">&#127937;</span></div>
+          <h3 class="tac-hbcard__title">Live capstone: a full go-to-market build</h3>
+          <p class="tac-hbcard__body">Together we run a real launch end to end: competitive research, emails, ads, and a landing page built and hosted live. You walk away with proof it all works as one system, and the template for everything you build after.</p>
+        </div>
+      </div>
+      <p class="tac-howbuild__note tac-reveal"><b>Note:</b> you build the showcase along with me, and your own department-OS stays personalised to your business throughout.</p>
+    </div>
+  </section>
+  <!-- ===================== [#8] WHAT'S INCLUDED ===================== -->
+  <section class="tac-section tac-section--grey tac-incl" id="included">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ what's included ]</span>
+      <h2 class="tac-h2">Everything you get when you join.</h2>
+    </div>
+    <div class="tac-wide tac-reveal">
+      <ul class="tac-incl__list">
+        <li><strong>My one-click install plugin.</strong> The exact plugin I built for myself. Run /onboard and my whole setup drops onto your machine in one click. No fiddly config, no piecing it together yourself.</li>
+        <li><strong>Your own AI operating system.</strong> A folder for every department of your business (marketing, finance, ops, sales), shaped around how you actually work.</li>
+        <li><strong>My entire skills library, pre-installed.</strong> The Claude skills I run my own business on, plus a hand-picked pack of the best community-made ones. Loaded and ready from day one.</li>
+        <li><strong>6 live build sessions with me.</strong> You build yours in the room while I clear every blocker the moment you hit one.</li>
+        <li><strong>Real, working systems you actually ship.</strong> You don't leave with notes. You leave with live pieces of your OS already running: a skill firing on a schedule, your tools connected and doing the work, and a full go-to-market build (research, emails, ads, and a hosted landing page). Real things running in your business the next morning.</li>
+        <li><strong>Every session recorded, plus a resource library.</strong> Miss a call or want to rewatch, it's all there, and the templates are yours to keep.</li>
+        <li><strong>A small room of serious founders and business leaders.</strong> Capped at 30 per call, real operators building alongside you, never a face in a crowd of 500.</li>
+      </ul>
+      <div class="tac-incl__bonus">
+        <p><strong>Plus, your waitlist bonus: 3 months in the private community, free.</strong> Weekly office hours with me, a growing resource library, fresh modules, and a room of operators who keep building long after the cohort ends. <span class="tac-incl__was">Normally $147/month.</span></p>
+      </div>
+      <div class="tac-center">
+        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>Enrol now <span class="tac-cta__price">&middot; $1,497 early-bird</span></a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===================== WALL OF LOVE (three-line carousel) ===================== -->
+  <section class="tac-section tac-wol" id="wall">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ video proof ]</span>
+      <h2 class="tac-h2">Don't take my word for it.</h2>
+      <p class="tac-lead tac-lead--center">Real operators, in their own words, on what changed after working with me.</p>
+    </div>
+    <div class="tac-wol__stage" aria-label="testimonials from readers and students">
+      <div class="tac-wol-row tac-wol-row--right"><div class="tac-wol-track"><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/01-poppi.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/03-charlie-f.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/05-noa-1.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/07-mya.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/09-grahym.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/11-ville.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/13-jackson.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/15-tbh.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/17-brad.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/19-craig.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/21-chris.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/01-poppi.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/03-charlie-f.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/05-noa-1.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/07-mya.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/09-grahym.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/11-ville.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/13-jackson.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/15-tbh.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/17-brad.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/19-craig.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/21-chris.png" alt="a reader on AI with Remy" loading="lazy"></figure></div></div>
+      <div class="tac-wol-row tac-wol-row--left"><div class="tac-wol-track"><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="1"><video class="tac-wol-vid" muted loop playsinline preload="none"><source src="assets/videos/alfie.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/alfiegetshard/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/alfie.jpg" alt="" loading="lazy" width="22" height="22"><span>Alfie Robertson</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="2"><video class="tac-wol-vid" muted loop playsinline preload="none"><source src="assets/videos/jai.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.linkedin.com/in/jaithind/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/jai.jpg" alt="" loading="lazy" width="22" height="22"><span>Jai Thind</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="3"><video class="tac-wol-vid" muted loop playsinline preload="none"><source src="assets/videos/mason-g.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/masongothard/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/mason-g.jpg" alt="" loading="lazy" width="22" height="22"><span>Mason Gothard</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="4"><video class="tac-wol-vid" muted loop playsinline preload="none"><source src="assets/videos/leo-moore.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/leoxmoore/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/leo-moore.jpg" alt="" loading="lazy" width="22" height="22"><span>Leo Moore</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="5"><video class="tac-wol-vid" muted loop playsinline preload="none"><source src="assets/videos/armandas.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/armandas.puckus/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/armandas.jpg" alt="" loading="lazy" width="22" height="22"><span>Armandas Puckus</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="6"><video class="tac-wol-vid" muted loop playsinline preload="none"><source src="assets/videos/adrian.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/tollefsen.adrian/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/adrian.jpg" alt="" loading="lazy" width="22" height="22"><span>Adrian Tollefsen</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="1" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/alfiegetshard/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/alfie.jpg" alt="" loading="lazy" width="22" height="22"><span>Alfie Robertson</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="2" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.linkedin.com/in/jaithind/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/jai.jpg" alt="" loading="lazy" width="22" height="22"><span>Jai Thind</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="3" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/masongothard/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/mason-g.jpg" alt="" loading="lazy" width="22" height="22"><span>Mason Gothard</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="4" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/leoxmoore/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/leo-moore.jpg" alt="" loading="lazy" width="22" height="22"><span>Leo Moore</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="5" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/armandas.puckus/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/armandas.jpg" alt="" loading="lazy" width="22" height="22"><span>Armandas Puckus</span></span></a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="6" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/tollefsen.adrian/" target="_blank" rel="noopener"><span class="tac-wol-cred__in"><img class="tac-wol-cred__pic" src="assets/images/creators/adrian.jpg" alt="" loading="lazy" width="22" height="22"><span>Adrian Tollefsen</span></span></a></figure></div></div>
+      <div class="tac-wol-row tac-wol-row--right"><div class="tac-wol-track"><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/02-katerina.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/04-federico.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/06-noa-2.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/08-nakia.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/10-alexa.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/12-charlie-m.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/14-robin.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/16-alice.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/18-jonas.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/20-baris.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/02-katerina.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/04-federico.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/06-noa-2.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/08-nakia.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/10-alexa.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/12-charlie-m.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/14-robin.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/16-alice.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/18-jonas.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/20-baris.png" alt="a reader on AI with Remy" loading="lazy"></figure></div></div>
+    </div>
+    <div class="container tac-center"><a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg tac-reveal" data-checkout>Enrol now <span class="tac-cta__price">&middot; $1,497 early-bird</span></a></div>
+  </section>
+
+  <!-- ===================== FOUNDER STORY ===================== -->
+  <section class="tac-section" id="founder">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ meet remy ]</span>
+      <h2 class="tac-h2">Who's teaching this?</h2>
+    </div>
+    <div class="container tac-founder tac-reveal">
+      <div class="tac-founder__body">
+        <p>I'm remy.</p>
+        <p>Back in 2022 I started a marketing agency, Adpress. Running full stack marketing for service businesses and ecom brands; paid media, creative, funnels, CRO, the full monty.</p>
+        <p>If you're familiar with agencies, the only way to grow is to add people. More clients, more headcount, more overhead. That's the whole model.</p>
+        <p>Then ChatGPT landed in 2023 and I got obsessed. I saw a way to grow without growing the team, and I went deeper than anyone I knew. I had huge prompt libraries before "prompting" was a thing. I was building custom GPTs the week they dropped. I was one of the first Claude users in 2023 because it was better at copywriting.</p>
+        <p>The moment AI could do image and video, I was making ad creative with it before the agency world caught on.</p>
+        <p>Getting a system to finally click and run on its own, exactly how I wanted, gave me the same buzz video games did as a kid. I was hooked.</p>
+        <p>So about 8 months ago I went all in: AI consulting, and teaching this in the open.</p>
+        <p>Since then I've helped some of the world's most impressive founders go AI-first. People like <span class="hl">Hudson Leogrande</span>, founder of Comfrt, the fastest-growing ecom brand in the world, and <span class="hl">Noah Hunter Dorsey</span>, a Forbes 30 Under 30 who runs Future Fulfilment, an 8-figure global 3PL, and many more.</p>
+        <p>And I've broken it all down on Greg Isenberg's Startup Ideas Podcast and on Open Residency with Mark.</p>
+        <p>I held off building this course for a while. I didn't want to teach it until I had it nailed. I can say now, hand on heart, that I know this space and these systems inside out.</p>
+        <p>And I'm about to hand you everything I know.</p>
+      </div>
+      <div class="tac-founder__sign">
+        <img class="tac-sign-img" src="assets/images/Remy.png" alt="Remy">
+        <span>Remy &middot; AI with Remy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHO THIS IS FOR ===================== -->
+  <section class="tac-shift tac-who-shift" id="who">
+    <div class="tac-shift__track" id="whoTrack">
+      <div class="tac-shift__stage">
+        <div class="tac-shift__head container tac-center">
+          <span class="tac-kicker">[ who this is for? ]</span>
+          <h2 class="tac-h2">Is this you?</h2>
+        </div>
+        <div class="tac-shift__cards">
+          <div class="tac-shift__card" data-shift="before">
+            <img class="tac-shift__drake" src="assets/images/drake-no.png" alt="" aria-hidden="true">
+            <div class="tac-shift__box tac-aud__col tac-aud__col--not">
+              <h3 class="tac-aud__h">This is not for you if:</h3>
+              <ul>
+                <li>You <b>can't comfortably get around your own computer</b> yet.</li>
+                <li>You already run <b>Claude Code and skills daily</b> and build multi-agent setups. You're past this.</li>
+                <li>You want it <b>done for you</b> (that's the 1:1 / done-for-you door).</li>
+                <li>You're <b>hunting for a magic button</b> and won't do the reps.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tac-shift__card" data-shift="after">
+            <img class="tac-shift__drake" src="assets/images/drake-yes.png" alt="" aria-hidden="true">
+            <div class="tac-shift__box tac-aud__col tac-aud__col--for">
+              <h3 class="tac-aud__h">This is for you if:</h3>
+              <ul>
+                <li>You're <b>already using AI</b> but it's scattered, and nothing sticks.</li>
+                <li>Or you're <b>newer to it</b> and you just know you need to start properly.</li>
+                <li>You run <b>real work worth leveraging</b>: a business, an agency, a team, a role you operate like an owner.</li>
+                <li>You're <b>high-agency</b>. You'd rather understand the system yourself than have it done for you.</li>
+                <li>You can <b>find your way around your own computer</b> (manage files, install an app, take a screenshot). That's the only bar.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p class="tac-shift__hint" aria-hidden="true">scroll</p>
+      </div>
+    </div>
+    <p class="tac-aud__note tac-reveal">You don't need to be technical. You don't need to code. I can't either. I learned this the way you're about to.</p>
+  </section>
+
+  <div class="tac-asciirule" aria-hidden="true">+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</div>
+  <!-- ===================== [#12] TWO ROOMS ===================== -->
+  <section class="tac-section tac-rooms" id="rooms">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ two rooms ]</span>
+      <h2 class="tac-h2">There's a room for exactly where you're at.</h2>
+      <p class="tac-lead tac-lead--center">We run two live cohorts so every call lands at a sane hour, wherever you are. Same curriculum, same build, just two clocks.</p>
+    </div>
+    <div class="tac-wide tac-reveal">
+      <div class="tac-rooms__wrap">
+        <table class="tac-rooms__table">
+          <thead><tr><th>Session</th><th>US</th><th>Europe</th><th>Australia</th></tr></thead>
+          <tbody>
+            <tr><td><b>Morning room</b></td><td>4:00am ET &middot; 1:00am PT</td><td>10:00am CEST &middot; 9:00am UK</td><td>6:00pm Sydney &middot; 4:00pm Perth</td></tr>
+            <tr><td><b>Evening room</b></td><td>11:00am ET &middot; 8:00am PT</td><td>5:00pm CEST &middot; 4:00pm UK</td><td>1:00am Sydney (+1 day) &middot; 11:00pm Perth</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tac-rooms__notes">
+        <p>The Americas and western Europe take the evening room. Australia and Asia take the morning room.</p>
+        <p>Both rooms are all levels. A short async primer gets newer builders to the same starting line, so beginners aren't overwhelmed and advanced folks aren't bored. <strong>Pick your room at checkout.</strong></p>
+        <p class="tac-rooms__hot">The evening room carries most of the demand, so it'll fill first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== [#13] ROI ===================== -->
+  <section class="tac-section tac-section--grey tac-roi" id="roi">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the maths ]</span>
+      <h2 class="tac-h2">What is staying exactly where you are actually costing you?</h2>
+    </div>
+    <div class="container tac-reveal">
+      <div class="tac-roi__body">
+        <p>You don't need another YouTube video or a $97/month Skool community to half-watch and forget.</p>
+        <p class="tac-roi__big">You need <strong>20+ hours a week</strong> back.</p>
+        <p>Every week without this, the same 20+ hours disappear into busywork. Re-explaining yourself to AI. Doing by hand what should be running on its own.</p>
+        <p>Put your own number on an hour of your time. $50? $200? $500?</p>
+        <p>Now multiply it by 20. Then by 52.</p>
+        <p>That's what another year of doing it the old way costs you.</p>
+        <p>Noah ran the same maths in one session: a landing page his agency had charged him <strong>$27,000</strong> for, rebuilt in about 20 minutes.</p>
+        <p class="tac-roi__anchor">The whole cohort, the build, my entire skills library, and 3 months of community, is <strong>$1,497</strong>.</p>
+        <p>If it buys back even a few hours a week, it's paid for itself before the first month is out.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== PROOF ===================== -->
+  <section class="tac-section tac-section--grey" id="proof">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ testimonials ]</span>
+      <h2 class="tac-h2">What people say after working with me.</h2>
+    </div>
+    <div class="tac-wide">
+      <!-- desktop: 3-up grid · mobile: auto-scrolling carousel (the --dup cards are the seamless-loop copies; keep them in sync when real quotes go in) -->
+      <div class="tac-proof">
+        <div class="tac-proof__track tac-proof__track--quotes">
+          <div class="tac-pcard tac-reveal">
+            <p class="tac-pcard__q">"I run Future Fulfilment, an 8-figure global 3PL company, and before Remy I wasn't using AI in the business at all. I sat down with him and in about 20 minutes built a landing page I'd just paid an agency $27,000 for. After that I was sold. A client dashboard my team had scoped at 2-3 months of work, I could build in a day. I built an inventory management system in a night. And then automated my lead response and appointment setting the day after that. We run Future Fulfilment AI-first now, and it started with that one session with Remy. Couldn't recommend highly enough."</p>
+            <div class="tac-pcard__by"><span><b>Noah Hunter Dorsey</b><span>Co-Founder, Future Fulfilment</span></span></div>
+          </div>
+          <div class="tac-pcard tac-reveal tac-reveal--d1">
+            <p class="tac-pcard__q">"Remy helped me a tonne with my AI setup for my ads agency. He went above and beyond to make sure everything was optimised. The biggest value I got was from the 'unknown unknowns' he revealed. There were just so many things I wasn't aware of being possible, even as a big Claude user. 10/10 would recommend, easy ROI."</p>
+            <div class="tac-pcard__by"><span><b>Leo Moore</b><span>Ads Agency Owner (Australia)</span></span></div>
+          </div>
+          <div class="tac-pcard tac-reveal tac-reveal--d2">
+            <p class="tac-pcard__q">"Couldn't recommend more highly. I was feeling overwhelmed with everything AI. I knew I needed to be implementing it into my business and quickly, but I wasn't sure where to start. Remy taught me how to think about AI, gave me a structure to approach any platform, and showed me the best way of introducing it to my team and business."</p>
+            <div class="tac-pcard__by"><span><b>Conor Deane</b><span>Indonesia</span></span></div>
+          </div>
+          <div class="tac-pcard tac-reveal tac-reveal--d2">
+            <p class="tac-pcard__q">"My consultation calls with Remy were brilliant. I learnt a huge amount in a short time. There is so much AI slop out there right now. Remy cut straight through it. He made the AI path clear for my business and laid out every tool I need to bring my vision to life. Highly recommend."</p>
+            <div class="tac-pcard__by"><span><b>Nathan Liley</b><span>Online Marketing</span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tac-center tac-proof__cta"><a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg tac-reveal" data-checkout>Enrol now <span class="tac-cta__price">&middot; $1,497 early-bird</span></a></div>
+    </div>
+  </section>
+
+  <!-- ===================== PRICING ===================== -->
+  <section class="tac-section tac-pricing" id="pricing">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ pricing ]</span>
+      <h2 class="tac-h2">Choose your seat.</h2>
+      <p class="tac-lead tac-lead--center">Early-bird pricing ends Friday July 3. <b class="hl" data-seats>23 of 60 seats taken.</b></p>
+    </div>
+    <div class="tac-wide tac-reveal">
+      <div class="tac-pricing__grid">
+        <div class="tac-price-card tac-price-card--main">
+          <span class="tac-fxlayer" aria-hidden="true"></span>
+          <span class="tac-price-card__flag">Most popular</span>
+          <p class="tac-price__name">The AI Course</p>
+          <div class="tac-price__amount"><span class="was">$1,997</span><span class="cur">$</span><span class="now">1,497</span></div>
+          <p class="tac-price__plan">early-bird price, was $1,997</p>
+          <ul class="tac-list">
+            <li>6 live sessions over 2 weeks</li>
+            <li>Your AI OS installed day one (/onboard)</li>
+            <li>My skills library, pre-installed</li>
+            <li>All recordings + resource library</li>
+            <li>The private community room, 3 months free</li>
+            <li>Capped at 30 per call</li>
+          </ul>
+          <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg tac-price__cta" data-checkout>Enrol now</a>
+          <p class="tac-price__fine">Or split into 4 fortnightly payments from $404, at checkout.</p>
+        </div>
+        <div class="tac-price-card tac-price-card--vip">
+          <span class="tac-fxlayer" aria-hidden="true"></span>
+          <span class="tac-price-card__flag tac-price-card__flag--vip">Most hands-on &middot; only 8 seats</span>
+          <p class="tac-price__name">Build With Me <span>(VIP)</span></p>
+          <div class="tac-price__amount"><span class="was">$5,497</span><span class="cur">$</span><span class="now">4,997</span></div>
+          <p class="tac-price__plan">early-bird price, was $5,497</p>
+          <p class="tac-price__vipintro">Everything in The AI Course, plus <strong>4 private 1:1 calls with me</strong> (45 min each):</p>
+          <ul class="tac-list">
+            <li><strong>Call 1, Architecture:</strong> I map your OS to your business (your $1,500 strategy session, baked in).</li>
+            <li><strong>Call 2, Build unblock:</strong> hands-on, we fix what's stuck.</li>
+            <li><strong>Call 3, Skill review:</strong> I make your skill and schedule production-grade.</li>
+            <li><strong>Call 4, Roadmap:</strong> your 90-day plan to keep compounding.</li>
+          </ul>
+          <p class="tac-price__seats">3 of 8 private seats taken. Only 8 private seats. When they're gone, they're gone.</p>
+          <!-- TODO: swap href for the real VIP checkout URL (Charlie to provide) -->
+          <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg tac-price__cta" data-vip-checkout>Claim a VIP seat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== [#16] GUARANTEE ===================== -->
+  <section class="tac-section tac-grnt" id="guarantee">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ the guarantee ]</span>
+      <h2 class="tac-h2">Show up and build. If it doesn't deliver, you don't pay.</h2>
+      <div class="tac-grnt__box">
+        <div class="tac-grnt__seal">14<br>DAY</div>
+        <div class="tac-grnt__text">
+          <p>If you change your mind before we start, there's a <strong>3-day cooling-off period</strong>, full refund no questions asked.</p>
+          <p>Once we're rolling, you're covered by a <strong>14-day money-back guarantee</strong>. If it doesn't deliver, you get a full refund. All I ask is that you show up and build.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="tac-section" id="faq">
+    <div class="container tac-center tac-reveal">
+      <span class="tac-kicker">[ faqs ]</span>
+      <h2 class="tac-h2">Questions, answered.</h2>
+      <p class="tac-lead tac-lead--center">Still on the fence? Here's what people ask before they join.</p>
+    </div>
+    <div class="tac-acc" data-acc>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">Will this work if I can't code? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>Yes, and I can't code either. You run the whole thing in plain English, like talking to a sharp assistant who handles the technical part for you. If you can install an app and find a file on your computer, you're qualified.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">Am I advanced enough, or too advanced? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>Both rooms run all levels. If you're newer, a short primer gets you to the start line before session one, so you're never lost. If you've been using Claude or ChatGPT daily but it's still scattered, the structure is exactly what you're missing. The only people who'll find it slow are the ones already building multi-agent setups every day.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">I don't have time. <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>That's the reason to do it. It's 6 sessions over 2 weeks, 90 minutes each, and you build during the call, so there's no homework pile waiting after. The whole point is to hand you back 20+ hours a week, fast.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">Is this just another course I won't finish? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>There's nothing to get around to later. It's live, you build your own system in the room with me, and you leave each session with a working piece already running in your business. You do it as we go.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">Won't it be obsolete in 6 months? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>The tools will change. What you learn here won't. We build the system and the skill underneath it, so when a new tool drops you just plug it in. You stop chasing every shiny launch because you own the part that doesn't change.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">What if I miss a session? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>Every session is recorded and yours to keep. Watch the replay, then bring any blockers to the next live Q&amp;A, or drop them in the community.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">What's the difference between the two tiers? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>The AI Course is the full cohort: 6 live sessions, your OS, the skills library, recordings, and 3 months of community. Build With Me is all of that plus 4 private 1:1 calls with me, where I map the system to your exact business and unblock you one on one. Only 8 of those seats exist.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">Can I pay in instalments? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>Yes. Split it into 4 fortnightly payments, chosen at checkout.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">I've been burned before. Why is this different? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>Fair. Most courses sell you information and leave you to implement alone. This is done with you. I'm in the room clearing your blockers in real time, and you walk out with real systems running, not notes. If it still doesn't deliver, the guarantee has you covered.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">Which timezone room should I pick? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>Whichever lands at a sane hour for you. The morning room suits Asia-Pacific and early Europe; the evening room suits the Americas and Europe. Same curriculum and build in both, and the evening room tends to fill first.</p></div>
+      </div>
+      <div class="tac-acc__item">
+        <button class="tac-acc__head" aria-expanded="false">What if it's not for me? <span class="ic">[+]</span></button>
+        <div class="tac-acc__body"><p>You're covered by a 14-day money-back guarantee once we start: do the work, and if it doesn't deliver, you get a full refund. There's also a 3-day cooling-off period if you change your mind before we begin. Full terms in the guarantee above.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="tac-section tac-final" id="join">
+    <div class="container tac-reveal">
+      <p class="tac-final__big">The gap compounds every week you wait.</p>
+      <p>Six months from now you'll either still be the human glue between a dozen tools, or you'll be the operator with a system that runs the busywork while you sleep.</p>
+      <p>Two weeks. One real build. A room of people doing it with you.</p>
+      <p class="tac-final__dates">Doors close Saturday July 11. The cohort kicks off Monday July 13.</p>
+      <div class="tac-cta-wrap">
+        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>Enrol now <span class="tac-cta__price">&middot; $1,497 early-bird</span></a>
+        <span class="tac-cta-sub">early-bird ends July 3 &middot; split into 4 from $404</span>
+      </div>
+      <p class="tac-final__sign">See you in the room, <strong>remy</strong></p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="tac-foot">
+    <img class="tac-foot__mural" src="assets/images/japan-footer.png" alt="" aria-hidden="true">
+    <div class="tac-foot__over">
+      <img src="assets/gif/the-ai-course-logo.gif" alt="The AI Course" class="tac-foot__logo">
+      <nav class="tac-foot__links">
+        <a href="#included">What you build</a><span>&middot;</span>
+        <a href="#pricing">Pricing</a><span>&middot;</span>
+        <a href="#faq">FAQ</a><span>&middot;</span>
+        <a href="mailto:hello@aiwithremy.com">Contact</a>
+      </nav>
+      <p class="tac-foot__contact">Questions? Reply to any of my emails, or reach us at <a href="mailto:hello@aiwithremy.com">hello@aiwithremy.com</a></p>
+      <p class="tac-foot__legal">Refund policy / T&amp;Cs &middot; Privacy &middot; <a href="https://aiwithremy.com">aiwithremy.com</a></p>
+    </div>
+  </footer>
+
+  <!-- ===================== STICKY BUY BAR ===================== -->
+  <div class="tac-buybar" id="tacBuybar">
+    <div class="tac-buybar__info"><b>The AI Course</b> <span>&middot; <s>$1,997</s> $1,497 early-bird &middot; 23 of 60 seats</span></div>
+    <a href="https://the-ai-course.circle.so/checkout/test" class="tac-buybar__cta" data-checkout>Enrol now</a>
+  </div>
+
+  <!-- ============================================================
+       PARKED - FOR REVIEW. Older sections not in the live structure,
+       kept here for repurposing. Rendered below the footer.
+       ============================================================ -->
+  <section class="tac-parked" aria-label="Parked sections, for review">
+    <p class="tac-parked__label">PARKED - older sections, kept for review / repurposing. Not part of the live page.</p>
 
   <!-- ===================== TRUST STRIP ===================== -->
   <section class="tac-trust">
     <div class="tac-trust__inner">
       <span class="tac-trust__item"><b>hundreds</b> of founders already on the waitlist</span>
       <span class="tac-trust__item"><b>20,000+</b> read the newsletter every Thursday</span>
-    </div>
-  </section>
-
-
-  <!-- ===================== WALL OF LOVE (three-line carousel) ===================== -->
-  <section class="tac-section tac-wol" id="wall">
-    <div class="container tac-center tac-reveal">
-      <span class="tac-kicker">[ wall of love ]</span>
-      <h2 class="tac-h2">don't take my word for it</h2>
-      <p class="tac-lead tac-lead--center">these land in my inbox every week - the written ones up top and below, the video ones rolling through the middle. hover any to get up close (the videos unmute when you do).</p>
-    </div>
-    <div class="tac-wol__stage" aria-label="testimonials from readers and students">
-      <div class="tac-wol-row tac-wol-row--right"><div class="tac-wol-track"><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/01-poppi.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/03-charlie-f.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/05-noa-1.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/07-mya.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/09-grahym.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/11-ville.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/13-jackson.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/15-tbh.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/17-brad.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/19-craig.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/21-chris.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/01-poppi.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/03-charlie-f.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/05-noa-1.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/07-mya.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/09-grahym.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/11-ville.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/13-jackson.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/15-tbh.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/17-brad.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/19-craig.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/21-chris.png" alt="a reader on AI with Remy" loading="lazy"></figure></div></div>
-      <div class="tac-wol-row tac-wol-row--left"><div class="tac-wol-track"><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="1"><video class="tac-wol-vid" muted loop playsinline preload="metadata"><source src="assets/videos/alfie.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/alfiegetshard/" target="_blank" rel="noopener">Alfie Robertson</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="2"><video class="tac-wol-vid" muted loop playsinline preload="metadata"><source src="assets/videos/jai.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.linkedin.com/in/jaithind/" target="_blank" rel="noopener">Jai Thind</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="3"><video class="tac-wol-vid" muted loop playsinline preload="metadata"><source src="assets/videos/mason-g.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/masongothard/" target="_blank" rel="noopener">Mason Gothard</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="4"><video class="tac-wol-vid" muted loop playsinline preload="metadata"><source src="assets/videos/leo-moore.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/leoxmoore/" target="_blank" rel="noopener">Leo Moore</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="5"><video class="tac-wol-vid" muted loop playsinline preload="metadata"><source src="assets/videos/armandas.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/armandas.puckus/" target="_blank" rel="noopener">Armandas Puckus</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="6"><video class="tac-wol-vid" muted loop playsinline preload="metadata"><source src="assets/videos/adrian.mp4" type="video/mp4"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/tollefsen.adrian/" target="_blank" rel="noopener">Adrian Tollefsen</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="1" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/alfiegetshard/" target="_blank" rel="noopener">Alfie Robertson</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="2" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.linkedin.com/in/jaithind/" target="_blank" rel="noopener">Jai Thind</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="3" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/masongothard/" target="_blank" rel="noopener">Mason Gothard</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="4" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/leoxmoore/" target="_blank" rel="noopener">Leo Moore</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="5" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/armandas.puckus/" target="_blank" rel="noopener">Armandas Puckus</a></figure><figure class="tac-wol-card tac-wol-card--video" data-video data-slot="6" aria-hidden="true" tabindex="-1"><video class="tac-wol-vid" muted loop playsinline preload="none"></video><figcaption class="tac-wol-vidph"><span class="tac-wol-play">&#9654;</span><span class="tac-wol-vidlabel">video testimonial<br><i>coming soon</i></span></figcaption><span class="tac-wol-spk" aria-hidden="true"></span><a class="tac-wol-cred" href="https://www.instagram.com/tollefsen.adrian/" target="_blank" rel="noopener">Adrian Tollefsen</a></figure></div></div>
-      <div class="tac-wol-row tac-wol-row--right"><div class="tac-wol-track"><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/02-katerina.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/04-federico.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/06-noa-2.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/08-nakia.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/10-alexa.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/12-charlie-m.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/14-robin.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/16-alice.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/18-jonas.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img"><img src="assets/images/reviews/20-baris.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/02-katerina.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/04-federico.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/06-noa-2.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/08-nakia.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/10-alexa.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/12-charlie-m.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/14-robin.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/16-alice.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/18-jonas.png" alt="a reader on AI with Remy" loading="lazy"></figure><figure class="tac-wol-card tac-wol-card--img" aria-hidden="true" tabindex="-1"><img src="assets/images/reviews/20-baris.png" alt="a reader on AI with Remy" loading="lazy"></figure></div></div>
     </div>
   </section>
 
@@ -195,17 +739,6 @@
       </div>
 
       <p class="tac-mech__hire tac-reveal">treat it like a hire. a raw agent is the smartest, hardest-working person you'll ever meet - infinite bandwidth, costs about a hundred quid a month. but on day one it knows nothing about your business, has none of your logins, and doesn't know how you like things done. <b>so you onboard it. context, tools, skills.</b> that's the whole job - and the whole back half of this course.</p>
-    </div>
-  </section>
-
-  <!-- ===================== AS SEEN ON ===================== -->
-  <section class="tac-section tac-seenon" id="seenon">
-    <div class="tac-wide tac-reveal">
-      <p class="tac-seenon__label">as seen on</p>
-      <div class="tac-seenon__row">
-        <div class="tac-seenon__card"><img src="assets/images/seen-on/open-residency.png" alt="Open Residency" loading="lazy"></div>
-        <div class="tac-seenon__card"><img src="assets/images/seen-on/greg-isenberg.png" alt="Greg Isenberg" loading="lazy"></div>
-      </div>
     </div>
   </section>
 
@@ -393,162 +926,20 @@
     <div class="tac-wide">
       <div class="tac-alumni__cards">
         <div class="tac-acard tac-reveal">
-          <img src="assets/gif/icons/calendar.gif" alt="">
+          <img src="assets/gif/icons/calendar.gif" alt="" loading="lazy">
           <h4>live builds every week or two</h4>
           <p>we pick a real thing and build it together - new skill, new agent, new automation, on a regular cadence.</p>
         </div>
         <div class="tac-acard tac-reveal tac-reveal--d1">
-          <img src="assets/gif/icons/chat.gif" alt="">
+          <img src="assets/gif/icons/chat.gif" alt="" loading="lazy">
           <h4>a room of people building</h4>
           <p>the wins, the screenshots, the "how'd you do that", the help when you're stuck. same level as you, all pushing.</p>
         </div>
         <div class="tac-acard tac-reveal tac-reveal--d2">
-          <img src="assets/gif/icons/confetti.gif" alt="">
+          <img src="assets/gif/icons/confetti.gif" alt="" loading="lazy">
           <h4>whatever drops next, first</h4>
           <p>new tools, new harnesses, worked through together, so you're never sat waiting.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== WHO THIS IS FOR ===================== -->
-  <section class="tac-section" id="who">
-    <div class="container tac-center tac-reveal">
-      <span class="tac-kicker">[ who this is for? ]</span>
-      <h2 class="tac-h2">who this is for, and who it's not</h2>
-      <p class="tac-lead tac-lead--center">quick and honest, so the right people are in the room.</p>
-    </div>
-    <div class="tac-aud">
-      <div class="tac-aud__col tac-aud__col--for tac-reveal">
-        <h3 class="tac-aud__h">it's for you if...</h3>
-        <ul>
-          <li>you're <b>high-agency</b> and you feel the shift coming - founder, operator, agency owner, marketer, ecom, freelancer, consultant, or the 100x employee bringing real leverage into a company you don't own</li>
-          <li>you're <b>already using AI daily</b> and it's a mess - scattered across ten tabs, nothing sticks</li>
-          <li>or you've <b>barely started</b> but you're hungry and you'll do the reps</li>
-          <li>you can describe your business in <b>plain English</b> - that's technical enough. i'm not technical either, my background's marketing</li>
-          <li>you want to <b>build it</b>, not just read about it</li>
-        </ul>
-      </div>
-      <div class="tac-aud__col tac-aud__col--not tac-reveal tac-reveal--d1">
-        <h3 class="tac-aud__h">it's not for you if...</h3>
-        <ul>
-          <li>you're <b>not comfortable on a computer</b> - not coding, just the basics: files, screenshots, installing an app. that's the one real bar</li>
-          <li>you want <b>"just do it for me"</b> - this is build-it-with-you. a finished machine handed over is a different door (that's consulting)</li>
-          <li>you're a <b>magic-button hunter</b> - there's no button, you drive and you put the reps in</li>
-          <li>you're an <b>engineer after code training</b> - we run AI as operators, not ship software. wrong room for that</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="tac-asciirule" aria-hidden="true">+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</div>
-
-  <!-- ===================== FOUNDER STORY ===================== -->
-  <section class="tac-section" id="founder">
-    <div class="container tac-center tac-reveal">
-      <span class="tac-kicker">[ from remy ]</span>
-      <h2 class="tac-h2">why i'm doing this</h2>
-    </div>
-    <div class="container tac-founder tac-reveal">
-      <div class="tac-founder__body">
-        <p>i don't have a technical bone in my body. my background's marketing. and that's rather the point.</p>
-        <p>i built a full AI operating system - an extension of me as a founder. it runs my work, automates the boring grunt of my week, and <span class="hl">no word of a lie, i'm 5-10x more productive than i used to be</span>. then i set the same thing up for founders like Noah, Hudson and Alfie, and watched the same penny drop for them.</p>
-        <p>here's the honest version of why most people try AI, get junk, and quit: a raw agent out of the box is mediocre. the magic was never the agent - it's the setup, and almost nobody teaches the setup. so i learned it the way you're about to, as a normal person who just needed it to work.</p>
-        <p>it lives on Claude Code, but the point was never the harness - it's the understanding. <span class="hl">get that, and whatever drops next you pick up without me.</span> AI doesn't replace you. it amplifies you - your judgment, your taste, your vision. you stay the one with the standard. it just does the heavy lifting.</p>
-        <p>that's the whole thing i want to hand you. come build it with me.</p>
-      </div>
-      <div class="tac-founder__sign">
-        <img class="tac-sign-img" src="assets/images/Remy.png" alt="Remy">
-        <span>Remy &middot; AI with Remy</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PROOF ===================== -->
-  <section class="tac-section tac-section--grey" id="proof">
-    <div class="container tac-center tac-reveal">
-      <span class="tac-kicker">[ the proof ]</span>
-      <h2 class="tac-h2">founders i've already set this up for</h2>
-      <p class="tac-lead tac-lead--center">real people, real setups. their words going in here as the cohort ships its results.</p>
-    </div>
-    <div class="tac-wide">
-      <!-- desktop: 3-up grid · mobile: auto-scrolling carousel (the --dup cards are the seamless-loop copies; keep them in sync when real quotes go in) -->
-      <div class="tac-proof">
-        <div class="tac-proof__track">
-          <div class="tac-pcard tac-reveal">
-            <p class="tac-pcard__q tac-placeholder" data-placeholder>"[ placeholder - Noah's real words to drop in ]"</p>
-            <span class="tac-pcard__stat tac-placeholder" data-placeholder>10x'd the busywork off his plate</span>
-            <div class="tac-pcard__by"><img src="assets/images/founders/noah.jpg" alt="Noah"><span><b>Noah</b><span>founder</span></span></div>
-          </div>
-          <div class="tac-pcard tac-reveal tac-reveal--d1">
-            <p class="tac-pcard__q tac-placeholder" data-placeholder>"[ placeholder - Hudson's real words to drop in ]"</p>
-            <span class="tac-pcard__stat tac-placeholder" data-placeholder>hours back every week</span>
-            <div class="tac-pcard__by"><img src="assets/images/founders/hudson.jpg" alt="Hudson"><span><b>Hudson</b><span>founder</span></span></div>
-          </div>
-          <div class="tac-pcard tac-reveal tac-reveal--d2">
-            <p class="tac-pcard__q tac-placeholder" data-placeholder>"[ placeholder - Alfie's real words to drop in ]"</p>
-            <span class="tac-pcard__stat tac-placeholder" data-placeholder>shipped the thing he kept parking</span>
-            <div class="tac-pcard__by"><img src="assets/images/founders/alfie.jpg" alt="Alfie"><span><b>Alfie</b><span>founder</span></span></div>
-          </div>
-          <div class="tac-pcard tac-pcard--dup" aria-hidden="true">
-            <p class="tac-pcard__q tac-placeholder">"[ placeholder - Noah's real words to drop in ]"</p>
-            <span class="tac-pcard__stat tac-placeholder">10x'd the busywork off his plate</span>
-            <div class="tac-pcard__by"><img src="assets/images/founders/noah.jpg" alt=""><span><b>Noah</b><span>founder</span></span></div>
-          </div>
-          <div class="tac-pcard tac-pcard--dup" aria-hidden="true">
-            <p class="tac-pcard__q tac-placeholder">"[ placeholder - Hudson's real words to drop in ]"</p>
-            <span class="tac-pcard__stat tac-placeholder">hours back every week</span>
-            <div class="tac-pcard__by"><img src="assets/images/founders/hudson.jpg" alt=""><span><b>Hudson</b><span>founder</span></span></div>
-          </div>
-          <div class="tac-pcard tac-pcard--dup" aria-hidden="true">
-            <p class="tac-pcard__q tac-placeholder">"[ placeholder - Alfie's real words to drop in ]"</p>
-            <span class="tac-pcard__stat tac-placeholder">shipped the thing he kept parking</span>
-            <div class="tac-pcard__by"><img src="assets/images/founders/alfie.jpg" alt=""><span><b>Alfie</b><span>founder</span></span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PRICING ===================== -->
-  <section class="tac-section tac-pricing" id="pricing">
-    <div class="container tac-center tac-reveal">
-      <span class="tac-kicker">[ the offer ]</span>
-      <h2 class="tac-h2">one price. the whole machine. forever.</h2>
-    </div>
-    <div class="tac-price-card tac-reveal">
-      <span class="tac-fxlayer" aria-hidden="true"></span>
-      <span class="tac-price-card__flag">early bird</span>
-      <p class="tac-price__name">the ai course &middot; july cohort</p>
-      <div class="tac-price__amount">
-        <span class="was">$1,997</span>
-        <span class="cur">$</span><span class="now">1,497</span>
-      </div>
-      <p class="tac-price__plan">pay in full, or <b>8 &times; $275/week</b>. and your first month in the alumni community is free <b>($147 value)</b>.</p>
-      <ul class="tac-list">
-        <li><strong>6 live sessions</strong>, 90 minutes each (60 building + 30 Q&amp;A)</li>
-        <li><strong>my full setup</strong>, installed on your machine in session one</li>
-        <li><strong>a resource library every session</strong> - prompts, files, skills, walkthroughs, yours to keep</li>
-        <li><strong>every call recorded</strong>, to run back anytime</li>
-        <li><strong>the private community</strong> for hands-on help between calls</li>
-        <li><strong>one real build</strong> you ship by the end</li>
-        <li><strong>1 month free</strong> in the alumni community after</li>
-      </ul>
-      <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg tac-price__cta" data-checkout>buy now - join the cohort</a>
-      <div class="tac-price__badges">
-        <span>&#128274; secure checkout</span>
-        <span>&middot;</span>
-        <span>powered by Circle</span>
-        <span>&middot;</span>
-        <span class="tac-placeholder" title="placeholder - confirm dates">starts mon 14 jul</span>
-      </div>
-    </div>
-
-    <div class="tac-guarantee tac-reveal">
-      <div class="tac-guarantee__seal">SHOW<br>UP<br>OR<br>REFUND</div>
-      <div>
-        <h4>show up, do the work, or your money back.</h4>
-        <p>turn up to the live calls and do the homework. if you've done that and the course didn't deliver, email me and i'll refund you in full. you take the risk off the table, i'll bring the goods.</p>
       </div>
     </div>
   </section>
@@ -627,77 +1018,35 @@
       <p class="tac-scar__note tac-scar__note--last">am &amp; pm session times, timezones catered for &middot; dates to be confirmed</p>
     </div>
   </section>
-
-  <!-- ===================== FAQ ===================== -->
-  <section class="tac-section" id="faq">
-    <div class="container tac-center tac-reveal">
-      <span class="tac-kicker">[ faqs ]</span>
-      <h2 class="tac-h2">the practical bits</h2>
-    </div>
-    <div class="tac-acc" data-acc>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">what if i can't make a live call? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>every session's recorded, so you run it back anytime. and the 30 minutes of open Q&amp;A each session means whatever you got stuck on gets sorted live next time. you won't fall behind.</p></div>
-      </div>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">when are the live sessions? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>six sessions across two weeks, three a week, all at 6pm ET. <span class="tac-placeholder" title="placeholder - confirm dates">exact dates are being confirmed - they'll be locked in your welcome email.</span></p></div>
-      </div>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">how technical do i need to be? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>not technical at all - no coding, ever. the one real bar is basic computer fluency: managing files, taking a screenshot, installing an app, finding your way around your own machine. if you can describe your business in plain English, you're in.</p></div>
-      </div>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">what do i need before we start? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>three free installs, no wiring needed: Claude Code, VS Code (the link i send brings the extensions with it), and Whisper Flow so you can talk to it instead of typing. we do the actual setup live in session one.</p></div>
-      </div>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">i'm already building automations - is this too basic? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>no. you'll finally get the model properly - the bit most people skip - then get pushed to drive solo, audit it, harden it, wire more in. every session ships a full walkthrough and a faster reference side by side, so you take whichever pace you need.</p></div>
-      </div>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">can i pay in instalments? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>yep - 8 &times; $275 a week. or pay in full at the $1,497 early-bird price and you're done.</p></div>
-      </div>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">what's the refund policy? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>show up to the live calls, do the homework, and if it didn't deliver, email me for a full refund. simple as that.</p></div>
-      </div>
-      <div class="tac-acc__item">
-        <button class="tac-acc__head" aria-expanded="false">what happens after the two weeks? <span class="ic">[+]</span></button>
-        <div class="tac-acc__body"><p>you move straight into the alumni community, where we run live builds every week or two. the course gives you the foundations and your first build. the community is where you keep going - and your first month's on me.</p></div>
-      </div>
-    </div>
   </section>
 
-  <!-- ===================== FINAL CTA ===================== -->
-  <section class="tac-section tac-final" id="join">
-    <div class="container tac-reveal">
-      <p class="tac-final__big">stop reading about it. go build it.</p>
-      <p>six live sessions, my whole setup on your machine, and one real thing you ship - with a room of people building right next to you.</p>
-      <div class="tac-cta-wrap">
-        <a href="https://the-ai-course.circle.so/checkout/test" class="tac-cta tac-cta--lg" data-checkout>join the cohort <span class="tac-cta__price">&middot; <s>$1,997</s> $1,497</span></a>
-        <span class="tac-cta-sub">early bird &middot; 30 seats &middot; <span class="tac-placeholder">starts mon 14 jul</span></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="tac-foot">
-    <img class="tac-foot__mural" src="assets/images/japan-footer.png" alt="" aria-hidden="true">
-    <div class="tac-foot__over">
-      <img src="assets/gif/the-ai-course-logo.gif" alt="The AI Course" class="tac-foot__logo">
-      <p class="tac-foot__legal">&copy; 2026 AI WITH REMY &middot; THE AI COURSE</p>
-    </div>
-  </footer>
-
-  <!-- ===================== STICKY BUY BAR ===================== -->
-  <div class="tac-buybar" id="tacBuybar">
-    <div class="tac-buybar__info"><b>The AI Course</b> &middot; july cohort <span>&middot; early bird <s>$1,997</s> $1,497 &middot; 30 seats</span></div>
-    <a href="https://the-ai-course.circle.so/checkout/test" class="tac-buybar__cta" data-checkout>join now</a>
-  </div>
-
-  <script src="js/button-sounds.js"></script>
-  <script src="the-ai-course.js"></script>
+  <script>
+    /* hero brain: half-speed 3D spin, low-def lens follows the cursor */
+    (function () {
+      var stage = document.getElementById('heroBrain');
+      if (!stage) return;
+      var hi = document.getElementById('heroBrainHi');
+      var lo = document.getElementById('heroBrainLo');
+      var SPEED = 0.5;
+      function radius() { return getComputedStyle(stage).getPropertyValue('--reveal-radius').trim(); }
+      function set(k, v) { stage.style.setProperty(k, v); }
+      [hi, lo].forEach(function (v) { try { v.playbackRate = SPEED; v.play().catch(function () {}); } catch (e) {} });
+      function sync() {
+        if (hi.readyState >= 2 && Math.abs(lo.currentTime - hi.currentTime) > 0.06) lo.currentTime = hi.currentTime;
+        requestAnimationFrame(sync);
+      }
+      requestAnimationFrame(sync);
+      function place(e) {
+        var r = stage.getBoundingClientRect();
+        set('--x', (e.clientX - r.left) + 'px');
+        set('--y', (e.clientY - r.top) + 'px');
+      }
+      stage.addEventListener('pointerenter', function (e) { place(e); set('--r', radius()); });
+      stage.addEventListener('pointermove', place);
+      stage.addEventListener('pointerleave', function () { set('--r', '0px'); });
+    })();
+  </script>
+  <script src="js/button-sounds.js" defer></script>
+  <script src="the-ai-course.js" defer></script>
 </body>
 </html>
