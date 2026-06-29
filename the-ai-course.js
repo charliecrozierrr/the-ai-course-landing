@@ -68,13 +68,15 @@
         });
       }
       var track=document.getElementById('inclTrack');
+      var stage=document.querySelector('.tac-incl__stage');
       function onScroll(){
         if(!track) return;
         var total=track.offsetHeight-window.innerHeight;
         if(total<=0) return;
         var p=cl(-track.getBoundingClientRect().top/total,0,1);
-        var HOLD=0.3;
-        var P=cl((p-HOLD)/(1-HOLD),0,1)*numRows;
+        if(stage){ if(p>=0.76) stage.classList.add('is-done'); else stage.classList.remove('is-done'); }
+        var HOLD=0.3, ENDP=0.74;
+        var P=cl((p-HOLD)/(ENDP-HOLD),0,1)*numRows;
         items.forEach(function(li){
           var e=ease(cl(P-li._row,0,1));
           var chars=li._chars, n=chars.length, fi=Math.floor(e*(n+1));
@@ -252,6 +254,34 @@
           }
         })
         .catch(function () {});
+    })();
+
+    /* ---------- seat allocation load-bar: fills to the taken count when scrolled into view ---------- */
+    (function () {
+      var bars = document.querySelectorAll('.tac-seatbar');
+      if (!bars.length) return;
+      Array.prototype.forEach.call(bars, function (bar) {
+        var total = parseInt(bar.getAttribute('data-total'), 10) || 60;
+        var taken = Math.max(0, Math.min(total, parseInt(bar.getAttribute('data-taken'), 10) || 0));
+        var row = bar.querySelector('.tac-seatbar__row');
+        if (!row) return;
+        var seats = [];
+        for (var i = 0; i < total; i++) { var s = document.createElement('span'); s.className = 'tac-seatbar__seat'; row.appendChild(s); seats.push(s); }
+        function fillAll() { for (var k = 0; k < taken; k++) seats[k].classList.add('is-on'); }
+        if (reduceMotion || !('IntersectionObserver' in window)) { fillAll(); return; }
+        var done = false;
+        var io = new IntersectionObserver(function (entries) {
+          for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting && !done) {
+              done = true;
+              for (var k = 0; k < taken; k++) { (function (idx) { setTimeout(function () { seats[idx].classList.add('is-on'); }, idx * 28); })(k); }
+              io.disconnect();
+              break;
+            }
+          }
+        }, { threshold: 0.4 });
+        io.observe(bar);
+      });
     })();
 
     /* ---------- checkout links: carry UTM / source through ---------- */
