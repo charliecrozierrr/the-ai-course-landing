@@ -532,6 +532,27 @@
       var cards = document.querySelectorAll('.tac-wol-card--video');
       if (!cards.length) return;
 
+      // video CMS: when a Cloudinary cloud is configured (window.TAC_CLOUDINARY),
+      // rewrite each testimonial's local source to the CDN by filename. Runs BEFORE
+      // the donor-sync so duplicates inherit the CDN url. No cloud set -> local files.
+      (function () {
+        var cfg = window.TAC_CLOUDINARY;
+        if (!cfg || !cfg.cloud) return;
+        var prefix = 'https://res.cloudinary.com/' + cfg.cloud + '/video/upload/' +
+                     (cfg.transform ? cfg.transform + '/' : '') + (cfg.folder ? cfg.folder + '/' : '');
+        cards.forEach(function (card) {
+          var v = card.querySelector('video'); if (!v) return;
+          var sEl = v.querySelector('source[src]');
+          var path = sEl ? sEl.getAttribute('src') : v.getAttribute('src');
+          if (!path || /^https?:/i.test(path)) return;            // empty or already a CDN url
+          var id = path.split('/').pop().replace(/\.[^.]+$/, '');  // basename, no extension
+          if (!id) return;
+          var url = prefix + id + '.mp4';
+          if (sEl) sEl.setAttribute('src', url); else v.setAttribute('src', url);
+          try { v.load(); } catch (e) {}   // re-select so currentSrc points at the CDN, not the parse-time local file
+        });
+      })();
+
       // the carousel duplicates each card for a seamless loop; sync sources by
       // data-slot so a <source>/src only needs adding ONCE per slot.
       (function () {

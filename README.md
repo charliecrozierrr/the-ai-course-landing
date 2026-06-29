@@ -1,16 +1,15 @@
 # The AI Course — landing page
 
-The long-form sales / paywall page for **The AI Course** (AI with Remy's live cohort). Static HTML/CSS/JS, built on the AI with Remy design system. CTAs funnel into the Circle checkout.
+The long-form sales / paywall page for **The AI Course** (AI with Remy's live cohort). Static HTML/CSS/JS on the AI with Remy design system. CTAs funnel into the Circle checkout.
 
-> **Status:** preview build for review + handover. Not yet deployed. Intended home: `theaicourse.aiwithremy.com`.
+> **Status:** LIVE at <https://theaicourse.aiwithremy.com> (also `the-ai-course-landing.vercel.app`).
+> Deployed on Vercel from the **`master`** branch.
 
 ---
 
 ## Run it locally
 
-No build step, no dependencies — it's plain HTML/CSS/JS. You just need a local web server (open it through `http://`, **not** by double-clicking the file, or the web font and some assets won't load).
-
-Pick whichever you have:
+No build step, no dependencies — plain HTML/CSS/JS. You need a local web server (open it over `http://`, **not** by double-clicking the file, or the web font, the live-seats fetch and some assets won't work).
 
 **Python (already on every Mac)**
 ```bash
@@ -24,84 +23,94 @@ Then open <http://localhost:8000>.
 cd the-ai-course-landing
 npx serve -l 8000
 ```
-Then open the URL it prints.
 
-**VS Code**
-Install the "Live Server" extension, right-click `index.html` → **Open with Live Server**.
+**VS Code** — "Live Server" extension → right-click `index.html` → **Open with Live Server**.
 
-To stop the Python server: `Ctrl+C` (or `lsof -ti tcp:8000 | xargs kill`).
+Stop the Python server with `Ctrl+C` (or `lsof -ti tcp:8000 | xargs kill`).
+
+> Note: `/api/seats` only runs on Vercel, so locally the seat numbers stay on their static fallback and you'll see one 404 for it in the console. That's expected.
 
 ---
 
 ## What's in here
 
 ```
-index.html            the whole page (one long scroll, ~20 sections)
-the-ai-course.css     page-specific styles + motion (the part you'll mostly edit)
-the-ai-course.js      countdown, seats bar, the loop/dial animation, accordions,
-                      sticky nav + buy bar, hover cascade reveals
-styles.css            the AI with Remy design system (tokens + shared components),
-                      copied from the live site — treat as inherited, edit the file above
+index.html            the whole page (one long scroll). Cloudinary config block lives in <head>.
+the-ai-course.css     page-specific styles + motion (the file you'll mostly edit)
+the-ai-course.js      countdowns, seat load-bar, live-seats fetch, hero brain defer,
+                      wall-of-love video logic, scroll/erase reveals, sticky nav + buy bar
+styles.css            AI with Remy design system (tokens + shared components). Inherited — don't edit.
+api/seats.js          Vercel serverless function: live "seats taken" from the Circle Admin API
 js/button-sounds.js   Web 1.0 button click (reused from the live site)
-assets/               fonts, images, gifs (founder photos, pixel gifs, ASCII, cascades)
-docs/PLAN.md          the full strategy + section-by-section plan behind the page
-docs/BUILD-NOTES.md   build notes + the placeholder checklist
+assets/               fonts (woff2 + otf), images (WebP), gifs, brain videos + poster, testimonial videos
+scripts/              dev tooling — upload-to-cloudinary.mjs (bulk video upload)
+docs/PLAN.md          the strategy + section plan
+docs/VIDEO-CMS.md     how testimonial videos are hosted (Cloudinary) + upload steps
+docs/BUILD-NOTES.md   build notes
 ```
 
-The page reuses the brand stylesheet verbatim and layers `the-ai-course.css` on top. New components are prefixed `tac-` (e.g. `.tac-hero`, `.tac-pricing`, `.tac-dial`). Edit `the-ai-course.css` / `the-ai-course.js`; leave `styles.css` alone.
+New components are prefixed `tac-` (e.g. `.tac-hero`, `.tac-pricing`, `.tac-seatbar`). Edit `the-ai-course.css` / `the-ai-course.js`; leave `styles.css` alone.
 
 ---
 
-## Before it goes live — placeholders to replace
+## Page sections (top to bottom)
 
-These are clearly marked on the page (dashed outlines). Search the code for `tac-placeholder` and `data-` attributes.
-
-1. **Cohort dates** — `starts mon 14 jul`, the six session-date chips, and the countdown target (`data-deadline` on `#tacCountdown` in `index.html`). All currently placeholder July dates.
-2. **Seats left** — `#tacSeats` `data-left="12"` (of 30). Set the real number.
-3. **Founder proof** — the three cards in the `#proof` section carry bracketed **placeholder quotes** for Noah / Hudson / Alfie. Drop in their real words (remove the brackets) — do not ship the placeholders.
-4. **Checkout** — every CTA points at the Circle **test** checkout (`https://the-ai-course.circle.so/checkout/test`). Swap for the live checkout, and make sure Stripe is connected on Circle so it can actually take payment.
+Announcement bar → glass pill nav → **hero** (brain video) → as-featured-on → the problem → the reframe (interactive ripple) → introducing (unrolling scroll) → build your AI team in 4 layers → how it works: 6 sessions → what's included → **wall of love** (3-row carousel, middle row = video testimonials) → founder story → who this is for → rooms → ROI calculator → proof → **pricing** (2-tier + seat bar + countdown) → guarantee → FAQ → final CTA (`#join`) → footer → sticky buy bar.
 
 ---
 
-## Adding the video testimonials
+## Video testimonials — hosted on Cloudinary
 
-**Source of truth for video testimonials:** the Google Drive folder
-<https://drive.google.com/drive/folders/0AKueYpvqbOZ9Uk9PVA>. All test + final video testimonials get added there; pull from it when adding clips to the page.
+Testimonial videos are served from **Cloudinary** (a free video CMS), so they load from a CDN for anyone who clones the repo. **Configured and live** — cloud `dufuwl2hx`, folder `tac/testimonials`, 7 testimonials (Alfie, Adrian, Jai, Mason, Leo, Armandas, Jack Boxer). Reference: [`docs/VIDEO-CMS.md`](docs/VIDEO-CMS.md).
 
-The **wall of love** (below the hero) is **three carousel rows**: written reviews on top (scrolls right), **video testimonials in the middle row** (scrolls left), and more written reviews on the bottom (scrolls right). The middle row has **6 video slots** (`data-slot="1"`…`"6"`):
+How it works: the `VIDEO CMS` block at the top of `index.html` holds the cloud name, and `the-ai-course.js` rewrites each `assets/videos/<id>.mp4` source to `https://res.cloudinary.com/dufuwl2hx/video/upload/q_auto/tac/testimonials/<id>.mp4` (then calls `video.load()` so it re-selects the CDN source). Blank the cloud name and it falls back to the local files in `assets/videos/`.
 
-```html
-<figure class="tac-wol-card tac-wol-card--video" data-video data-slot="1">
-  <video class="tac-wol-vid" muted loop playsinline preload="none"></video>
-  <figcaption class="tac-wol-vidph">…placeholder…</figcaption>
-  <span class="tac-wol-spk" aria-hidden="true"></span>
-</figure>
-```
+**To add a new testimonial:**
+1. Upload the clip to Cloudinary as `tac/testimonials/<id>` — Media Library UI, or `node scripts/upload-to-cloudinary.mjs` with your API creds in the env. 9:16 portrait, short.
+2. Add a card in the middle "wall of love" row in `index.html` with `data-slot="N"` and `<source src="assets/videos/<id>.mp4" type="video/mp4">` (the path just encodes the id; the resolver points it at the CDN).
+3. Optional: drop a `creators/<id>.jpg` avatar in `assets/images/creators/` for the credit (the credit image self-removes if the file is missing).
 
-To drop in a real video: put the file in `assets/videos/` and add a `<source>` (and optional `poster`) inside that slot's `<video>` — **once per slot** (the carousel duplicates each card for the loop, and the JS syncs the source to the duplicate by `data-slot`):
+Clips autoplay muted, **unmute on hover**, and pause off-screen. The cloud name is public (it's in every CDN URL); the API **key/secret are not in the repo** — the upload script reads them from the environment. The hero **brain** videos are *not* part of this CMS — they stay in the repo (design, not changing content).
 
-```html
-<video class="tac-wol-vid" muted loop playsinline preload="metadata" poster="assets/videos/jane.jpg">
-  <source src="assets/videos/jane.mp4" type="video/mp4">
-</video>
-```
+---
 
-Then the JS handles the rest: it autoplays **muted on loop**, and **unmutes the audio when you hover** (re-mutes on mouse-out). The "coming soon" placeholder hides itself once the video has real frames. **Clips must be 9:16 (portrait)** — keep them short and web-compressed (H.264 .mp4, ideally < ~5 MB each). Add or remove slots freely.
+## Performance — please don't undo these
+
+The hero was 6.7MB; it's now ~0.7MB on first load. Keep it that way:
+
+- **Hero brain**: a transparent WebP **poster** (`assets/brain/brain_lo_white.webp`, a white low-def brain, preloaded) paints instantly; the video has `preload="none"` and **no `autoplay`** — JS starts it on idle. The lens layer (`brain_lo`) only loads on hover. Don't re-add `autoplay` or remove the poster.
+- **Font**: PP Neue Bit ships as **woff2** (preloaded). Keep the `.woff2` first in the `@font-face` src.
+- **Images** are WebP and below-the-fold ones are `loading="lazy"`. Testimonial videos are `preload="none"`. Keep new below-fold media lazy.
+
+---
+
+## Live wiring (what's connected)
+
+- **Checkout** — cohort CTAs → `https://the-ai-course.circle.so/checkout/the-ai-course`; VIP CTAs → `.../checkout/vip-or-build-with-me`. Circle needs Stripe connected to actually take payment.
+- **Countdown** — `data-deadline="2026-07-11T23:59:00-04:00"` (doors close). Update for the real cohort.
+- **Seats** — `api/seats.js` reads the Circle Admin API and updates `[data-course-taken]` / `[data-vip-taken]`, the announcement bar, and the `.tac-seatbar` load-bar; it polls every 60s and falls back to the static numbers if the API is unset/unavailable. Configure its env vars (`CIRCLE_API_TOKEN`, `CIRCLE_COURSE_TAG_ID`, `CIRCLE_VIP_TAG_ID`, optional `SEATS_*`) in Vercel → Project → Environment Variables. **Never commit these.**
+
+---
+
+## Deploying
+
+Production is on **Vercel** (project `the-ai-course-landing`), production branch **`master`**.
+
+- **Auto-deploy:** push to `master` → Vercel builds + deploys to production.
+- **Manual:** `vercel --prod` from the repo root.
+
+Custom domain `theaicourse.aiwithremy.com` (DNS at GoDaddy → A record to Vercel). It's a static site, so any static host works if you ever move it.
+
+---
 
 ## Design + voice notes (so edits stay on-brand)
 
-- **Colours:** white background, near-black text, Blueprint Blue `#4040FF` as a sparse accent (plus deliberate full-blue / dark feature bands). Tokens live in `styles.css` `:root`.
+- **Colours:** white background, near-black text, Blueprint Blue accent — `#173EF5` on this page (the brand token is `#4040FF`; this page uses the brighter `--color-accent: #173EF5`). Plus deliberate full-blue / dark feature bands.
 - **Type:** PP Neue Bit (display headlines), Inter (body), Space Mono (labels), Silkscreen + Jersey 25 (pixel accents).
 - **Voice:** lowercase "i" except at the start of a sentence, spaced hyphens (` - `) never em dashes, chatty and direct, no marketer words. Match the existing copy.
-- **Motion:** scroll reveals, a live countdown, the observe→think→act loop, the segmented dial load-bars, and a brand **pixel-cascade GIF** that fades in behind CTAs / cards / the offer on hover. All motion respects `prefers-reduced-motion`.
-- **ASCII** is a signature motif (the sand-dune hero backdrop, the section dividers).
+- **Motion:** scroll reveals, live countdowns, the segmented seat load-bar, the unrolling parchment scroll, the interactive pixel ripple, hover cascade reveals. All motion respects `prefers-reduced-motion`.
+- **ASCII** is a signature motif (the sand-dune hero backdrop, dividers).
 
 ---
 
-## Deploying (later)
-
-It's a static site, so any static host works (Vercel, Netlify, Cloudflare Pages, GitHub Pages). Point it at the repo root and serve `index.html`. Target subdomain: `theaicourse.aiwithremy.com`.
-
----
-
-Built for AI with Remy. Questions on the build → check `docs/PLAN.md` first.
+Built for AI with Remy. Strategy + section plan → `docs/PLAN.md`.
