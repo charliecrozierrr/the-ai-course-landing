@@ -1,3 +1,8 @@
 .DS_Store
 *.log
 .vercel
+
+# never commit real secrets / env files (template .env.example is allowed)
+.env
+.env.*
+!.env.example

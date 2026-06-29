@@ -78,7 +78,7 @@ Clips autoplay muted, **unmute on hover**, and pause off-screen. The cloud name 
 
 The hero was 6.7MB; it's now ~0.7MB on first load. Keep it that way:
 
-- **Hero brain**: a transparent WebP **poster** (`assets/brain/brain_lo_white.webp`, a white low-def brain, preloaded) paints instantly; the video has `preload="none"` and **no `autoplay`** — JS starts it on idle. The lens layer (`brain_lo`) only loads on hover. Don't re-add `autoplay` or remove the poster.
+- **Hero brain**: a transparent WebP **poster** (`assets/brain/brain_hi_white.webp`, a white ASCII brain at the video's brightness, preloaded) paints instantly; the video has `preload="none"` and **no `autoplay`** — JS starts it on idle. The lens (`brain_lo`) loads only on hover and has its own white poster (`brain_lo_white.webp`) so the hover circle is never blank. Don't re-add `autoplay` or remove the posters.
 - **Font**: PP Neue Bit ships as **woff2** (preloaded). Keep the `.woff2` first in the `@font-face` src.
 - **Images** are WebP and below-the-fold ones are `loading="lazy"`. Testimonial videos are `preload="none"`. Keep new below-fold media lazy.
 
@@ -88,7 +88,7 @@ The hero was 6.7MB; it's now ~0.7MB on first load. Keep it that way:
 
 - **Checkout** — cohort CTAs → `https://the-ai-course.circle.so/checkout/the-ai-course`; VIP CTAs → `.../checkout/vip-or-build-with-me`. Circle needs Stripe connected to actually take payment.
 - **Countdown** — `data-deadline="2026-07-11T23:59:00-04:00"` (doors close). Update for the real cohort.
-- **Seats** — `api/seats.js` reads the Circle Admin API and updates `[data-course-taken]` / `[data-vip-taken]`, the announcement bar, and the `.tac-seatbar` load-bar; it polls every 60s and falls back to the static numbers if the API is unset/unavailable. Configure its env vars (`CIRCLE_API_TOKEN`, `CIRCLE_COURSE_TAG_ID`, `CIRCLE_VIP_TAG_ID`, optional `SEATS_*`) in Vercel → Project → Environment Variables. **Never commit these.**
+- **Seats** — `api/seats.js` reads the Circle Admin API and updates `[data-course-taken]` / `[data-vip-taken]`, the announcement bar, and the `.tac-seatbar` load-bar; it polls every 60s and falls back to the static numbers if the API is unset/unavailable. Configure its env vars (`CIRCLE_API_TOKEN`, `CIRCLE_COURSE_TAG_ID`, `CIRCLE_VIP_TAG_ID`, optional `SEATS_*`) in **Vercel → Project → Settings → Environment Variables** — these persist across every deploy and are shared with everyone on the Vercel project, so they're never lost on a push. **Never commit secrets to git** (they live in history forever). See [`.env.example`](.env.example) for the full list of variables; a teammate with Vercel access gets the real values with `vercel env pull .env.local`.
 
 ---
 
