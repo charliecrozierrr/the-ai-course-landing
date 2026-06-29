@@ -13,6 +13,27 @@
 
   document.addEventListener('DOMContentLoaded', function () {
 
+    /* ---------- image CMS: serve review + podcast screenshots from Cloudinary when configured (falls back to local files) ---------- */
+    (function () {
+      var cfg = window.TAC_CLOUDINARY;
+      if (!cfg || !cfg.cloud) return;
+      var base = 'https://res.cloudinary.com/' + cfg.cloud + '/image/upload/f_auto,q_auto/';
+      var maps = [
+        { local: 'assets/images/reviews/', cloud: 'tac/reviews/' },
+        { local: 'assets/images/seen-on/', cloud: 'tac/seen-on/' }
+      ];
+      Array.prototype.forEach.call(document.querySelectorAll('img[src]'), function (img) {
+        var src = img.getAttribute('src');
+        if (!src || /^https?:/i.test(src)) return;
+        for (var i = 0; i < maps.length; i++) {
+          if (src.indexOf(maps[i].local) === 0) {
+            img.setAttribute('src', base + maps[i].cloud + src.slice(maps[i].local.length).replace(/\.[^.]+$/, ''));
+            break;
+          }
+        }
+      });
+    })();
+
     /* ---------- problem "sound familiar?" carousel (slide in, hold 5s, slide out) ---------- */
     (function () {
       var ul = document.querySelector('.tac-problem__quotes');
