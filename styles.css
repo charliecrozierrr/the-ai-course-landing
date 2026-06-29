@@ -8,7 +8,8 @@
 
 @font-face {
   font-family: 'PP Neue Bit';
-  src: url('assets/fonts/ppneuebit-bold.otf') format('opentype');
+  src: url('assets/fonts/ppneuebit-bold.woff2') format('woff2'),
+       url('assets/fonts/ppneuebit-bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

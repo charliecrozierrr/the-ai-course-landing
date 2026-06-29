@@ -54,7 +54,9 @@ module.exports = async (req, res) => {
     const vipLive = countFor(vipTagId);
 
     const out = { ok: true, source: 'circle', courseTotal, vipTotal };
-    if (courseLive !== null) out.course = Math.max(0, Math.min(courseTotal, courseSeed + courseLive));
+    // A VIP seat is a cohort seat plus extras, so the cohort counter aggregates cohort + VIP buyers.
+    const vipForCohort = (vipLive === null ? 0 : vipLive);
+    if (courseLive !== null) out.course = Math.max(0, Math.min(courseTotal, courseSeed + courseLive + vipForCohort));
     if (vipLive !== null) out.vip = Math.max(0, Math.min(vipTotal, vipSeed + vipLive));
     res.status(200).end(JSON.stringify(out));
   } catch (e) {

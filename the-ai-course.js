@@ -236,24 +236,28 @@
     /* ---------- live seats taken from Circle (/api/seats); silently keeps the static numbers on any failure ---------- */
     (function () {
       if (!window.fetch) return;
-      fetch('/api/seats', { headers: { Accept: 'application/json' } })
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          if (!d || !d.ok) return;
-          if (typeof d.course === 'number') {
-            Array.prototype.forEach.call(document.querySelectorAll('[data-course-taken]'), function (el) { el.textContent = d.course; });
-            var bar = document.querySelector('[data-seats-taken]');
-            if (bar) {
-              bar.setAttribute('data-seats-taken', d.course);
-              var as = document.querySelector('[data-ann-seats]');
-              if (as) as.textContent = d.course + ' of ' + (d.courseTotal || 60) + ' seats taken';
+      function load() {
+        fetch('/api/seats', { headers: { Accept: 'application/json' }, cache: 'no-store' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) {
+            if (!d || !d.ok) return;
+            if (typeof d.course === 'number') {
+              Array.prototype.forEach.call(document.querySelectorAll('[data-course-taken]'), function (el) { el.textContent = d.course; });
+              var bar = document.querySelector('[data-seats-taken]');
+              if (bar) {
+                bar.setAttribute('data-seats-taken', d.course);
+                var as = document.querySelector('[data-ann-seats]');
+                if (as) as.textContent = d.course + ' of ' + (d.courseTotal || 60) + ' seats taken';
+              }
             }
-          }
-          if (typeof d.vip === 'number') {
-            Array.prototype.forEach.call(document.querySelectorAll('[data-vip-taken]'), function (el) { el.textContent = d.vip; });
-          }
-        })
-        .catch(function () {});
+            if (typeof d.vip === 'number') {
+              Array.prototype.forEach.call(document.querySelectorAll('[data-vip-taken]'), function (el) { el.textContent = d.vip; });
+            }
+          })
+          .catch(function () {});
+      }
+      load();
+      setInterval(load, 60000);
     })();
 
     /* ---------- seat allocation load-bar: fills to the taken count when scrolled into view ---------- */
@@ -413,7 +417,6 @@
       var ebEnd = new Date(bar.getAttribute('data-eb-deadline')).getTime();
       var doorsEnd = new Date(bar.getAttribute('data-doors-deadline')).getTime();
       var total = parseInt(bar.getAttribute('data-seats-total'), 10) || 60;
-      var taken = Math.max(8, parseInt(bar.getAttribute('data-seats-taken'), 10) || 8);
 
       var EB_FULL = 'Early-bird ends Friday July 3. Lock in $1,497 (it goes to $1,997 after).';
       var EB_SHORT = 'Early-bird ends Jul 3 - lock in $1,497';
@@ -442,7 +445,7 @@
         else { msg = CLOSED; target = 0; }
         if (msgEl) msgEl.textContent = msg;
         if (countEl) countEl.textContent = target ? fmt(target - now) : '';
-        if (seatsEl) seatsEl.textContent = taken + ' of ' + total + ' seats taken';
+        if (seatsEl) { var taken = Math.max(0, Math.min(total, parseInt(bar.getAttribute('data-seats-taken'), 10) || 0)); seatsEl.textContent = taken + ' of ' + total + ' seats taken'; }
         syncHeight();
       }
       render();

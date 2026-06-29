@@ -12,6 +12,8 @@
   <title>The AI Course - live cohort with Remy</title>
 
   <link rel="icon" href="assets/gif/course-favicon.gif">
+  <link rel="preload" as="image" href="assets/brain/brain_hi_poster.webp" fetchpriority="high">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ppneuebit-bold.woff2" crossorigin>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,9 +28,9 @@
   <div class="tac-annbar" id="tacAnn"
        data-eb-deadline="2026-07-03T23:59:00-04:00"
        data-doors-deadline="2026-07-11T23:59:00-04:00"
-       data-seats-taken="23" data-seats-total="60">
+       data-seats-taken="0" data-seats-total="60">
     <p class="tac-annbar__msg"><span data-ann-msg>Early-bird ends Friday July 3. Lock in $1,497 (it goes to $1,997 after).</span><span class="tac-annbar__count" data-ann-count></span></p>
-    <span class="tac-annbar__seats" data-ann-seats>23 of 60 seats taken</span>
+    <span class="tac-annbar__seats" data-ann-seats>0 of 60 seats taken</span>
   </div>
 
   <!-- ===================== GLASS PILL NAV ===================== -->
@@ -65,11 +67,11 @@
         </div>
         <div class="tac-hero__brain" aria-hidden="true">
           <div class="brainfx" id="heroBrain">
-            <video class="spin spin--hi" id="heroBrainHi" autoplay loop muted playsinline>
+            <video class="spin spin--hi" id="heroBrainHi" loop muted playsinline preload="none" poster="assets/brain/brain_hi_poster.webp">
               <source src="assets/brain/brain_hi.webm" type="video/webm">
               <source src="assets/brain/brain_hi.mov" type="video/quicktime">
             </video>
-            <div class="reveal"><video class="spin spin--lo" id="heroBrainLo" autoplay loop muted playsinline>
+            <div class="reveal"><video class="spin spin--lo" id="heroBrainLo" loop muted playsinline preload="none">
               <source src="assets/brain/brain_lo.webm" type="video/webm">
               <source src="assets/brain/brain_lo.mov" type="video/quicktime">
             </video></div>
@@ -531,7 +533,7 @@
     <div class="container tac-center tac-reveal">
       <span class="tac-kicker">[ pricing ]</span>
       <h2 class="tac-h2">Choose your seat.</h2>
-      <p class="tac-lead tac-lead--center">Early-bird pricing ends Friday July 3. <b class="hl"><span data-course-taken>23</span> of 60 seats taken.</b></p>
+      <p class="tac-lead tac-lead--center">Early-bird pricing ends Friday July 3. <b class="hl"><span data-course-taken>0</span> of 60 seats taken.</b></p>
     </div>
     <div class="tac-wide tac-reveal">
       <div class="tac-pricing__grid">
@@ -550,7 +552,7 @@
             <li>The private community room, 3 months free</li>
             <li>Capped at 30 per call</li>
           </ul>
-          <p class="tac-price__seats"><span data-course-taken>23</span> of 60 seats taken. Only 60 early-bird seats. When they're gone, they're gone.</p>
+          <p class="tac-price__seats"><span data-course-taken>0</span> of 60 seats taken. Only 60 early-bird seats. When they're gone, they're gone.</p>
           <p class="tac-price__fine">Or split into 4 fortnightly payments from $404, at checkout.</p>
           <a href="https://the-ai-course.circle.so/checkout/the-ai-course" class="tac-cta tac-cta--lg tac-price__cta" data-checkout>Enrol now</a>
         </div>
@@ -567,14 +569,14 @@
             <li><strong>Priority feedback</strong> and a direct line between sessions. Front Row only.</li>
             <li><strong>Your CLAUDE.md reviewed</strong> line by line, and three months of alumni free.</li>
           </ul>
-          <p class="tac-price__seats"><span data-vip-taken>3</span> of 8 private seats taken. Only 8 private seats. When they're gone, they're gone.</p>
+          <p class="tac-price__seats"><span data-vip-taken>0</span> of 8 private seats taken. Only 8 private seats. When they're gone, they're gone.</p>
           <!-- TODO: swap href for the real VIP checkout URL (Charlie to provide) -->
           <a href="https://the-ai-course.circle.so/checkout/vip-or-build-with-me" class="tac-cta tac-cta--lg tac-price__cta" data-vip-checkout>Claim a VIP seat</a>
         </div>
       </div>
       <p class="tac-pricing__counthd">enrollment closes in</p>
       <div class="tac-count tac-count--ink" data-deadline="2026-07-11T23:59:00-04:00" aria-label="time until enrollment closes"><div class="tac-count__unit"><span class="tac-count__n" data-d>00</span><span class="tac-count__l">days</span></div><div class="tac-count__unit"><span class="tac-count__n" data-h>00</span><span class="tac-count__l">hrs</span></div><div class="tac-count__unit"><span class="tac-count__n" data-m>00</span><span class="tac-count__l">min</span></div><div class="tac-count__unit"><span class="tac-count__n" data-s>00</span><span class="tac-count__l">sec</span></div></div>
-      <div class="tac-seatbar" data-taken="23" data-total="60" aria-label="seats taken so far"><div class="tac-seatbar__row"></div><p class="tac-seatbar__label"><span data-course-taken>23</span> of 60 seats taken</p></div>
+      <div class="tac-seatbar" data-taken="0" data-total="60" aria-label="seats taken so far"><div class="tac-seatbar__row"></div><p class="tac-seatbar__label"><span data-course-taken>0</span> of 60 seats taken</p></div>
     </div>
   </section>
   <!-- ===================== [#16] GUARANTEE ===================== -->
@@ -657,7 +659,7 @@
       <p class="tac-final__dates">Doors close Saturday July 11. The cohort kicks off Monday July 13.</p>
       <p class="tac-final__counthd">enrollment closes in</p>
       <div class="tac-count" data-deadline="2026-07-11T23:59:00-04:00" aria-label="time until enrollment closes"><div class="tac-count__unit"><span class="tac-count__n" data-d>00</span><span class="tac-count__l">days</span></div><div class="tac-count__unit"><span class="tac-count__n" data-h>00</span><span class="tac-count__l">hrs</span></div><div class="tac-count__unit"><span class="tac-count__n" data-m>00</span><span class="tac-count__l">min</span></div><div class="tac-count__unit"><span class="tac-count__n" data-s>00</span><span class="tac-count__l">sec</span></div></div>
-      <div class="tac-seatbar" data-taken="23" data-total="60" aria-label="seats taken so far"><div class="tac-seatbar__row"></div><p class="tac-seatbar__label"><span data-course-taken>23</span> of 60 seats taken</p></div>
+      <div class="tac-seatbar" data-taken="0" data-total="60" aria-label="seats taken so far"><div class="tac-seatbar__row"></div><p class="tac-seatbar__label"><span data-course-taken>0</span> of 60 seats taken</p></div>
       <div class="tac-cta-wrap">
         <div class="tac-ctastack"><a href="https://the-ai-course.circle.so/checkout/the-ai-course" class="tac-cta tac-cta--lg" data-checkout>Enrol now <span class="tac-cta__price">&middot; $1,497 early-bird</span></a>
         <a href="https://the-ai-course.circle.so/checkout/vip-or-build-with-me" class="tac-cta tac-cta--vip" data-vip-checkout>Build with me &middot; VIP &rarr; <span class="tac-cta__price">$4,997</span></a></div>
@@ -685,34 +687,55 @@
 
   <!-- ===================== STICKY BUY BAR ===================== -->
   <div class="tac-buybar" id="tacBuybar">
-    <div class="tac-buybar__info"><b>The AI Course</b> <span>&middot; <s>$1,997</s> $1,497 early-bird &middot; <span data-course-taken>23</span> of 60 seats</span></div>
+    <div class="tac-buybar__info"><b>The AI Course</b> <span>&middot; <s>$1,997</s> $1,497 early-bird &middot; <span data-course-taken>0</span> of 60 seats</span></div>
     <a href="https://the-ai-course.circle.so/checkout/the-ai-course" class="tac-buybar__cta" data-checkout>Enrol now</a>
   </div>
 
 
 
   <script>
-    /* hero brain: half-speed 3D spin, low-def lens follows the cursor */
+    /* hero brain: the poster paints the brain instantly; the heavy base video defers
+       until the hero has painted (browser idle), and the low-def lens layer only
+       loads on first hover - so most loads never fetch it at all. */
     (function () {
       var stage = document.getElementById('heroBrain');
       if (!stage) return;
       var hi = document.getElementById('heroBrainHi');
       var lo = document.getElementById('heroBrainLo');
       var SPEED = 0.5;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       function radius() { return getComputedStyle(stage).getPropertyValue('--reveal-radius').trim(); }
       function set(k, v) { stage.style.setProperty(k, v); }
-      [hi, lo].forEach(function (v) { try { v.playbackRate = SPEED; v.play().catch(function () {}); } catch (e) {} });
+      var hiStarted = false, loStarted = false;
+      function startHi() {
+        if (hiStarted || reduceMotion) return; hiStarted = true;
+        try { hi.playbackRate = SPEED; hi.play().catch(function () {}); } catch (e) {}
+      }
+      function startLo() {
+        if (loStarted || reduceMotion) return; loStarted = true;
+        try { lo.playbackRate = SPEED; lo.play().catch(function () {}); } catch (e) {}
+        requestAnimationFrame(sync);
+      }
       function sync() {
         if (hi.readyState >= 2 && Math.abs(lo.currentTime - hi.currentTime) > 0.06) lo.currentTime = hi.currentTime;
         requestAnimationFrame(sync);
       }
-      requestAnimationFrame(sync);
+      /* kick the base brain once the hero is painted / the browser is idle */
+      var kicked = false;
+      function kick() { if (kicked) return; kicked = true; startHi(); }
+      if (!reduceMotion) {
+        if ('requestIdleCallback' in window) requestIdleCallback(kick, { timeout: 900 });
+        else setTimeout(kick, 350);
+        window.addEventListener('scroll', kick, { once: true, passive: true });
+        window.addEventListener('pointerdown', kick, { once: true, passive: true });
+      }
+      /* lens: the low-def layer only loads/plays on first hover */
       function place(e) {
         var r = stage.getBoundingClientRect();
         set('--x', (e.clientX - r.left) + 'px');
         set('--y', (e.clientY - r.top) + 'px');
       }
-      stage.addEventListener('pointerenter', function (e) { place(e); set('--r', radius()); });
+      stage.addEventListener('pointerenter', function (e) { startLo(); place(e); set('--r', radius()); });
       stage.addEventListener('pointermove', place);
       stage.addEventListener('pointerleave', function () { set('--r', '0px'); });
     })();
