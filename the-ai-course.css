@@ -3,7 +3,7 @@
    Page-specific styles. Loads AFTER styles.css and
    reuses its tokens, fonts and components.
    Brand: Sophisticated Digital Nostalgia.
-   Blueprint Blue #4040FF used as accent + on deliberate
+   Blueprint Blue #173EF5 used as accent + on deliberate
    full-blue feature bands only. Corners squared (Notion
    pass) except the glass pill nav.
    ===================================================== */
@@ -14,7 +14,7 @@
   /* main brand blue for this page (overrides the inherited accent) */
   --color-accent: #173EF5;
   --color-accent-light: rgba(23, 62, 245, 0.1);
-  --tac-blue-2: #1230c4;
+  --tac-blue-2: #173EF5;
   /* ---- type scale (standardised) ---- */
   --fs-display: clamp(2.2rem, 5.6vw, 3.5rem);  /* H1 hero headline */
   --fs-h2:      clamp(1.75rem, 4.2vw, 2.5rem); /* section heading */
@@ -62,7 +62,7 @@ html, body { overflow-x: clip; max-width: 100%; }
   display: inline-block;
   margin-bottom: var(--space-4);
 }
-.tac-section--ink .tac-kicker { color: #9b9bff; }
+.tac-section--ink .tac-kicker { color: #173EF5; }
 
 .tac-h2 {
   font-family: 'PP Neue Bit', 'Space Mono', monospace;
@@ -375,12 +375,12 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-mech { background: #0e0e12; color: #fff; }
 .tac-mech .tac-h2 { color: #fff; }
 .tac-mech__quote { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.3rem); text-align: center; color: #fff; max-width: 24ch; margin: 0 auto var(--space-8); line-height: 1.1; }
-.tac-mech__quote .hl { color: #9b9bff; }
+.tac-mech__quote .hl { color: #173EF5; }
 
 /* engine */
 .tac-engine { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 760px; margin: 0 auto var(--space-8); }
 .tac-engine__card { border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.03); padding: var(--space-6); }
-.tac-engine__tag { font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px; color: #9b9bff; text-transform: uppercase; }
+.tac-engine__tag { font-family: 'Silkscreen', monospace; font-size: 10px; letter-spacing: 1px; color: #173EF5; text-transform: uppercase; }
 .tac-engine__card h4 { font-family: var(--font-body); font-weight: 700; font-size: var(--fs-h3); margin: var(--space-3) 0 var(--space-2); color: #fff; }
 .tac-engine__card p { font-size: var(--fs-body); color: rgba(255,255,255,0.85); line-height: 1.55; margin: 0; }
 .tac-engine__note { text-align: center; font-family: var(--font-mono); font-size: 0.82rem; color: rgba(255,255,255,0.72); margin: var(--space-8) auto var(--space-10); max-width: 52ch; }
@@ -393,7 +393,7 @@ html, body { overflow-x: clip; max-width: 100%; }
   color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.03);
   transition: all 300ms var(--tac-ease);
 }
-.tac-loop__node.is-active { border-color: #9b9bff; color: #fff; background: rgba(23,62,245,0.25); box-shadow: 0 0 22px rgba(100,100,255,0.4); }
+.tac-loop__node.is-active { border-color: #173EF5; color: #fff; background: rgba(23,62,245,0.25); box-shadow: 0 0 22px rgba(23,62,245,0.4); }
 .tac-loop__arrow { color: rgba(255,255,255,0.4); font-family: var(--font-mono); }
 .tac-loop__rep { text-align: center; font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: rgba(255,255,255,0.62); text-transform: uppercase; margin-top: var(--space-4); }
 
@@ -420,7 +420,7 @@ html, body { overflow-x: clip; max-width: 100%; }
 }
 .tac-gear__num { font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px; color: #fff; text-shadow: 1px 1px 0 #0e0e12, -1px -1px 0 #0e0e12, 1px -1px 0 #0e0e12, -1px 1px 0 #0e0e12, 0 0 4px #0e0e12; }
 .tac-gear__hub strong { font-family: 'PP Neue Bit','Space Mono',monospace; font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.25rem); color: #fff; text-shadow: 1px 1px 0 #0e0e12, -1px -1px 0 #0e0e12, 1px -1px 0 #0e0e12, -1px 1px 0 #0e0e12, 0 0 5px #0e0e12; }
-.tac-gear__what { display: block; font-family: var(--font-mono); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.4px; color: #9b9bff; margin-bottom: var(--space-3); }
+.tac-gear__what { display: block; font-family: var(--font-mono); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.4px; color: #173EF5; margin-bottom: var(--space-3); }
 .tac-gear__desc { font-size: var(--fs-body); color: rgba(255,255,255,0.84); line-height: 1.55; max-width: 30ch; margin: 0 auto; }
 @media (prefers-reduced-motion: reduce) { .tac-cog { animation: none; } }
 .tac-mech__hire { max-width: 60ch; margin: var(--space-10) auto 0; text-align: center; font-size: var(--fs-body); line-height: 1.65; color: rgba(255,255,255,0.82); }
@@ -729,7 +729,7 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-buybar__info b { color: #fff; }
 .tac-buybar__info span { color: rgba(255,255,255,0.6); }
 .tac-buybar__cta { font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; padding: 12px 22px; background: var(--color-accent); color: #fff; text-decoration: none; white-space: nowrap; box-shadow: inset -2px -2px 0 0 rgba(0,0,0,0.25); }
-.tac-buybar__cta:hover { background: #3f5cf7; }
+.tac-buybar__cta:hover { background: #173EF5; }
 @media (max-width: 560px) {
   .tac-buybar { gap: var(--space-3); padding: 10px 12px; }
   .tac-buybar__info span { display: none; }
@@ -1554,7 +1554,7 @@ html, body { overflow-x: clip; max-width: 100%; }
   font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.55rem; letter-spacing: 0.2px; text-transform: uppercase;
   color: #fff; background: var(--color-accent); border: 2px solid #16161a; box-shadow: 3px 3px 0 rgba(23,62,245,0.2);
   transition: transform .08s ease, background .15s ease; }
-.tac-calc__preset:hover { background: #2a4bff; }
+.tac-calc__preset:hover { background: #173EF5; }
 .tac-calc__preset:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(23,62,245,0.2); }
 @keyframes tac-calc-flash {
   0%   { box-shadow: 0 0 0 0 rgba(23,62,245,0); background: #e4e4f8; }
@@ -1648,5 +1648,5 @@ html, body { overflow-x: clip; max-width: 100%; }
 .tac-seatbar__seat.is-on { background: var(--color-accent); }
 .tac-seatbar__label { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase; color: var(--color-text-secondary); text-align: center; margin: var(--space-2) 0 0; }
 .tac-final .tac-seatbar__seat { background: rgba(255,255,255,0.16); }
-.tac-final .tac-seatbar__seat.is-on { background: #3a5bff; }
+.tac-final .tac-seatbar__seat.is-on { background: #173EF5; }
 .tac-final .tac-seatbar__label { color: rgba(255,255,255,0.7); }
