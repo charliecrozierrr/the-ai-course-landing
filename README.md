@@ -92,6 +92,14 @@ The hero was 6.7MB; it's now ~0.7MB on first load. Keep it that way:
 
 ---
 
+## Legal pages
+
+`/terms` (Terms & Conditions + Refund Policy) and `/privacy` (Privacy Policy) are real pages: `terms.html`, `privacy.html`, shared styles in `legal.css`, clean URLs via `vercel.json` (`cleanUrls`, so `/terms.html` 308-redirects to `/terms`). Editable source copy lives in the project folder at `Work/Legal/Website Policies/`.
+
+**The footer must always link to both.** The `.tac-foot__legal` line in `index.html` carries the `/terms` and `/privacy` links (look for the `LEGAL LINKS - REQUIRED` comment right above it). These links are a legal requirement, not decoration — **preserve them through any redesign or footer restructure.** If you rebuild the footer or change the markup, the `/terms` and `/privacy` links must survive.
+
+---
+
 ## Deploying
 
 Production is on **Vercel** (project `the-ai-course-landing`), production branch **`master`**.
